@@ -1,18 +1,17 @@
 """
-This script estimates tuning curves for simulated auditory nerve fibers at a range of CFs and saves the results
-to disk for further analysis.
+This script estimates firing rates at a range of levels and frequencies centered around a particular CF for simulated
+auditory nerve fibers at a range of CFs and saves the results to disk for further analysis.
 """
 import apcmodels.synthesis as sy
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from scipy.interpolate import interp1d
 import config as cfg
 import os
 
 
 # Define function to estimate tuning curves
-def estimate_tuning_curve(cf, levels, freqs, fs, model):
+def estimate_freq_level_func(cf, levels, freqs, fs, model):
     """
     Calculates the mean firing rate of an auditory nerve model simulation responding to a short pure tone at a range of
     levels and frequencies centered around a cf.
@@ -68,12 +67,12 @@ np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/levels.npy'), l
 # Loop over models and model names
 for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba], ['Heinz2001']):
     # Compute frequency-level profile for each cf
-    tuning_curves = []
+    freq_level_funcs = []
     for cf in cfs:
-        tuning_curve = estimate_tuning_curve(cf, levels, freqs, fs, anf.AuditoryNerveHeinz2001Numba)
-        tuning_curves.append(tuning_curve)
+        freq_level_func = estimate_freq_level_func(cf, levels, freqs, fs, anf.AuditoryNerveHeinz2001Numba)
+        freq_level_funcs.append(freq_level_func)
     # Save neural responses to disk
-    np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name, '.npy'), tuning_curves)
+    np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '.npy'), freq_level_funcs)
 
 
 
