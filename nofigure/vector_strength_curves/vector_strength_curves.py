@@ -56,7 +56,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep):
         return inner
 
     # Encode fixed stimulus params in dict
-    params = si.Parameters(dur=0.50, dur_ramp=0.020, level=20, phase=0, fs=fs)  # encode fixed params
+    params = si.Parameters(dur=2, dur_ramp=0.020, level=20, phase=0, fs=fs)  # encode fixed params
     params.wiggle_parallel(['freq', 'cf_low', 'cf_high'], [freqs, freqs, freqs])  # wiggle freqs and cfs
 
     # Add model params to dict
@@ -84,7 +84,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep):
 
 
 # Define parameters
-fs = int(200e3)  # sampling rate in Hz
+fs = int(100e3)  # sampling rate in Hz
 n_rep = 50
 freqs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure vector strength curves
 
