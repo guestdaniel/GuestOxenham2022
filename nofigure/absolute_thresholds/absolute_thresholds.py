@@ -49,12 +49,17 @@ fs = int(200e3)  # sampling rate in Hz
 cfs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure rate-level functions
 levels = np.linspace(-10, 40, num=25)  # range of levels over which we will estimate rate-level functions
 
-# Compute rate-level function for each CF and then estimate the level at which 1.05 x spontaneous rate is achieved
-absolute_thresholds = []
-for cf in cfs:
-    rate_level_function = estimate_rate_level_function(cf, levels, fs, anf.AuditoryNerveHeinz2001Numba)
-    absolute_thresholds.append(interp1d(rate_level_function, levels)(np.min([rate_level_function[0] * 1.05,
-                                                                            np.max(rate_level_function)])))
-# Save absolute thresholds to disk
+# Save cfs to disk
 np.save(os.path.join(cfg.root_directory, 'nofigure/absolute_thresholds/cfs.npy'), cfs)
-np.save(os.path.join(cfg.root_directory, 'nofigure/absolute_thresholds/Heinz2001.npy'), absolute_thresholds)
+
+# Loop through models
+for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
+                             ['Heinz2001', 'Zilany2014', 'Verhulst2018']):
+    # Compute rate-level function for each CF and then estimate the level at which 1.05 x spontaneous rate is achieved
+    absolute_thresholds = []
+    for cf in cfs:
+        rate_level_function = estimate_rate_level_function(cf, levels, fs, model)
+        absolute_thresholds.append(interp1d(rate_level_function, levels)(np.min([rate_level_function[0] * 1.05,
+                                                                                np.max(rate_level_function)])))
+    # Save absolute thresholds to disk
+    np.save(os.path.join(cfg.root_directory, 'nofigure/absolute_thresholds/', model_name + '.npy'), absolute_thresholds)

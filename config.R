@@ -1,5 +1,5 @@
 # Configure directories
-root_directory = '/home/daniel/apc_code/hfm/GuestOxenham2021_code'
+root_directory = '/home/daniel/GuestOxenham2021'
 
 # Load libraries
 library(ggplot2)

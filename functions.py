@@ -65,7 +65,7 @@ def adjust_level(freq, level, model_name):
     """
     Accepts an input level in dB SPL and returns an adjusted level for the corresponding auditory nerve model.
     Adjustments are made based on estimates of absolute threshold for each nerve model made in
-    nofigure/absolute_thresholds/.
+    nofigure/absolute_thresholds.
 
     Parameters:
         freq (float): frequency at which the absolute threshold is estimated and used to adjust the level, in Hz
@@ -87,8 +87,34 @@ def adjust_level(freq, level, model_name):
                                         13.21929098, 13.82237866, 14.72409746, 15.62127449, 16.58383025,
                                         17.33935012, 17.71101781, 17.87225817, 17.92201393, 17.9330261,
                                         17.93559906, 17.93581972, 17.93615349, 17.93697896, 17.93698821])
+    elif model_name == 'Zilany2014':
+        cfs = np.array([200., 242.30553173, 293.55985352, 355.65588201,
+                        430.88693801, 522.03144314, 632.45553203, 766.23736991,
+                        928.31776672, 1124.68265038, 1362.58413812, 1650.80837054,
+                        2000., 2423.05531726, 2935.59853524, 3556.55882008,
+                        4308.86938006, 5220.31443137, 6324.55532034, 7662.37369911,
+                        9283.17766723, 11246.82650381, 13625.84138116, 16508.08370536,
+                        20000.])
+        absolute_thresholds = np.array([24.16215997, 21.78254856, 19.98826118, 17.76583852, 15.53689047,
+                                        13.21213245, 11.06027241, 9.33326088, 8.29574625, 7.81458668,
+                                        7.72554453, 8.32412585, 10.78823985, 10.72308501, 8.244502,
+                                        5.5022836, 2.76210577, 0.45029163, -0.36206515, 0.55300722,
+                                        4.58129414, 8.37939556, 11.9621168, 15.44527991, 18.74309845])
+    elif model_name == 'Verhulst2018':
+        cfs = np.array([200., 242.30553173, 293.55985352, 355.65588201,
+                        430.88693801, 522.03144314, 632.45553203, 766.23736991,
+                        928.31776672, 1124.68265038, 1362.58413812, 1650.80837054,
+                        2000., 2423.05531726, 2935.59853524, 3556.55882008,
+                        4308.86938006, 5220.31443137, 6324.55532034, 7662.37369911,
+                        9283.17766723, 11246.82650381, 13625.84138116, 16508.08370536,
+                        20000.])
+        absolute_thresholds = np.array([21.87167926, 20.07611191, 19.04426302, 17.29593544, 15.99061908,
+                                        15.75462616, 15.60087287, 15.4184775, 16.27429258, 17.40108221,
+                                        18.12974557, 20.05392103, 20.87753392, 22.65084918, 23.85382262,
+                                        25.55748375, 26.88444276, 28.2902204, 29.30248888, 32.05847776,
+                                        33.5721896, 33.88356551, 36.15362977, 40., 40.])
     else:
-        return ValueError('Models other than Heinz (2001) are not yet implemented.')
+        raise ValueError('model type is not recognize')
     # Calculate correction and return
     adjustment = interp1d(np.log10(cfs), absolute_thresholds, kind='cubic')
     return level + adjustment(np.log10(freq))

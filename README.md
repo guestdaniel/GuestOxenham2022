@@ -1,3 +1,5 @@
+# Introduction
+
 This repository contains all the code and behavioral data necessary to completely replicate the figures found in Guest and Oxenham (2021). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. The code relies on a number of external libraries, including more common ones such as `numpy` and `scipy`, as well as auditory-specific libraries such as `cochlea`, `gammatone`, and our modeling toolbox, `apcmodels`.
 
 # File structure
@@ -6,6 +8,7 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 
 ```
 .  
+├── data                     # Behavioral data 
 ├── figure1                  # Code for Figure 1
 ├── ...  
 ├── figure4                  # Code for Figure 5
@@ -30,23 +33,27 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 
 # Instructions
 
-To replicate the paper figures, you will need a working installs of Python and R. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Run figure code` below and follow the instructions there to generate each figure. All of the resultant `.png` files will be stored in `plots`. 
+To replicate the paper figures, you will need a working installs of Python and R. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files. 
+
+As an alternative to manually installing and configuring Python and R, we also provide a Docker image that contains pre-configured Python and R installations suitable for running the code in this repository. See more information about this in the `Docker` section below.
 
 ## Python
 
 A Python 3 interpreter is required to run the simulation code (Figure 4, Figure 5, Figure 6, supplemental figures). We recommend using `pyenv`, `conda`, or another similar tool to install Python 3.6, as well as the packages (with version numbers) listed below:
 
-### Packages
 - `numpy` -
 - `scipy` -
 - `pathos` -
-- ``
+- `cochlea` -
+- `gammatone` -
+- `yo`
+
+Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Additionally, edit the `config.py` file to indicate the location of the files. Then, run `.py` files as needed. Note that all the outputs of `.py` files are already pre-included in the repository, so no Python code needs to be run to reproduce the manuscript figures. 
 
 ## R
 
 R is required to generate all the behavioral and modeling figures. The paper figures were generated using R 4.0.3, although in theory any fairly recent version of R should suffice. Below a list of required packages (and the versions used to generate the figures) is provided:
 
-### Packages
 - `merTools` - 0.5.2
 - `dplyr` - 1.0.2
 - `effects` - 4.2-0
@@ -55,6 +62,22 @@ R is required to generate all the behavioral and modeling figures. The paper fig
 - `phia` - 0.2-1
 - `tidyr` - 1.1.2
 
-Start R and set your working directory to wherever this repository is located. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. These outputs are precisely those used to generate the figures in the manuscript. As a result, all the R scripts should correctly generate the paper figures even if you don't have a Python interpreter installed, or you have not yet run the Python scripts. 
+Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. These outputs are precisely those used to generate the figures in the manuscript. As a result, all the R scripts should correctly generate the paper figures even if you don't have a Python interpreter installed, or you have not yet run the Python scripts.
 
-## Run figure code
+## Docker
+
+# Figures
+
+## Figure 1
+
+## Figure 2
+
+## Figure 3
+
+## Figure 4
+
+## Figure 5
+
+## Figure 6
+
+## Figure 7

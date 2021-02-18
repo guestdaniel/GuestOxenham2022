@@ -41,10 +41,10 @@ def simulate_figure4_fdls(model, model_name, fs):
     params = si.stitch_parameters(params, 'cf_low', cf_low)  # stitch cf_low (each frequency corresponds to a cf_low)
     params = si.stitch_parameters(params, 'cf_high', cf_high)  # stitch cf_high (each frequency corresponds to a cf_high)
     params = si.wiggle_parameters(params, 'level', levels)  # wiggle levels
-    params = si.append_parameters(params, ['n_cf', 'delta_theta', 'API', 'n_fiber_per_chan'],
-                                  [n_cf, [0.001], np.zeros(1), n_fiber_per_chan])  # append other model parameters
+    params = si.append_parameters(params, ['n_cf', 'delta_theta', 'API', 'n_fiber_per_chan', 'model_name'],
+                                  [n_cf, [0.001], np.zeros(1), n_fiber_per_chan, model_name])  # append other model parameters
 
-    # Adjust levels
+    # Adjust levels to be in dB re: threshold
     params = si.flatten_parameters(params)  # flatten out params
     for ele in params:
         ele['nominal_level'] = ele['level']  # save the nominal level (dB re: threshold)
@@ -60,7 +60,7 @@ def simulate_figure4_fdls(model, model_name, fs):
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate), parallel=True, progress=True)
+    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate), parallel=True, hide_progress=False)
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
@@ -72,7 +72,7 @@ def simulate_figure4_fdls(model, model_name, fs):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba],
-                                 ['Heinz2001'],
-                                 [int(1000e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014],
+                                 ['Heinz2001', 'Zilany2014'],
+                                 [int(1000e3), int(200e3)]):
     simulate_figure4_fdls(model, model_name, fs)
