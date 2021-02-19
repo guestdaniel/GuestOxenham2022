@@ -25,8 +25,8 @@ def estimate_q10(freqs, levels):
 
 
 # Create storage and loop through and estimate q10
-q10s = list()
-for model_name in ['Heinz2001']:
+for model_name in ['Heinz2001', 'Zilany2014']:
+    q10s = list()
     tuning_curves = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '_tuning_curves' +
                                          '.npy'), allow_pickle=True)
     for tc in tuning_curves:

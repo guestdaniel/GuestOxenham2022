@@ -33,7 +33,7 @@ def estimate_freq_level_func(cf, levels, freqs, fs, model):
         return inner
 
     # Encode fixed stimulus params in dict
-    params = si.Parameters(freq=cf, dur=0.10, dur_ramp=0.020, phase=0, fs=fs)  # encode fixed params
+    params = si.Parameters(freq=cf, dur=0.20, dur_ramp=0.020, phase=0, fs=fs)  # encode fixed params
     params.wiggle('level', levels)  # wiggle levels
     params.wiggle('freq', cf*2**freqs)  # wiggle freqs
 
@@ -55,9 +55,9 @@ def estimate_freq_level_func(cf, levels, freqs, fs, model):
 
 # Define parameters
 fs = int(200e3)  # sampling rate in Hz
-cfs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure tuning curves
-levels = np.linspace(-10, 40, num=25)  # range of levels over which we will estimate tuning curves
-freqs = np.linspace(-1, 1, 25)  # range of frequencies over which we will estimate tuning curves\
+cfs = 10**np.linspace(np.log10(200), np.log10(16000), 25)  # CFs for which we will measure tuning curves
+levels = np.linspace(-10, 40, num=30)  # range of levels over which we will estimate tuning curves
+freqs = np.linspace(-0.6, 0.6, 30)  # range of frequencies over which we will estimate tuning curves
 
 # Save cfs, levels, and freqs to disk
 np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/cfs.npy'), cfs)
@@ -65,11 +65,11 @@ np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/freqs.npy'), fr
 np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/levels.npy'), levels)
 
 # Loop over models and model names
-for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba], ['Heinz2001']):
+for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014], ['Heinz2001', 'Zilany2014']):
     # Compute frequency-level profile for each cf
     freq_level_funcs = []
     for cf in cfs:
-        freq_level_func = estimate_freq_level_func(cf, levels, freqs, fs, anf.AuditoryNerveHeinz2001Numba)
+        freq_level_func = estimate_freq_level_func(cf, levels, freqs, fs, model)
         freq_level_funcs.append(freq_level_func)
     # Save neural responses to disk
     np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '.npy'), freq_level_funcs)

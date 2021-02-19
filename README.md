@@ -31,11 +31,16 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 └── README.md                # This README file
 ```
 
+## Data files
+
+Two behavioral data files are included in the repository in the folder `data` and each is documented below.
+
+- `exp1.csv`
+- `exp2.csv`
+
 # Instructions
 
-To replicate the paper figures, you will need a working installs of Python and R. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files. 
-
-As an alternative to manually installing and configuring Python and R, we also provide a Docker image that contains pre-configured Python and R installations suitable for running the code in this repository. See more information about this in the `Docker` section below.
+To replicate the paper figures, you will need Python and R. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files.
 
 ## Python
 
@@ -64,8 +69,6 @@ R is required to generate all the behavioral and modeling figures. The paper fig
 
 Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. These outputs are precisely those used to generate the figures in the manuscript. As a result, all the R scripts should correctly generate the paper figures even if you don't have a Python interpreter installed, or you have not yet run the Python scripts.
 
-## Docker
-
 # Figures
 
 ## Figure 1
@@ -76,8 +79,14 @@ Once your R  is configured successfully, set your working directory to your loca
 
 ## Figure 4
 
+Figure 4 features simulated frequency difference limens (FDLs) derived using ideal observer analysis for three auditory nerve model. Each subfigure has a corresponding `.py` script (to generate the neural simulations) and a `.R` script (to plot the figure). The `.py` files can take a considerable amount of time and RAM to run, particularly for the sections simulating thresholds for the Verhulst et al. (2018) auditory nerve model.
+
 ## Figure 5
+
+Figure 5 features simulated F0 difference limens (FDLs) derived using ideal observer analysis for three auditory nerve model. Each subfigure has a corresponding `.py` script (to generate the neural simulations) and a `.R` script (to plot the figure). The `.py` files can take a considerable amount of time and RAM to run, particularly for the sections simulating thresholds for the Verhulst et al. (2018) auditory nerve model.
 
 ## Figure 6
 
-## Figure 7
+## Supplemental Figure 1
+
+The supplemental figure features a range of simulation results including vector strength and filter tuning plots for all of the tested auditory nerve models and model responses for the Zilany et al. (2014) auditory nerve model for various types of complex tone stimuli. Each subfigure has a `.py` file to generate it. The first two subfigures rely on simulation results from the `nofigure/vector_strength_curves` and `nofigure/tuning_curves`, respectively. 

@@ -48,8 +48,8 @@ freqs = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/freqs.n
 levels = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/levels.npy'))
 
 # Create storage and loop through and fit tuning curves
-tuning_curves = list()
-for model_name in ['Heinz2001']:
+for model_name in ['Heinz2001', 'Zilany2014']:
+    tuning_curves = list()
     firing_rates = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '.npy'))
     for fr, cf in zip(firing_rates, cfs):
         tuning_curves.append(fit_tuning_curve(levels, freqs, fr, 1.05, cf))
