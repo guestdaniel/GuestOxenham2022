@@ -1,0 +1,52 @@
+[1] "ANOVA // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+Analysis of Deviance Table (Type III Wald F tests with Kenward-Roger df)
+
+Response: threshold
+                            F Df Df.res    Pr(>F)    
+(Intercept)           24.9958  1  24.01 0.0002079 ***
+F0                    55.3494  1  23.99 7.805e-07 ***
+masker               154.6713  1  23.30 7.220e-11 ***
+experiment             0.0355  1 730.83 1.0000000    
+F0:masker             41.4144  1  23.11 8.477e-06 ***
+F0:experiment          0.3395  1 520.73 1.0000000    
+masker:experiment      8.6709  1 120.84 0.0155165 *  
+F0:masker:experiment   4.2395  1 107.51 0.1257286    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "Contrasts to test F0 by masker // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+F Test: 
+P-value adjustment method: none
+                 Value     Df      F    Pr(>F)    
+280-1400 :  ISO 4.9771  1.000 63.658 2.664e-07 ***
+280-1400 : GEOM 2.1120  1.000 30.368 7.116e-05 ***
+Residuals              23.769                     
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "Contrasts to test masker by F0 // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+F Test: 
+P-value adjustment method: none
+                 Value     Df       F    Pr(>F)    
+ISO-GEOM :  280 3.6746  1.000 211.078 4.075e-12 ***
+ISO-GEOM : 1400 1.5592  1.000  18.443  0.001313 ** 
+Residuals              23.354                      
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "Contrasts to test F0-masker interaction // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+F Test: 
+P-value adjustment method: none
+                     Value     Df      F   Pr(>F)    
+280-1400 : ISO-GEOM 2.3567  1.000 41.414 9.89e-06 ***
+Residuals                  23.107                    
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+[1] "Contrasts to test experiment pairwise // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+F Test: 
+P-value adjustment method: none
+                           Value     Df      F  Pr(>F)  
+Exp1a-Exp1b :  280 :  ISO 1.0324   1.00 0.0644 1.00000  
+Exp1a-Exp1b : 1400 :  ISO 1.3931   1.00 6.3754 0.04758 *
+Exp1a-Exp1b :  280 : GEOM 1.0884   1.00 0.4501 1.00000  
+Exp1a-Exp1b : 1400 : GEOM 1.2512   1.00 3.2827 0.21320  
+Residuals                        284.28                 
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
