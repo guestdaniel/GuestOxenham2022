@@ -48,6 +48,8 @@ Two behavioral data files are included in the repository in the folder `data`. E
   - `threshold`: Threshold calculated from run, in 10*log10(%)
   - `sd`: Standard deviation of threshold from run
   - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments. 
+  
+These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively.
 
 # Instructions
 
