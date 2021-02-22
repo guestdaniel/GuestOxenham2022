@@ -33,20 +33,20 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 
 ## Data files
 
-Two behavioral data files are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single staircase in the adaptive procedure. The columns in each datafile are documented below.
+Two behavioral data files are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but contain only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. The columns in each datafile are documented below. 
 
 - `exp1.csv`
-  - `F0`: F0 of staircase in Hz
-  - `masker`: Masker condition of staircase, either ISO or GEOM
-  - `threshold`: Threshold calculated from staircase, in 10*log10(%)
-  - `sd`: Standard deviation of threshold from staircase
+  - `F0`: F0 of run in Hz
+  - `masker`: Masker condition of run, either ISO or GEOM
+  - `threshold`: Threshold calculated from run, in 10*log10(%)
+  - `sd`: Standard deviation of threshold from run
   - `subj`: Anonymized participant identifier
   - `experiment`: Sub-experiment threshold was collected in (either Experiment 1a or Experiment 1b)
 - `exp2.csv`
-  - `F0`: F0 of staircase in Hz
-  - `interval`: Interval size of staircase, either 1.5 times or 2.5 times the listener's average F0DL in Experiment 1
-  - `threshold`: Threshold calculated from staircase, in 10*log10(%)
-  - `sd`: Standard deviation of threshold from staircase
+  - `F0`: F0 of run in Hz
+  - `interval`: Interval size of run, either 1.5 times or 2.5 times the listener's average F0DL in Experiment 1
+  - `threshold`: Threshold calculated from run, in 10*log10(%)
+  - `sd`: Standard deviation of threshold from run
   - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments. 
 
 # Instructions
