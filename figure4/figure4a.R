@@ -4,12 +4,20 @@ source('config.R')
 sims = list.files(file.path(root_directory, '/figure4/'), pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
-	fdls = bind_rows(fdls, read.csv(file.path(root_directory, '/figure4/', sims[sim])))
+	# Import each simulation CSV
+	temp = read.csv(file.path(root_directory, '/figure4/', sims[sim]))
+	# If level is numeric, that means it's a phase roving simulation --- change level to str
+	if (class(temp$level) == 'numeric') {
+		temp$level = as.character(temp$level)
+	}
+	fdls = bind_rows(fdls, temp)
 }
 fdls$threshold = fdls$result
 fdls$nominal_level = factor(fdls$nominal_level)
-fdls$roving_type = factor(fdls$roving_type, levels=c("none", "level", "phase"), labels=c("None", "Level Roved", "Phase Randomized"))
-fdls$model = factor(fdls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst2018"), labels=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"))
+fdls$roving_type = factor(fdls$roving_type, levels=c("none", "level", "phase"),
+						   labels=c("None", "Level Roved", "Phase Randomized"))
+fdls$model = factor(fdls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst2018"),
+					labels=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"))
 
 # Construct plot
 fdls %>% 

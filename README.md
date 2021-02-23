@@ -35,7 +35,7 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 
 ## Data files
 
-Two behavioral data files are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but contain only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. The columns in each datafile are documented below. 
+Two behavioral data files from the present experiments are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but contain only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively. The columns in each datafile are documented below. 
 
 - `exp1.csv`
   - `F0`: F0 of run in Hz
@@ -44,14 +44,25 @@ Two behavioral data files are included in the repository in the folder `data`. E
   - `sd`: Standard deviation of threshold from run
   - `subj`: Anonymized participant identifier
   - `experiment`: Sub-experiment threshold was collected in (either Experiment 1a or Experiment 1b)
+  
 - `exp2.csv`
   - `F0`: F0 of run in Hz
   - `interval`: Interval size of run, either 1.5 times or 2.5 times the listener's average F0DL in Experiment 1
   - `threshold`: Threshold calculated from run, in 10*log10(%)
   - `sd`: Standard deviation of threshold from run
-  - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments. 
+  - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments.
   
-These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively.
+Two additional files are included in the folder `data` that contain FDL and F0DL measurements extracted from various published figures in the literature. These files are called `FDL_data.csv` and `F0DL_data.csv` respectively and their contents are described below. `.RData` versions of these files are also included, and the variables inside these files that contain the data frames are called `data`. The papers from which these results were extracted are described in more detail in the manuscript.
+
+- `FDL_data.csv`
+  - `src`: The shortened name of the paper from which the data were extracted, in the form LastnameYear
+  - `f`: Frequency of the measurement in Hz
+  - `t` Threshold of the measurement in %
+  
+- `F0DL_data.csv`
+  - `src`: The shortened name of the paper from which the data were extracted, in the form LastnameYear
+  - `f`: F0 of the measurement in Hz
+  - `t` Threshold of the measurement in %
 
 # Instructions
 
