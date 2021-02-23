@@ -77,7 +77,7 @@ def simulate_figure4_fdls_phase_roving(model, model_name, fs, n_rep=10):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba],
-                                 ['Heinz2001'],
-                                 [int(1000e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
+                                 ['Zilany2014'],
+                                 [int(200e3)]):
     simulate_figure4_fdls_phase_roving(model, model_name, fs)
