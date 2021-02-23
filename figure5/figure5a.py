@@ -7,7 +7,7 @@ import apcmodels.decode as dc
 from apcmodels.util import save_to_csv
 import numpy as np
 import config as cfg
-from functions import ISOToneGuest2021, adjust_level
+from functions import ISOToneGuest2021_exp1a, adjust_level
 
 
 def simulate_figure5_f0dls(model, model_name, fs):
@@ -54,7 +54,7 @@ def simulate_figure5_f0dls(model, model_name, fs):
     params = si.increment_parameters(params, {'F0': 0.001})  # increment frequency
 
     # Synthesize stimuli
-    synth = ISOToneGuest2021()
+    synth = ISOToneGuest2021_exp1a()
     stimuli = synth.synthesize_sequence(params)
     params = si.stitch_parameters(params, '_input', stimuli)
 

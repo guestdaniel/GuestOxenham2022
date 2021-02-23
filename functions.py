@@ -9,6 +9,49 @@ from scipy.signal import sosfiltfilt, butter
 from scipy.interpolate import interp1d
 
 
+class ISOToneGuest2021_exp1a(sy.Synthesizer):
+    """
+    Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+    """
+    def __init__(self):
+        super().__init__(stimulus_name='ISO Tone')
+
+    def synthesize(self, F0, dur=0.350, dur_ramp=0.02, level=None, phase=None, fs=int(48e3), **kwargs):
+        """
+        Synthesizes a harmonic complex tone composed of components 6-10 of the F0. This is the same stimulus as used
+        in Experiment 1a.
+
+        Arguments:
+            F0 (float): F0 of the complex tone in Hz
+            level (float, ndarray): level per-component of the complex tone in dB SPL, can be either a float (in this
+                case, the same level is used for all components) or an ndarray indicating the level of each component
+            phase (float, ndarray): phase offset applied to each component of the complex tone in degrees, can be
+                either a float (in which case the same phase offset is used for all components) or an ndarray indicating
+                the phase offset of each component.
+            dur (float): duration in seconds
+            dur_ramp (float): duration of raised-cosine ramp in seconds
+            fs (int): sampling rate in Hz
+
+        Returns:
+            output (array): complex tone stimulus
+        """
+        # Create array of frequencies, levels, and phases
+        freqs = F0*np.array([6, 7, 8, 9, 10])
+        if level is None:
+            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
+        elif type(level) is float:
+            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
+        if phase is None:
+            phase = np.zeros(len(freqs))  # default to sine phase
+        elif type(phase) is float:
+            phase = phase + np.zeros(len(freqs))
+        # Synthesize, filter, and ramp complex tone signal
+        signal = sg.complex_tone(freqs, level, phase, dur, fs)
+        signal = sg.cosine_ramp(signal, dur_ramp, fs)
+        # Return
+        return signal
+
+
 class ISOToneGuest2021(sy.Synthesizer):
     """
     Synthesizes the ISO stimulus in Guest and Oxenham (2021).
@@ -20,7 +63,7 @@ class ISOToneGuest2021(sy.Synthesizer):
         """
         Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
-        10.5x F0 using a zero-phase Butterworth filter.
+        10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b.
 
         Arguments:
             F0 (float): F0 of the complex tone in Hz
@@ -45,15 +88,15 @@ class ISOToneGuest2021(sy.Synthesizer):
         # Create array of frequencies, levels, and phases
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
         if level is None:
-            levels = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
+            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
         elif type(level) is float:
-            levels = level*np.ones(len(freqs))  # default to 40 dB SPL per component
+            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
-            phases = np.zeros(len(freqs))  # default to sine phase
+            phase = np.zeros(len(freqs))  # default to sine phase
         elif type(phase) is float:
-            phases = phase + np.zeros(len(freqs))
+            phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
-        signal = sg.complex_tone(freqs, levels, phases, dur, fs)
+        signal = sg.complex_tone(freqs, level, phase, dur, fs)
         signal = sosfiltfilt(sos, signal)
         signal = sg.cosine_ramp(signal, dur_ramp, fs)
         # Synthesize noise
@@ -75,13 +118,13 @@ class GEOMToneGuest2021(sy.Synthesizer):
         """
         Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
-        10.5x F0 using a zero-phase Butterworth filter.
+        10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b.
 
         Arguments:
             F0 (float): F0 of the complex tone in Hz
             F0_masker (float): F0 of the masker complex tone in Hz
             level (float, ndarray): level per-component of the complex tone in dB SPL, can be either a float (in this
-                case, the same level is used for all components) or an ndarray indicating the level of each component
+                case, the same level is used for all components) or an ndarray indicating the level of each component.
             phase (float, ndarray): phase offset applied to each component of the complex tone in degrees, can be
                 either a float (in which case the same phase offset is used for all components) or an ndarray indicating
                 the phase offset of each component.
@@ -103,29 +146,29 @@ class GEOMToneGuest2021(sy.Synthesizer):
         # Create array of frequencies, levels, and phases
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
         if level is None:
-            levels = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
+            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
         elif type(level) is float:
-            levels = level*np.ones(len(freqs))  # default to 40 dB SPL per component
+            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
-            phases = np.zeros(len(freqs))  # default to sine phase
+            phase = np.zeros(len(freqs))  # default to sine phase
         elif type(phase) is float:
-            phases = phase + np.zeros(len(freqs))
+            phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
-        signal = sg.complex_tone(freqs, levels, phases, dur, fs)
+        signal = sg.complex_tone(freqs, level, phase, dur, fs)
         signal = sosfiltfilt(sos, signal)
         signal = sg.cosine_ramp(signal, dur_ramp, fs)
         # Create array of frequencies, levels, and phases for the masker
         freqs_masker = np.arange(F0_masker, 48000 / 2, F0_masker)  # up to Nyquist for fs=48
         if level is None:
-            levels_masker = 40*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
+            level_masker = 40*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
         elif type(level) is float:
-            levels_masker = level*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
+            level_masker = level*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
         if phase is None:
-            phases_masker = np.zeros(len(freqs_masker))  # default to sine phase
+            phase_masker = np.zeros(len(freqs_masker))  # default to sine phase
         elif type(phase) is float:
-            phases_masker = phase + np.zeros(len(freqs_masker))
+            phase_masker = phase + np.zeros(len(freqs_masker))
         # Synthesize, filter, and ramp complex tone signal
-        masker = sg.complex_tone(freqs_masker, levels_masker, phases_masker, dur, fs)
+        masker = sg.complex_tone(freqs_masker, level_masker, phase_masker, dur, fs)
         masker = sosfiltfilt(sos_masker, masker)
         masker = sg.cosine_ramp(masker, dur_ramp, fs)
         # Synthesize noise
@@ -142,8 +185,9 @@ def adjust_level(freq, level, model_name):
     nofigure/absolute_thresholds.
 
     Parameters:
-        freq (float): frequency at which the absolute threshold is estimated and used to adjust the level, in Hz
-        level (float): input level in dB SPL
+        freq (float, ndarray): frequency at which the absolute threshold is estimated and used to adjust the level, in
+            Hz, or an array of such frequencies
+        level (float, ndarray): input level in dB SPL, or an array of such levels
         model_name (str): either 'Heinz2001', 'Zilany2014', or 'Verhulst2018', indicates which model's absolute
             thresholds should be used in the adjustment
     """
