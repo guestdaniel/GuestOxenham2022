@@ -72,7 +72,7 @@ def simulate_figure4_fdls(model, model_name, fs):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014],
-                                 ['Heinz2001', 'Zilany2014'],
-                                 [int(1000e3), int(200e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
+                                 ['Heinz2001', 'Zilany2014', 'Verhulst2018'],
+                                 [int(1000e3), int(200e3), int(200e3)]):
     simulate_figure4_fdls(model, model_name, fs)

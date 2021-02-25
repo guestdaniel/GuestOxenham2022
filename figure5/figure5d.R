@@ -69,9 +69,10 @@ f0dls %>%
 	filter(decoding_type == 'AI') %>%
 	ggplot(aes(x=vs, y=threshold/(F0)*100, color=model, shape=decoding_type)) +
 	# Geoms
+	geom_smooth(aes(group=1), method='lm', se=FALSE, color='black') +
 	geom_smooth(se=FALSE, size=size_smooth) +
 	geom_point(size=size_point*2) +
-	geom_vline(xintercept=0.1, linetype='dashed', color='gray') +
+	#geom_vline(xintercept=0.1, linetype='dashed', color='gray') +
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels) +
 	scale_x_log10(breaks=breaks, labels=labels) +
@@ -98,7 +99,7 @@ f0dls %>%
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
-ggsave('plots/fig5d_phase_locking.png', width=4.25*0.85, height=2.25*0.85)
+ggsave('plots/fig5d_phase_locking.png', width=4.25*0.85, height=2.5*0.85)
 
 # Plot F0DLs vs Q10
 f0dls %>%
@@ -107,6 +108,7 @@ f0dls %>%
 	filter(decoding_type == 'RP') %>%
 	ggplot(aes(x=q10, y=threshold/(F0)*100, color=model, shape=decoding_type)) +
 	# Geoms
+	geom_smooth(aes(group=1), method='lm', se=FALSE, color='black') +
 	geom_smooth(se=FALSE, size=size_smooth) +
 	geom_point(size=size_point*2) +
 	# Axes
@@ -130,9 +132,9 @@ f0dls %>%
 	  legend.margin=unit(0, 'cm')) +
 	# Labels
 	xlab("Q10") +
-	ylab("FDL (%)") +
+	ylab("F0DL (%)") +
 	guides(color=guide_legend(title="Model"),
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
-ggsave('plots/fig5d_tuning.png', width=4.25*0.85, height=2.25*0.85)
+ggsave('plots/fig5d_tuning.png', width=4.25*0.85, height=2.5*0.85)

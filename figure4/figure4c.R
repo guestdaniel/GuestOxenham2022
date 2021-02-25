@@ -87,4 +87,4 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		xlab("Source (model or paper)") +
 		ylab("Ratio (8.5 kHz / 2.0 kHz)") +
 		guides(shape=guide_legend(title="Type"))
-ggsave('plots/fig4c.png', width=3.5, height=2.5)
+ggsave('plots/fig4c.png', width=4, height=2.75)
