@@ -50,7 +50,7 @@ for model_name in ['Heinz2001', 'Zilany2014', 'Verhulst2018']:
     plt.xlabel('CF (Hz)')
     plt.ylabel('Vector Strength')
     plt.yscale('log')
-    plt.ylim((0.08, 1))
+    plt.ylim((0.01, 1))
     plt.legend(['Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)'])
 # Plot reference animal data
 ref_freqs = 10**np.linspace(np.log10(250), np.log10(16000), 1000)

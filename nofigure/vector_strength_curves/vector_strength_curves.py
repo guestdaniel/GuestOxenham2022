@@ -12,7 +12,7 @@ from functions import adjust_level
 
 
 # Define function to estimate vector strength
-def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
+def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep, dur=2):
     """
     Calculates the firing rate of an auditory nerve for a pure tone at a range of freqs (with the CF matched to the
     freq) and then estimates vector strength for those responses. Spike trains are generated from the firing rates
@@ -26,6 +26,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
         n_rep (int): number of repeated spike trains to generate for each firing rate waveform
         n_stim_rep (int): number of firing rate waveforms to stitch together... allows us to cheat out a "long" stimulus
             without actually simulating the full response
+        dur (float): duration of the sinusoidal input stimulus, in seconds
 
     Returns:
         output (ndarray): array of mean firing rates of shape (n_freq, n_level)
@@ -36,12 +37,10 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
             # Calculate firing rate
             rates = runfunc(params)  # output is expected to be (1, n_sample)
 
-            # Repeat the rate waveform n_stim_rep number of times
-            rates = np.tile(rates, (n_stim_rep, ))
-
-            # Calculate spike times
-            spike_times = [calculate_spike_times(simulate_poisson_spike_train(rates.T, fs), fs) for rep in
-                           range(params['n_rep'])]
+            # Calculate n_stim_rep spike trains and concatenate them (as if we had presented the stimulus n_stim_rep
+            # times and then calculated peri-stimulus spike times for each), then do this n_rep times and store in a
+            # list
+            spike_times = [np.concatenate([calculate_spike_times(simulate_poisson_spike_train(rates.T, fs), fs) for rep in range(n_stim_rep)]) for rep in range(n_rep)]
 
             # Calculate vector strength for each spike train
             vector_strengths = list(map(lambda x: calculate_vector_strength(x, params['freq']), spike_times))
@@ -61,7 +60,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
         return inner
 
     # Encode fixed stimulus params in dict
-    params = si.Parameters(dur=2, dur_ramp=0.020, level=20, phase=0, fs=fs)  # encode fixed params
+    params = si.Parameters(dur=dur, dur_ramp=0.020, level=20, phase=0, fs=fs)  # encode fixed params
     params.wiggle_parallel(['freq', 'cf_low', 'cf_high'], [freqs, freqs, freqs])  # wiggle freqs and cfs
 
     # Add model params to dict
@@ -80,7 +79,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
     sim = model()
     if model_name == 'Verhulst2018':
         # If we're using Verhulst model, we should only run one thread as we don't have enough RAM to run default 8
-        results = sim.run(params, runfunc=vector_strength_wrapper(sim.simulate), n_thread=1)
+        results = sim.run(params, runfunc=vector_strength_wrapper(sim.simulate))
     else:
         results = sim.run(params, runfunc=vector_strength_wrapper(sim.simulate))
 
@@ -91,7 +90,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep):
 # Define parameters
 fs = int(100e3)  # sampling rate in Hz
 n_rep = 50
-n_stim_rep = 20
+n_stim_rep = 150
 freqs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure vector strength curves
 
 # Save cfs, levels, and freqs to disk
@@ -101,7 +100,7 @@ np.save(os.path.join(cfg.root_directory, 'nofigure/vector_strength_curves/freqs.
 for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                              ['Heinz2001', 'Zilany2014', 'Verhulst2018']):
     # Compute frequency-level profile for each cf
-    vector_strength_curve = estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep)
+    vector_strength_curve = estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep, dur=0.35)
     # Save vector strengths to disk
     np.save(os.path.join(cfg.root_directory, 'nofigure/vector_strength_curves/', model_name + '.npy'),
             vector_strength_curve)

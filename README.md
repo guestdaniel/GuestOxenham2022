@@ -96,6 +96,7 @@ R is required to generate all the behavioral and modeling figures. The paper fig
 - `effects` - 4.2-0
 - `car` - 3.0-10
 - `lmerTest` - 3.1-3
+- `RcppCNPy` - 0.2.10
 
 Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. These outputs are precisely those used to generate the figures in the manuscript. As a result, all the R scripts should correctly generate the paper figures even if you don't have a Python interpreter installed, or you have not yet run the Python scripts.
 
