@@ -177,6 +177,38 @@ class GEOMToneGuest2021(sy.Synthesizer):
         return signal + masker
 
 
+class ComplexToneCedolin2005(sy.Synthesizer):
+    """
+    Synthesizes the complex tone stimulus from Cedolin and Delgutte (2005)
+    """
+    def __init__(self):
+        super().__init__(stimulus_name='Cedolin Tone')
+
+    def synthesize(self, F0=500, level=30, dur=0.2, dur_ramp=0.02, fs=int(48e3), **kwargs):
+        """
+        Synthesizes the complex tone stimulus from Cedolin and Delgutte (2005)
+
+        Arguments:
+            F0 (float): F0 of the complex tone in Hz
+            level (float): level per-component of the complex tone in dB SPL
+            dur (float): duration in seconds
+            dur_ramp (float): duration of raised-cosine ramp in seconds
+            fs (int): sampling rate in Hz
+
+        Returns:
+            output (array): complex tone stimulus
+        """
+        # Create array of frequencies, levels, and phases
+        freqs = np.arange(start=F0*2, stop=48e3/2, step=F0)
+        levels = level*np.ones(len(freqs))
+        phases = np.zeros(len(freqs))
+        # Synthesize, filter, and ramp complex tone signal
+        signal = sg.complex_tone(freqs, levels, phases, dur, fs)
+        signal = sg.cosine_ramp(signal, dur_ramp, fs)
+        # Return
+        return signal
+
+
 def adjust_level(freq, level, model_name):
     """
     Accepts an input level in dB SPL and returns an adjusted level for the corresponding auditory nerve model.

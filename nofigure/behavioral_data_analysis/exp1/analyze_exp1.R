@@ -75,7 +75,8 @@ model_anova[, "Pr(>F)"] = p.adjust(model_anova[, "Pr(>F)"], method="holm")
 test_F0 = testInteractions(model, pairwise="F0", fixed="masker", adjustment="none", test="F")
 test_masker = testInteractions(model, pairwise="masker", fixed="F0", adjustment="none", test="F")
 test_F0_and_masker = testInteractions(model, pairwise=c("F0", "masker"), adjustment="none", test="F")
-test_experiment_pairwise = testInteractions(model, pairwise="experiment", fixed=c("F0", "masker"), adjustment="none", test="F")
+test_experiment_pairwise = testInteractions(model, pairwise="experiment", fixed=c("F0", "masker"), adjustment="none",
+											test="F")
 
 # Combine contrast tests and correct their p-values
 contrasts = list(test_F0, test_masker, test_F0_and_masker, test_experiment_pairwise)
@@ -108,3 +109,5 @@ test_F0_and_masker
 "Contrasts to test experiment pairwise // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
 test_experiment_pairwise
 sink()
+
+car::linearHypothesis()
