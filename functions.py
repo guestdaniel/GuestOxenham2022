@@ -39,11 +39,11 @@ class ISOToneGuest2021_exp1a(sy.Synthesizer):
         freqs = F0*np.array([6, 7, 8, 9, 10])
         if level is None:
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float:
+        elif type(level) is float or type(level) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float:
+        elif type(phase) is float or type(phase) is int:
             phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)
@@ -59,7 +59,8 @@ class ISOToneGuest2021(sy.Synthesizer):
     def __init__(self):
         super().__init__(stimulus_name='ISO Tone')
 
-    def synthesize(self, F0, dur=0.350, dur_ramp=0.02, level=None, phase=None, fs=int(48e3), ten=False, TMR=0, **kwargs):
+    def synthesize(self, F0, dur=0.350, dur_ramp=0.02, level=None, phase=None, fs=int(48e3), ten=False, level_noise=0,
+                   **kwargs):
         """
         Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
@@ -75,8 +76,7 @@ class ISOToneGuest2021(sy.Synthesizer):
             dur (float): duration in seconds
             dur_ramp (float): duration of raised-cosine ramp in seconds
             ten (bool): whether or not to include threshold-equalizing masking noise
-            TMR (float): the target-to-masker ratio at which to synthesize noise (if ten is True). Measured in terms of
-                per-component level of the tones vs level of the noise in the ERB centered at 1 kHz.
+            level_noise (float): the level at which to synthesize the TEN, in dB SPL
             fs (int): sampling rate in Hz
 
         Returns:
@@ -89,11 +89,11 @@ class ISOToneGuest2021(sy.Synthesizer):
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
         if level is None:
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float:
+        elif type(level) is float or type(level) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float:
+        elif type(phase) is float or type(phase) is int:
             phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)
@@ -101,7 +101,7 @@ class ISOToneGuest2021(sy.Synthesizer):
         signal = sg.cosine_ramp(signal, dur_ramp, fs)
         # Synthesize noise
         if ten:
-            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level-TMR), dur_ramp, fs)
+            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level_noise), dur_ramp, fs)
         # Return
         return signal
 
@@ -113,8 +113,8 @@ class GEOMToneGuest2021(sy.Synthesizer):
     def __init__(self):
         super().__init__(stimulus_name='GEOM Tone')
 
-    def synthesize(self, F0, F0_masker, dur=0.350, dur_ramp=0.02, level=None, phase=None, ten=False, TMR=0,
-                   fs=int(48e3), **kwargs):
+    def synthesize(self, F0, F0_masker, dur=0.350, dur_ramp=0.02, level=None, phase=None, level_masker=None,
+                   phase_masker=None, ten=False, level_noise=0, fs=int(48e3), **kwargs):
         """
         Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
@@ -130,8 +130,7 @@ class GEOMToneGuest2021(sy.Synthesizer):
                 the phase offset of each component.
             dur_ramp (float): duration of raised-cosine ramp in seconds
             ten (bool): whether or not to include threshold-equalizing masking noise
-            TMR (float): the target-to-masker ratio at which to synthesize noise (if ten is True). Measured in terms of
-                per-component level of the tones vs level of the noise in the ERB centered at 1 kHz.
+            level_noise (float): the level at which to synthesize the TEN, in dB SPL
             fs (int): sampling rate in Hz
 
         Returns:
@@ -147,11 +146,11 @@ class GEOMToneGuest2021(sy.Synthesizer):
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
         if level is None:
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float:
+        elif type(level) is float or type(level) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float:
+        elif type(phase) is float or type(phase) is int:
             phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)
@@ -159,21 +158,21 @@ class GEOMToneGuest2021(sy.Synthesizer):
         signal = sg.cosine_ramp(signal, dur_ramp, fs)
         # Create array of frequencies, levels, and phases for the masker
         freqs_masker = np.arange(F0_masker, 48000 / 2, F0_masker)  # up to Nyquist for fs=48
-        if level is None:
+        if level_masker is None:
             level_masker = 40*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
-        elif type(level) is float:
-            level_masker = level*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
-        if phase is None:
+        elif type(level_masker) is float or type(level_masker) is int:
+            level_masker = level_masker*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
+        if phase_masker is None:
             phase_masker = np.zeros(len(freqs_masker))  # default to sine phase
-        elif type(phase) is float:
-            phase_masker = phase + np.zeros(len(freqs_masker))
+        elif type(phase_masker) is float or type(phase_masker) is int:
+            phase_masker = phase_masker + np.zeros(len(freqs_masker))
         # Synthesize, filter, and ramp complex tone signal
         masker = sg.complex_tone(freqs_masker, level_masker, phase_masker, dur, fs)
         masker = sosfiltfilt(sos_masker, masker)
         masker = sg.cosine_ramp(masker, dur_ramp, fs)
         # Synthesize noise
         if ten:
-            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level-TMR), dur_ramp, fs)
+            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level_noise), dur_ramp, fs)
         # Return
         return signal + masker
 
