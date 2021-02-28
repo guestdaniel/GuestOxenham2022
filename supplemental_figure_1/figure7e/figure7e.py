@@ -30,3 +30,4 @@ ax.annotate("6/F0", xy=(6, 5), xytext=(6.2, 5.2), arrowprops=dict(arrowstyle='->
 ax.annotate("7/F0", xy=(7/(11/9), 5), xytext=(7/(11/9) - 0.6, 5.2), arrowprops=dict(arrowstyle='->', color='blue'), color='blue')
 # Save to disk
 plt.tight_layout()
+plt.savefig('plots/fig7e.png')
