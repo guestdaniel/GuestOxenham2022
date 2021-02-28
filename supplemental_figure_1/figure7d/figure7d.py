@@ -17,7 +17,7 @@ def plot_isi_histogram(ax, ISIs, F0, first):
     hist_low, edges_low = np.histogram(ISIs, bins=2200, range=(0, 0.22))
     # Plot dashed lines at F0 intervals
     for ii in range(1, 50):
-        ax.plot([ii * 1 / F0 * 1000, ii * 1 / F0 * 1000], [0, 12500], color='gray', linestyle='dashed',
+        ax.plot([ii * 1 / F0 * 1000, ii * 1 / F0 * 1000], [0, 14000], color='gray', linestyle='dashed',
                 linewidth=0.5)
     # Plot histogram
     ax.plot(edges_low[1:] * 1000, hist_low)
@@ -28,7 +28,7 @@ def plot_isi_histogram(ax, ISIs, F0, first):
         ax.set_xlabel('Interval (s)')
     ax.set_ylabel('Interval count')
     ax.set_title(str(F0) + ' Hz')
-    ax.set_ylim((0, 10000))
+    ax.set_ylim((0, 14000))
 
 # Create figure and saxes
 fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(4, 4))

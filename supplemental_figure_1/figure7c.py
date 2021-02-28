@@ -22,7 +22,7 @@ def plot_excitation_pattern_Cedolin_2005(F0s, cf, ax, first):
     levels = [20, 30, 40]  # per-component level in dB SPL
 
     # Setup params
-    params = si.Parameters(fs=int(200e3), fiber_type='hsr', n_cf=1, cf_low=cf, cf_high=cf)
+    params = si.Parameters(fs=int(200e3), fiber_type='hsr', n_cf=1, cf_low=cf, cf_high=cf, species='cat')
     params.wiggle('level', levels)
     params.wiggle('F0', F0s)  # params is now shape of (3, 50)
 

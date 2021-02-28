@@ -209,6 +209,43 @@ class ComplexToneCedolin2005(sy.Synthesizer):
         return signal
 
 
+class ComplexToneLarsen2008(sy.Synthesizer):
+    """
+    Synthesizes the complex tone stimulus from Larsen and Delgutte (2008)
+    """
+    def __init__(self):
+        super().__init__(stimulus_name='Larsen Tone')
+
+    def synthesize(self, F0=500, level=30, dur=0.2, dur_ramp=0.02, fs=int(48e3), ratio=11/9, **kwargs):
+        """
+        Synthesizes the double complex tone stimulus from Larsen and Delgutte (2008)
+
+        Arguments:
+            F0 (float): F0 of the lower complex tone in Hz
+            level (float): level per-component of the complex tones in dB SPL
+            dur (float): duration in seconds
+            dur_ramp (float): duration of raised-cosine ramp in seconds
+            fs (int): sampling rate in Hz
+            ratio (float): ratio between the F0s of the upper and lower tone
+
+        Returns:
+            output (array): complex tone stimulus
+        """
+        # Create array of frequencies, levels, and phases
+        freqs_1 = np.arange(start=F0*2, stop=F0*20, step=F0)
+        freqs_2 = np.arange(start=F0*11/9*2, stop=F0*11/9*20, step=F0*11/9)
+        levels_1 = level*np.ones(freqs_1.shape)
+        levels_2 = level*np.ones(freqs_2.shape)
+        phases_1 = np.ones(freqs_1.shape)
+        phases_2 = np.ones(freqs_2.shape)
+        # Synthesize, filter, and ramp complex tone signals
+        x_1 = sg.complex_tone(freqs_1, levels_1, phases_1, dur, fs)
+        x_2 = sg.complex_tone(freqs_2, levels_2, phases_2, dur, fs)
+        target_1 = sg.cosine_ramp(x_1, dur_ramp, fs) + sg.cosine_ramp(x_2, dur_ramp, fs)
+        # Return
+        return target_1
+
+
 def adjust_level(freq, level, model_name):
     """
     Accepts an input level in dB SPL and returns an adjusted level for the corresponding auditory nerve model.
