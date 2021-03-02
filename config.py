@@ -1,5 +1,7 @@
 import matplotlib.pyplot as plt
+import os
 root_directory = '/home/daniel/GuestOxenham2021/'
+os.chdir(root_directory)
 
 SMALL_SIZE = 12
 MEDIUM_SIZE = 14

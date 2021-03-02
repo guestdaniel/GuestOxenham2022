@@ -50,7 +50,7 @@ cfs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we wi
 levels = np.linspace(-10, 40, num=25)  # range of levels over which we will estimate rate-level functions
 
 # Save cfs to disk
-np.save(os.path.join(cfg.root_directory, 'nofigure/absolute_thresholds/cfs.npy'), cfs)
+np.save('nofigure/absolute_thresholds/cfs.npy', cfs)
 
 # Loop through models
 for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
@@ -62,4 +62,4 @@ for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerve
         absolute_thresholds.append(interp1d(rate_level_function, levels)(np.min([rate_level_function[0] * 1.05,
                                                                                 np.max(rate_level_function)])))
     # Save absolute thresholds to disk
-    np.save(os.path.join(cfg.root_directory, 'nofigure/absolute_thresholds/', model_name + '.npy'), absolute_thresholds)
+    np.save('nofigure/absolute_thresholds/', model_name + '.npy', absolute_thresholds)

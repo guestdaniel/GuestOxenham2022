@@ -43,16 +43,16 @@ def fit_tuning_curve(levels, freqs, firing_rates, criterion, cf):
 
 
 # Import freq-level firing rate patterns from disk
-cfs = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/cfs.npy'))
-freqs = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/freqs.npy'))
-levels = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/levels.npy'))
+cfs = np.load('nofigure/tuning_curves/cfs.npy')
+freqs = np.load('nofigure/tuning_curves/freqs.npy')
+levels = np.load('nofigure/tuning_curves/levels.npy')
 
 # Create storage and loop through and fit tuning curves
 for model_name in ['Heinz2001', 'Zilany2014']:
     tuning_curves = list()
-    firing_rates = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '.npy'))
+    firing_rates = np.load(os.path.join('nofigure/tuning_curves/', model_name + '.npy'))
     for fr, cf in zip(firing_rates, cfs):
         tuning_curves.append(fit_tuning_curve(levels, freqs, fr, 1.05, cf))
     # Save tuning curves to disk (note because different curves can have different lengths, we save as object array)
-    np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '_tuning_curves' + '.npy'),
+    np.save(os.path.join('nofigure/tuning_curves/', model_name + '_tuning_curves' + '.npy'),
             np.array(tuning_curves, dtype='object'))

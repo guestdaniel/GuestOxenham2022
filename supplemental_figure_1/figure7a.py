@@ -64,4 +64,4 @@ plt.plot((1050, 2320), (0.205, 0.23), color='gray')
 # Handle layout
 plt.tight_layout()
 # Save figure to disk
-plt.savefig(os.path.join(cfg.root_directory, 'plots', 'fig7a.png'))
+plt.savefig('plots/fig7a.png')

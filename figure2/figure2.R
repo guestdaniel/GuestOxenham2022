@@ -17,7 +17,7 @@ size_error = 1
 width_error = 0.06
 
 # Load data
-load('../data/exp2.RData')
+load('data/exp2.RData')
 data = data_exp2
 
 # Calculate means and standard errors

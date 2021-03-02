@@ -60,9 +60,9 @@ levels = np.linspace(-10, 40, num=30)  # range of levels over which we will esti
 freqs = np.linspace(-0.6, 0.6, 30)  # range of frequencies over which we will estimate tuning curves
 
 # Save cfs, levels, and freqs to disk
-np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/cfs.npy'), cfs)
-np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/freqs.npy'), freqs)
-np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/levels.npy'), levels)
+np.save('nofigure/tuning_curves/cfs.npy', cfs)
+np.save('nofigure/tuning_curves/freqs.npy', freqs)
+np.save('nofigure/tuning_curves/levels.npy', levels)
 
 # Loop over models and model names
 for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014], ['Heinz2001', 'Zilany2014']):
@@ -72,7 +72,7 @@ for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerve
         freq_level_func = estimate_freq_level_func(cf, levels, freqs, fs, model)
         freq_level_funcs.append(freq_level_func)
     # Save neural responses to disk
-    np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '.npy'), freq_level_funcs)
+    np.save('nofigure/tuning_curves/', model_name + '.npy', freq_level_funcs)
 
 
 

@@ -64,10 +64,10 @@ def simulate_figure5_f0dls(model, model_name, fs):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_unroved_AI.csv', decoding_type='AI',
+                'figure5/' + model_name + '_figure5_unroved_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='none')
     save_to_csv([res[1] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_unroved_RP.csv', decoding_type='RP',
+                'figure5/' + model_name + '_figure5_unroved_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='none')
 
 

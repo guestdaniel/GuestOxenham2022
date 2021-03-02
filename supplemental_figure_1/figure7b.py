@@ -21,14 +21,11 @@ import matplotlib.pyplot as plt
 # Generate and save results
 plt.figure(figsize=(4.5, 3.5))
 # Load cfs from disk
-cfs = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', 'cfs' + '.npy'))
+cfs = np.load(os.path.join('nofigure/tuning_curves/', 'cfs' + '.npy'))
 # Loop through models, load that model's q10, and plot
 for model_name in ['Heinz2001', 'Zilany2014', 'Verhulst2018']:
-    q_10 = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', model_name + '_q10s' + '.npy'))
-    if model_name == 'Verhulst2018':
-        plt.plot(cfs[cfs < 10000]/1000, q_10[cfs < 10000], linewidth=3)
-    else:
-        plt.plot(cfs/1000, q_10, linewidth=3)
+    q_10 = np.load(os.path.join('nofigure/tuning_curves/', model_name + '_q10s' + '.npy'))
+    plt.plot(cfs/1000, q_10, linewidth=3)
 # Handle axes and legend
 plt.xscale('log')
 plt.yscale('log')
@@ -59,4 +56,4 @@ plt.text(20, 4.4, 'Guinea\nPig', bbox={'edgecolor': 'gray', 'facecolor': 'white'
 # Handle layout
 plt.tight_layout()
 # Save figure to disk
-plt.savefig(os.path.join(cfg.root_directory, 'plots', 'fig7b.png'))
+plt.savefig('plots/fig7b.png')

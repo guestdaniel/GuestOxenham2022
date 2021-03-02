@@ -69,10 +69,10 @@ def simulate_figure4_fdls_phase_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                cfg.root_directory + 'figure4/' + model_name + '_figure4_phase_roving_AI.csv', decoding_type='AI',
+                'figure4/' + model_name + '_figure4_phase_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='phase')
     save_to_csv([res[1] for res in results], params,
-                cfg.root_directory + 'figure4/' + model_name + '_figure4_phase_roving_RP.csv', decoding_type='RP',
+                'figure4/' + model_name + '_figure4_phase_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='phase')
 
 
@@ -139,10 +139,10 @@ def simulate_figure4_fdls_level_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                cfg.root_directory + 'figure4/' + model_name + '_figure4_level_roving_AI.csv', decoding_type='AI',
+                'figure4/' + model_name + '_figure4_level_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='level')
     save_to_csv([res[1] for res in results], params,
-                cfg.root_directory + 'figure4/' + model_name + '_figure4_level_roving_RP.csv', decoding_type='RP',
+                'figure4/' + model_name + '_figure4_level_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='level')
 
 

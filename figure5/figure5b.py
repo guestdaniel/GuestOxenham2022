@@ -76,10 +76,10 @@ def simulate_figure5_f0dls_phase_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_phase_roving_AI.csv', decoding_type='AI',
+                'figure5/' + model_name + '_figure5_phase_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='phase')
     save_to_csv([res[1] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_phase_roving_RP.csv', decoding_type='RP',
+                'figure5/' + model_name + '_figure5_phase_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='phase')
 
 
@@ -151,10 +151,10 @@ def simulate_figure5_f0dls_level_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_level_roving_AI.csv', decoding_type='AI',
+                'figure5/' + model_name + '_figure5_level_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='level')
     save_to_csv([res[1] for res in results], params,
-                cfg.root_directory + 'figure5/' + model_name + '_figure5_level_roving_RP.csv', decoding_type='RP',
+                'figure5/' + model_name + '_figure5_level_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='level')
 
 

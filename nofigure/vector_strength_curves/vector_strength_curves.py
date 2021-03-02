@@ -94,7 +94,7 @@ n_stim_rep = 150
 freqs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure vector strength curves
 
 # Save cfs, levels, and freqs to disk
-np.save(os.path.join(cfg.root_directory, 'nofigure/vector_strength_curves/freqs.npy'), freqs)
+np.save('nofigure/vector_strength_curves/freqs.npy', freqs)
 
 # Loop over models and model names
 for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
@@ -102,10 +102,10 @@ for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerve
     # Compute frequency-level profile for each cf
     vector_strength_curve = estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep, dur=0.35)
     # Save vector strengths to disk
-    np.save(os.path.join(cfg.root_directory, 'nofigure/vector_strength_curves/', model_name + '.npy'),
+    np.save(os.path.join('nofigure/vector_strength_curves/', model_name + '.npy'),
             vector_strength_curve)
     # Save only the means of the vector strength to disk
-    np.save(os.path.join(cfg.root_directory, 'nofigure/vector_strength_curves/', model_name + '_means.npy'),
+    np.save(os.path.join('nofigure/vector_strength_curves/', model_name + '_means.npy'),
             np.array([x[0] for x in vector_strength_curve]))
 
 

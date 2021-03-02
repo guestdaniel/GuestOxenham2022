@@ -1,11 +1,11 @@
 source('config.R')
 
 # Load simulations
-sims = list.files(file.path(root_directory, '/figure4/'), pattern='.csv')
+sims = list.files('figure4', pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path(root_directory, '/figure4/', sims[sim]))
+	temp = read.csv(path.join('figure4', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)

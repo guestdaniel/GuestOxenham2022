@@ -72,12 +72,11 @@ To replicate the paper figures, you will need Python and R. Instructions for how
 
 A Python 3 interpreter is required to run the simulation code (Figure 4, Figure 5, Figure 6, supplemental figures). We recommend using `pyenv`, `conda`, or another similar tool to install Python 3.6, as well as the packages (with version numbers) listed below:
 
-- `numpy` -
-- `scipy` -
-- `pathos` -
-- `cochlea` -
-- `gammatone` -
-- `yo`
+- `apcmodels` - 0.1.0
+- `numpy` - 1.20.21
+- `scipy` - 1.6.0
+- `pandas` - 1.2.2
+- `scikit-image` - 0.18.1
 
 Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Additionally, edit the `config.py` file to indicate the location of the files. Then, run `.py` files as needed. Note that all the outputs of `.py` files are already pre-included in the repository, so no Python code needs to be run to reproduce the manuscript figures. 
 

@@ -4,15 +4,12 @@ low-level clicks to the basilar membrane stage of the model and then computing Q
 spectrum of the impulse response at each CF. These values are then converted to Q10 using the conversion formula
 suggested Verschooten et al. that Q10 = QERB/1.83.
 """
-import numpy as np
-import os
-import sys
-import matplotlib.pyplot as plt
-sys.path.append('/home/daniel/CoNNear_IHC-ANF/')
-os.chdir('/home/daniel/CoNNear_IHC-ANF')
-from Verhulstetal2018 import get_tl_vbm as gtv
 import config as cfg
-import os
+import numpy as np
+import sys
+sys.path.append('/home/daniel/apc_code/scripts/Verhulstetal2018Model')
+sys.path.append('/home/daniel/CoNNear_IHC-ANF/')
+from run_model2018 import Verhulst2018Cochlea
 
 
 def synthesize_click(dur_click=0.08 / 1000, dur_pre_click=1/1000, dur_post_click=30/1000, fs=int(200e3)):
@@ -38,7 +35,7 @@ def synthesize_click(dur_click=0.08 / 1000, dur_pre_click=1/1000, dur_post_click
     return click
 
 
-def calculate_verhulst2018_bm_response(_input, **kwargs):
+def calculate_verhulst2018_bm_response(_input, fs, **kwargs):
     """
     Returns basilar membrane motion from Verhulst, Altoe, and Vasilikov (2018) peripheral model
 
@@ -54,9 +51,9 @@ def calculate_verhulst2018_bm_response(_input, **kwargs):
         - fs is not currently used
     """
     # Run firing rate simulations
-    vm = gtv.tl_vbm(np.expand_dims(_input, axis=0), None)
-    cfs = vm[0]['cf']
-    vm = vm[0]['v']
+    response = Verhulst2018Cochlea(_input, fs)
+    vm = response[0]
+    cfs = response[2]
     vm = np.flip(vm, axis=1)  # flip tonotopic axis left-right
     vm = vm.T  # transpose to (n_cf, n_sample)
 
@@ -88,12 +85,12 @@ def calc_Q(vm, cfs, fs):
 
 
 # Simulate Verhulst basilar membrane response to 30 dB SPL click
-fs = int(200e3)
+fs = int(500e3)
 click = synthesize_click(fs=fs)
 p0 = 2e-5
 L = 30
 click = click*2*np.sqrt(2)*p0*10**(L/20)
-vm, model_cfs = calculate_verhulst2018_bm_response(click)
+vm, model_cfs = calculate_verhulst2018_bm_response(click, fs)
 
 # Calculate QERB values from the basilar membrane responses
 q_erb = calc_Q(vm, model_cfs, fs)
@@ -102,10 +99,9 @@ q_erb = calc_Q(vm, model_cfs, fs)
 q_10 = np.array(q_erb)/1.83
 
 # Subset the q_10 values to only include those that were tested in the other models
-cfs = np.load(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/cfs.npy'))  # load the tested CF values
+cfs = np.load('nofigure/tuning_curves/cfs.npy')  # load the tested CF values
 idxs = [np.argmin(np.abs(model_cfs-cf)) for cf in cfs]  # locate the indices for Verhulst CFs closest to tested CFs
 q_10 = q_10[idxs]  # subset the q_10 values
 
 # Save these values out to disk
-np.save(os.path.join(cfg.root_directory, 'nofigure/tuning_curves/', 'Verhulst2018' + '_q10s' + '.npy'),
-        q_10)
+np.save('nofigure/tuning_curves/Verhulst2018_q10s' + '.npy', q_10)
