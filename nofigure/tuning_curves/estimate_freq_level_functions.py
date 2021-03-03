@@ -73,7 +73,7 @@ for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerve
         freq_level_func = estimate_freq_level_func(cf, levels, freqs, fs, model)
         freq_level_funcs.append(freq_level_func)
     # Save neural responses to disk
-    np.save('nofigure/tuning_curves/', model_name + '.npy', freq_level_funcs)
+    np.save('nofigure/tuning_curves/' + model_name + '.npy', freq_level_funcs)
 
 
 

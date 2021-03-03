@@ -63,4 +63,4 @@ for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerve
         absolute_thresholds.append(interp1d(rate_level_function, levels)(np.min([rate_level_function[0] * 1.05,
                                                                                 np.max(rate_level_function)])))
     # Save absolute thresholds to disk
-    np.save('nofigure/absolute_thresholds/', model_name + '.npy', absolute_thresholds)
+    np.save('nofigure/absolute_thresholds/' + model_name + '.npy', absolute_thresholds)
