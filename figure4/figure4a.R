@@ -55,4 +55,4 @@ fdls %>%
 	# Facets
 	facet_grid(. ~ model)
 # Save plot to disk
-ggsave('plots/fig4a.png'), width=6, height=2.5)
+ggsave('plots/fig4a.png', width=6, height=2.5)

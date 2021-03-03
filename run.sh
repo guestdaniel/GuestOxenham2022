@@ -17,11 +17,21 @@ python3 figure3/figure3.py
 
 echo 'Generating Figure 4'
 python3 figure4/figure4a.py
+Rscript figure4/figure4a.R
 python3 figure4/figure4b.py
+Rscript figure4/figure4b.R
+Rscript figure4/figure4c.R
+Rscript figure4/figure4d.R
+
 
 echo 'Generating Figure 5'
 python3 figure5/figure5a.py
+Rscript figure5/figure5a.R
 python3 figure5/figure5b.py
+Rscript figure5/figure5b.R
+Rscript figure5/figure5c.R
+Rscript figure5/figure5d.R
+
 
 echo 'Generating Figure 6'
 python3 figure6/figure6.py

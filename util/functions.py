@@ -39,11 +39,11 @@ class ISOToneGuest2021_exp1a(sy.Synthesizer):
         freqs = F0*np.array([6, 7, 8, 9, 10])
         if level is None:
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float or type(level) is int:
+        elif isinstance(level, float) or isinstance(level, int) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float or type(phase) is int:
+        elif isinstance(phase, float) or isinstance(phase, int) is int:
             phase = phase + np.zeros(len(freqs))
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)

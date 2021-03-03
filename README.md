@@ -1,10 +1,14 @@
 # Introduction
 
-This repository contains all the code and behavioral data necessary to completely replicate the figures and analyses found in Guest and Oxenham (2021). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. The code relies on a number of external libraries, including more common ones such as `numpy` and `scipy`, as well as auditory-specific packages which are available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels). For those so inclined, a Docker image is available that provides in which a single script `run.sh` can be run to replicate all of the figures in the paper.
+This repository contains all the code and behavioral data necessary to completely replicate the figures and analyses found in [Guest and Oxenham (2021)](link to paper). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
+
+The repository does not include the files used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.), but these files are available upon request to the authors. The repository does contain the preprocessed behavioral data, code to replicate the analyses and visualizations of the behavioral data, and code to replicate the computational models described in the manuscript. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
+
+The code in this repository is licensed under GNU GPLv3 (see `LICENSE.txt`). The behavioral data in this repository is licensed under CC BY-NC 4.0 (see `data/LICENSE.txt`). 
 
 # File structure
 
-The basic file structure is shown in the file hierarchy below. Essential code required to generate the subfigures in each paper figure is stored in its own folder. A variety of code that was integral to the neural simulations featured in the paper but does not correspond feature exclusively in one particular figure is located in the `nofigure` subfolder. Behavioral data analysis scripts are also found in the `nofigure` folder. Finally, a few other scripts and utilities are stored in top-level `.R` and `.py` files. Output data files or text files are saved in the same folders as the scripts that generate them, while images/plots are saved in the `plots` folder.
+The file structure of this repository is shown in the file hierarchy below. Essential code required to generate the subfigures in each paper figure is stored in its own folder. A variety of code that was integral to the neural simulations featured in the paper but does not correspond exclusively to one figure is located in the `nofigure` subfolder. Behavioral data analysis scripts are also found in the `nofigure` folder. Finally, a few other scripts and utilities are stored in top-level `.R` or in the `util` folder. Output data files or text files are saved in the same folders as the scripts that generate them, while images/plots are saved in the `plots` folder.
 
 ```
 .  
@@ -32,9 +36,42 @@ The basic file structure is shown in the file hierarchy below. Essential code re
 └── README.md                # This README file
 ```
 
-## Data files
+# Docker instructions
 
-Two behavioral data files from the present experiments are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but contain only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively. The columns in each datafile are documented below. 
+Docker is our recommended solution for replicating the results from [Guest and Oxenham (2021)](link to paper). If you are unfamiliar with Docker, you may want to [orient yourself](https://docs.docker.com/get-started/). The Docker image associated with this repository will allow you to start up a containerized Ubuntu environment with Python and R, all packages needed to replicate our paper pre-installed, and a copy of this repository. Inside this environment, which is separated from the rest of your system, you can replicate the results of our paper with a single command. When you are done with this process and leave the environment, the environment will clean itself up and stop consuming system resources. The major advantage of using Docker in this way is that you do not have to install Python or R yourself and the versions of Python and R inside the Docker image will not interfere with any existing versions you have on your computer.
+
+To get started, make sure you have [Docker installed](https://docs.docker.com/get-docker/). Then, follow the instructions below. The instructions below are written for command line interface (such as PowerShell and Terminal) but equivalent commands likely exist in graphical user interface versions of the Docker software.
+
+First, pull the image from our GitHub repository.
+
+```
+docker pull docker.pkg.github.com/guestdaniel/guestoxenham2021/guestoxenham2021:0.1.0
+```
+
+Next, use the image to create an interactive container.
+
+```
+docker run --rm -it guestoxenham2021
+```
+
+This container starts with an interactive bash shell located in a copy of the present repository. From there, you can either manually run individual scripts using the `python3` and `Rscript` commands for Python and R, respectively, or you can generate the all the figures in the paper via:
+```
+bash run.sh
+```
+
+However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk (called `output` in the example below). First, exit the container with the `exit` command, then run the following:
+
+```
+docker run --rm -v output:/GuestOxenham2021/plots -it guestoxenham2021
+```
+
+Now, if you call `run.sh` or any of the individual plotting files (e.g., `figure1.R`), whatever is saved in the `plots` folder of the repository will be accessible on your hard drive (outside of the container) in the `output` folder. 
+
+# Data files
+
+## Behavioral data
+
+Two behavioral data files from [Guest and Oxenham (2021)](link to paper) are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but reflect only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. Third, data were combined across subjects. These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively. The columns in each datafile are documented below. 
 
 - `exp1.csv`
   - `F0`: F0 of run in Hz
@@ -51,7 +88,9 @@ Two behavioral data files from the present experiments are included in the repos
   - `sd`: Standard deviation of threshold from run
   - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments.
   
-Two additional files are included in the folder `data` that contain FDL and F0DL measurements extracted from various published figures in the literature. These files are called `FDL_data.csv` and `F0DL_data.csv` respectively and their contents are described below. `.RData` versions of these files are also included, and the variables inside these files that contain the data frames are called `data`. The papers from which these results were extracted are described in more detail in the manuscript.
+## FDL and F0DL data
+  
+Two additional files are included in the folder `data` that contain FDL and F0DL measurements extracted from various published figures in the literature. These files are called `FDL_data.csv` and `F0DL_data.csv` respectively and their contents are described below. `.RData` versions of these files are also included, and the variables inside these files that contain the data frames are called `data`. The papers from which these results were extracted are described in more detail in the manuscript. It should be noted that these results were extracted by hand and many be somewhat inaccurate. 
 
 - `FDL_data.csv`
   - `src`: The shortened name of the paper from which the data were extracted, in the form LastnameYear
@@ -63,13 +102,9 @@ Two additional files are included in the folder `data` that contain FDL and F0DL
   - `f`: F0 of the measurement in Hz
   - `t` Threshold of the measurement in %
   
-# License
+# Manual installation
 
-The code in this repository is licensed under GPLv3 (see `LICENSE.txt`). The behavioral data in this repository is licensed under CC BY-NC 4.0 (see `data/LICENSE.txt`). 
-
-# Instructions
-
-To replicate the paper figures, you will need Python and R. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files.
+If you do not want to use Docker, you will need Python and R installed on your computer. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files.
 
 ## Python
 
@@ -81,14 +116,21 @@ A Python 3 interpreter is required to run the simulation code (Figure 4, Figure 
 - `pandas` - 1.2.2
 - `scikit-image` - 0.18.1
 - `Cython` - 0.29.22
+- `gammatone`
 
-Presently, `apcmodels` can be installed via GitHub as such...
+Presently, `gammatone` can be installed via GitHub as:
+
+```
+pip install git+https://github.com/detly/gammatone.git
+```
+
+Presently, `apcmodels` can be installed via GitHub as:
 
 ``` 
 pip install git+https://github.com/guestdaniel/apcmodels.git
 ```
 
-Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Additionally, edit the `config.py` file to indicate the location of the files. Then, run `.py` files as needed. Note that all the outputs of `.py` files are already pre-included in the repository, so no Python code needs to be run to reproduce the manuscript figures. 
+Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Then, run `.py` files as needed. Note that all the outputs of `.py` files (usually either `.csv` or `.npy`) are already included in the repository, so no Python code needs to be run to reproduce the manuscript figures. 
 
 ## R
 
@@ -107,52 +149,32 @@ R is required to generate all the behavioral and modeling figures. The paper fig
 - `lmerTest` - 3.1-3
 - `RcppCNPy` - 0.2.10
 
-Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. These outputs are precisely those used to generate the figures in the manuscript. As a result, all the R scripts should correctly generate the paper figures even if you don't have a Python interpreter installed, or you have not yet run the Python scripts.
-
-# Docker
-
-If you are familiar with Docker, you can use our Docker image. The image provides a Ubuntu environment with Python, R, and all the necessary packages pre-installed as well as a copy of this repository. Follow the instructions below to use the Docker image.
-
-First, download the image from our GitHub repository.
-
-```
-docker pull docker.pkg.github.com/guestdaniel/guestoxenham2021/guestoxenham2021:0.1.0
-```
-
-Next, use the image to create an interactive container.
-
-```
-docker run --rm -it guestoxenham2021
-```
-
-This container starts with an interactive bash shell located in a copy of the present repository. From there, you can either manually run individual scripts using the `python3` and `Rscript` commands for Python and R, respectively, or you can generate the all the figures in the paper by running `./run.sh`. However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you close the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk (called `output` in the example below).
-
-```
-docker run --rm -v output:/GuestOxenham2021/plots -it guestoxenham2021
-```
+Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. As a result, all the R scripts should correctly generate the paper figures even if you don't have Python installed.
 
 # Figures
 
-## Figure 1
+Specific information about each figure is included below.
+
+### Figure 1
 
 Figure 1 plots behavioral results from Experiment 1. The entire figure is generated by a single `.R` script. Corresponding mixed effects models are available in `nofigure/behavioral_data_analysis`. 
 
-## Figure 2
+### Figure 2
 
 Figure 2 plots behavioral results from Experiment 2. The entire figure is generated by a single `.R` script. Corresponding mixed effects models are available in `nofigure/behavioral_data_analysis`. 
 
-## Figure 3
+### Figure 3
 
 Figure 3 plots excitation patterns for simulated medium spontaneous rate (MSR) auditory nerve fibers responding to the ISO and GEOM stimuli from Experiment 1. The simulations and plot are generated by a single `.py` script.
 
-## Figure 4
+### Figure 4
 
 Figure 4 features simulated frequency difference limens (FDLs) derived using ideal observer analysis for three auditory nerve model. Each subfigure has a corresponding `.py` script (to generate the neural simulations) and a `.R` script (to plot the figure). The `.py` files can take a considerable amount of time and RAM to run, particularly for the sections simulating thresholds for the Verhulst et al. (2018) auditory nerve model.
 
-## Figure 5
+### Figure 5
 
 Figure 5 features simulated F0 difference limens (FDLs) derived using ideal observer analysis for three auditory nerve model. Each subfigure has a corresponding `.py` script (to generate the neural simulations) and a `.R` script (to plot the figure). The `.py` files can take a considerable amount of time and RAM to run, particularly for the sections simulating thresholds for the Verhulst et al. (2018) auditory nerve model.
 
-## Supplemental Figure 1
+### Supplemental Figure 1
 
 The supplemental figure features a range of simulation results including vector strength and filter tuning plots for all of the tested auditory nerve models and model responses for the Zilany et al. (2014) auditory nerve model for various types of complex tone stimuli. Each subfigure has a `.py` file to generate it. The first two subfigures rely on simulation results from the `nofigure/vector_strength_curves` and `nofigure/tuning_curves`, respectively. The other subfigures are generated by coresponding `.py` files and can take some time to run. 
