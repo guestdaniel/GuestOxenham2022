@@ -31,6 +31,7 @@ The file structure of this repository is shown in the file hierarchy below. Esse
 ├── supplemental_figure_1    # Scripts to generate the supplemental figure
 ├── util                     # Miniature package to provide some functions used across repo (e.g., stimuli)
 ├── config.R                 # Short script to provide constants/configs shared across all R files
+├── Dockerfile               # Dockerfile used to generate Docker image
 ├── LICENSE                  # License file for the code contained in this repository
 ├── LICENSE_data             # License file for the behavioral data contained in this repository
 └── README.md                # This README file
