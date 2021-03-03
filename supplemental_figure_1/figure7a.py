@@ -9,8 +9,9 @@ References:
 """
 
 import numpy as np
-import config as cfg
-import os
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
 import matplotlib.pyplot as plt
 
 
@@ -34,12 +35,12 @@ def lp_filter(freqs, f_c, n):
 # Construct figure
 plt.figure(figsize=(4.5, 3.5))
 # Load frequencies from disk
-freqs = np.load(os.path.join(cfg.root_directory, 'nofigure', 'vector_strength_curves', 'freqs.npy'))
+freqs = np.load(os.path.join('nofigure', 'vector_strength_curves', 'freqs.npy'))
 # Loop through and plot vector strength estimates for each AN model
 for model_name in ['Heinz2001', 'Zilany2014', 'Verhulst2018']:
     # Load vector strength estimates from disk
     vector_strength = np.load(
-        os.path.join(cfg.root_directory, 'nofigure', 'vector_strength_curves', model_name + '.npy'), allow_pickle=True)
+        os.path.join('nofigure', 'vector_strength_curves', model_name + '.npy'), allow_pickle=True)
     means = np.array([vs[0] for vs in vector_strength])  # the mean is encoded as the first element of each tuple
     errors = np.array([vs[1] for vs in vector_strength])  # the se is encoded as the second element of each tuple
     # Plot

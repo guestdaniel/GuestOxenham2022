@@ -1,8 +1,10 @@
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from functions import ComplexToneCedolin2005
 import itertools
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import ComplexToneCedolin2005
 
 
 def calculate_ISIs_Cedolin_2005(F0):

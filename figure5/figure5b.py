@@ -6,8 +6,9 @@ import apcmodels.anf as anf
 import apcmodels.decode as dc
 from apcmodels.util import save_to_csv
 import numpy as np
-import config as cfg
-from functions import adjust_level, ISOToneGuest2021_exp1a
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import adjust_level, ISOToneGuest2021_exp1a
 
 
 def simulate_figure5_f0dls_phase_roving(model, model_name, fs, n_rep=10):
@@ -159,9 +160,9 @@ def simulate_figure5_f0dls_level_roving(model, model_name, fs, n_rep=10):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba],
-                                 ['Heinz2001'],  # TODO: switch to Zilany
-                                 [int(500e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
+                                 ['Zilany2014'],
+                                 [int(200e3)]):
     simulate_figure5_f0dls_phase_roving(model, model_name, fs)
     simulate_figure5_f0dls_level_roving(model, model_name, fs)
 

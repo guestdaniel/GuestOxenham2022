@@ -1,6 +1,10 @@
 import numpy as np
 import matplotlib.pyplot as plt
 import matplotlib.patches as patches
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
+
 
 # Load in histograms and calculate edges
 histograms = np.load('supplemental_figure_1/figure7e/isi_histograms.npy')

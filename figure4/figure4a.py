@@ -7,8 +7,9 @@ import apcmodels.anf as anf
 import apcmodels.decode as dc
 from apcmodels.util import save_to_csv
 import numpy as np
-import config as cfg
-from functions import adjust_level
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import adjust_level
 
 
 def simulate_figure4_fdls(model, model_name, fs):

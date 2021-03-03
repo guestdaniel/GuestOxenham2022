@@ -4,9 +4,11 @@ low-level clicks to the basilar membrane stage of the model and then computing Q
 spectrum of the impulse response at each CF. These values are then converted to Q10 using the conversion formula
 suggested Verschooten et al. that Q10 = QERB/1.83.
 """
-import config as cfg
+
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
 import numpy as np
-import sys
 sys.path.append('/home/daniel/apc_code/scripts/Verhulstetal2018Model')
 sys.path.append('/home/daniel/CoNNear_IHC-ANF/')
 from run_model2018 import Verhulst2018Cochlea
@@ -88,7 +90,7 @@ def calc_Q(vm, cfs, fs):
 fs = int(500e3)
 click = synthesize_click(fs=fs)
 p0 = 2e-5
-L = 30
+L = 50
 click = click*2*np.sqrt(2)*p0*10**(L/20)
 vm, model_cfs = calculate_verhulst2018_bm_response(click, fs)
 

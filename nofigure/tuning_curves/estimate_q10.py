@@ -3,8 +3,10 @@ This script takes tuning curves and extracts measures of q10 for each auditory n
 """
 from scipy.interpolate import interp1d
 import numpy as np
-import config as cfg
-import os
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
+
 
 
 def estimate_q10(freqs, levels):
@@ -27,10 +29,10 @@ def estimate_q10(freqs, levels):
 # Create storage and loop through and estimate q10
 for model_name in ['Heinz2001', 'Zilany2014']:
     q10s = list()
-    tuning_curves = np.load('nofigure/tuning_curves/', model_name + '_tuning_curves' +
+    tuning_curves = np.load('nofigure/tuning_curves/' + model_name + '_tuning_curves' +
                                          '.npy', allow_pickle=True)
     for tc in tuning_curves:
         q10s.append(estimate_q10(tc[0], tc[1]))
     # Save q10 estimates to disk
-    np.save('nofigure/tuning_curves/', model_name + '_q10s' + '.npy',
+    np.save('nofigure/tuning_curves/' + model_name + '_q10s' + '.npy',
             q10s)

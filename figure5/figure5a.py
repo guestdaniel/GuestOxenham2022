@@ -6,8 +6,9 @@ import apcmodels.anf as anf
 import apcmodels.decode as dc
 from apcmodels.util import save_to_csv
 import numpy as np
-import config as cfg
-from functions import ISOToneGuest2021_exp1a, adjust_level
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import ISOToneGuest2021_exp1a, adjust_level
 
 
 def simulate_figure5_f0dls(model, model_name, fs):

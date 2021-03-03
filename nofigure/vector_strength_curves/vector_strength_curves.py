@@ -6,9 +6,9 @@ import apcmodels.synthesis as sy
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-import config as cfg
-import os
-from functions import adjust_level
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import adjust_level
 
 
 # Define function to estimate vector strength

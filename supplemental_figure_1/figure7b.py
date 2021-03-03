@@ -14,8 +14,9 @@ References:
 """
 
 import numpy as np
-import config as cfg
-import os
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
 import matplotlib.pyplot as plt
 
 # Generate and save results

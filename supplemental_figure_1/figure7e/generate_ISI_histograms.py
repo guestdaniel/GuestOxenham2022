@@ -1,8 +1,10 @@
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from functions import ComplexToneLarsen2008
 import itertools
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import ComplexToneLarsen2008
 
 
 def calculate_ISI_histograms_Larsen_2008(cf, neural_harm_nums):

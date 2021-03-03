@@ -7,8 +7,9 @@ import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
 from scipy.interpolate import interp1d
-import config as cfg
-import os
+import sys, os
+sys.path.append(os.getcwd())
+import util as cfg
 
 
 # Define function to estimate rate-level functions

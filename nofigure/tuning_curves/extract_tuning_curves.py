@@ -4,8 +4,9 @@ estimate_freq_level_functions.py and fits a tuning curve to them. These tuning c
 """
 from scipy.interpolate import interp1d, interp2d
 import numpy as np
-import config as cfg
-import os
+import os, sys
+sys.path.append(os.getcwd())
+import util as cfg
 from skimage import measure
 
 

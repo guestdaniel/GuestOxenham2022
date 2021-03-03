@@ -7,8 +7,9 @@ import apcmodels.anf as anf
 import apcmodels.decode as dc
 from apcmodels.util import save_to_csv
 import numpy as np
-import config as cfg
-from functions import adjust_level
+import os, sys
+sys.path.append(os.getcwd())
+from util.functions import adjust_level
 
 
 def simulate_figure4_fdls_phase_roving(model, model_name, fs, n_rep=10):
@@ -147,8 +148,8 @@ def simulate_figure4_fdls_level_roving(model, model_name, fs, n_rep=10):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba],  # TODO: change this to Zilany
-                                 ['Heinz2001'],
-                                 [int(500e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
+                                 ['Zilany2014'],
+                                 [int(200e3)]):
     simulate_figure4_fdls_phase_roving(model, model_name, fs)
     simulate_figure4_fdls_level_roving(model, model_name, fs)

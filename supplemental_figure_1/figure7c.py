@@ -1,10 +1,12 @@
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from functions import ComplexToneCedolin2005
+from util.functions import ComplexToneCedolin2005
 import matplotlib.pyplot as plt
 import matplotlib
 from scipy.interpolate import make_interp_spline
+import os, sys
+sys.path.append(os.getcwd())
 
 
 def plot_excitation_pattern_Cedolin_2005(F0s, cf, ax, first):

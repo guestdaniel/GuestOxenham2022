@@ -1,8 +1,10 @@
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from functions import ISOToneGuest2021, GEOMToneGuest2021, adjust_level
+from util.functions import ISOToneGuest2021, GEOMToneGuest2021, adjust_level
 import matplotlib.pyplot as plt
+import os, sys
+sys.path.append(os.getcwd())
 
 
 def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, fs=int(100e3)):
