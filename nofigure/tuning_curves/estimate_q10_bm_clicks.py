@@ -9,9 +9,7 @@ import os, sys
 sys.path.append(os.getcwd())
 import util as cfg
 import numpy as np
-sys.path.append('/home/daniel/apc_code/scripts/Verhulstetal2018Model')
-sys.path.append('/home/daniel/CoNNear_IHC-ANF/')
-from run_model2018 import Verhulst2018Cochlea
+from apcmodels.external.verhulst2018.run_verhulst import run_verhulst2018_cochlea
 
 
 def synthesize_click(dur_click=0.08 / 1000, dur_pre_click=1/1000, dur_post_click=30/1000, fs=int(200e3)):
@@ -53,9 +51,7 @@ def calculate_verhulst2018_bm_response(_input, fs, **kwargs):
         - fs is not currently used
     """
     # Run firing rate simulations
-    response = Verhulst2018Cochlea(_input, fs)
-    vm = response[0]
-    cfs = response[2]
+    vm, cfs = run_verhulst2018_cochlea(_input, fs)
     vm = np.flip(vm, axis=1)  # flip tonotopic axis left-right
     vm = vm.T  # transpose to (n_cf, n_sample)
 
@@ -90,7 +86,7 @@ def calc_Q(vm, cfs, fs):
 fs = int(500e3)
 click = synthesize_click(fs=fs)
 p0 = 2e-5
-L = 50
+L = 40
 click = click*2*np.sqrt(2)*p0*10**(L/20)
 vm, model_cfs = calculate_verhulst2018_bm_response(click, fs)
 
