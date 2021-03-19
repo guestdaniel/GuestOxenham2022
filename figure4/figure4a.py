@@ -34,7 +34,7 @@ def simulate_figure4_fdls(model, model_name, fs):
     cf_low = 0.5*freqs
     cf_high = 1.5*freqs
     n_cf = 40
-    n_fiber_per_chan = 40  # TODO: check this value
+    n_fiber_per_chan = 40
 
     # Encode parameters
     params = {'dur': dur, 'dur_ramp': dur_ramp, 'fs': fs}  # encode fixed parameters in a dict
@@ -73,7 +73,7 @@ def simulate_figure4_fdls(model, model_name, fs):
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
+for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                                  ['Heinz2001', 'Zilany2014', 'Verhulst2018'],
                                  [int(1000e3), int(200e3), int(200e3)]):
     simulate_figure4_fdls(model, model_name, fs)

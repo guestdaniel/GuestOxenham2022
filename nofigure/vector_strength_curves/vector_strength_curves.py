@@ -97,7 +97,7 @@ freqs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we 
 np.save('nofigure/vector_strength_curves/freqs.npy', freqs)
 
 # Loop over models and model names
-for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
+for model, model_name in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                              ['Heinz2001', 'Zilany2014', 'Verhulst2018']):
     # Compute frequency-level profile for each cf
     vector_strength_curve = estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep, dur=0.35)

@@ -54,7 +54,7 @@ levels = np.linspace(-10, 40, num=25)  # range of levels over which we will esti
 np.save('nofigure/absolute_thresholds/cfs.npy', cfs)
 
 # Loop through models
-for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
+for model, model_name in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                              ['Heinz2001', 'Zilany2014', 'Verhulst2018']):
     # Compute rate-level function for each CF and then estimate the level at which 1.05 x spontaneous rate is achieved
     absolute_thresholds = []

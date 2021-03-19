@@ -66,7 +66,7 @@ np.save('nofigure/tuning_curves/freqs.npy', freqs)
 np.save('nofigure/tuning_curves/levels.npy', levels)
 
 # Loop over models and model names
-for model, model_name in zip([anf.AuditoryNerveHeinz2001Numba, anf.AuditoryNerveZilany2014], ['Heinz2001', 'Zilany2014']):
+for model, model_name in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014], ['Heinz2001', 'Zilany2014']):
     # Compute frequency-level profile for each cf
     freq_level_funcs = []
     for cf in cfs:
