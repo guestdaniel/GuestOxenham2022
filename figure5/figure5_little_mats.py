@@ -2,14 +2,12 @@
 This script implements the simulations described in Figure TODO of Guest and Oxenham (2021).
 """
 import apcmodels.simulation as si
-import apcmodels.synthesis as sy
-import apcmodels.signal as sg
 import apcmodels.anf as anf
 from apcmodels.decode import *
 import numpy as np
 import os, sys
 sys.path.append(os.getcwd())
-from util.functions import adjust_level
+from util.functions import adjust_level, ISOToneGuest2021_exp1a
 import warnings
 warnings.filterwarnings('ignore')
 from matplotlib import colors
@@ -18,50 +16,7 @@ import matplotlib
 matplotlib.use('QT5Agg')
 
 
-class ISOToneGuest2021_exp1a(sy.Synthesizer):
-    """
-    Synthesizes the ISO stimulus in Guest and Oxenham (2021).
-    """
-    def __init__(self):
-        super().__init__(stimulus_name='ISO Tone')
-
-    def synthesize(self, F0, dur=0.350, dur_ramp=0.02, level=None, phase=None, fs=int(48e3), **kwargs):
-        """
-        Synthesizes a harmonic complex tone composed of components 6-10 of the F0. This is the same stimulus as used
-        in Experiment 1a.
-
-        Arguments:
-            F0 (float): F0 of the complex tone in Hz
-            level (float, ndarray): level per-component of the complex tone in dB SPL, can be either a float (in this
-                case, the same level is used for all components) or an ndarray indicating the level of each component
-            phase (float, ndarray): phase offset applied to each component of the complex tone in degrees, can be
-                either a float (in which case the same phase offset is used for all components) or an ndarray indicating
-                the phase offset of each component.
-            dur (float): duration in seconds
-            dur_ramp (float): duration of raised-cosine ramp in seconds
-            fs (int): sampling rate in Hz
-
-        Returns:
-            output (array): complex tone stimulus
-        """
-        # Create array of frequencies, levels, and phases
-        freqs = F0*np.arange(1, 21)
-        if level is None:
-            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif isinstance(level, float) or isinstance(level, np.float64) or isinstance(level, int) or isinstance(level, np.int64):
-            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
-        if phase is None:
-            phase = np.zeros(len(freqs))  # default to sine phase
-        elif isinstance(phase, float) or isinstance(phase, np.float64) or isinstance(phase, int) or isinstance(phase, np.int64):
-            phase = phase + np.zeros(len(freqs))
-        # Synthesize, filter, and ramp complex tone signal
-        signal = sg.complex_tone(freqs, level, phase, dur, fs)
-        signal = sg.cosine_ramp(signal, dur_ramp, fs)
-        # Return
-        return signal
-
-
-def decode_ideal_observer_derivative_mats(ratefunc):
+def get_io_partial_deriv_matrices(ratefunc):
     """
     Returns the partial derivative matrices (i.e., samples of Fisher information matrix) for calculating an ideal
     observer. Implemented as a wrapper that can be applied to any ratefunc that accepts kwargs and returns a single
@@ -170,34 +125,7 @@ def decode_ideal_observer_derivative_mats(ratefunc):
     return inner
 
 
-def run_rates_util(ratefunc, params):
-    """
-    Takes inputs and processes each element recursively.
-
-    Arguments:
-        ratefunc (function): a function that accepts input and other kwargs and returns model simulations
-
-        params (dict, list): inputs and parameters encoded as a dict or list of dicts. If the input is just a single
-            dict, we unpack it and pass it directly to ratefunc. Otherwise, we operate recursively on it.
-
-    Returns:
-        output: results of applying ratefunc to each input in params
-
-    """
-    # If the input is not a list, just run ratefunc
-    output = []
-    if type(params) is dict:
-        return ratefunc(params)
-    # If the input *is* a list, process each input separately
-    elif type(params) is list:
-        for _input_element in params:
-            output.append(run_rates_util(ratefunc, _input_element))
-    else:
-        raise ValueError('params ought to be a dict or a list')
-    return output
-
-
-def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_rep=10):
+def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, extractfunc=get_io_partial_deriv_matrices, n_rep=25):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. The simulations include phase randomization (specifically, each component from 6-10 has its
@@ -217,17 +145,17 @@ def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_re
     dur_ramp = 0.01  # seconds
 
     # Define model parameters
-    cf_low = 0.5*F0s
-    cf_high = 21*F0s
-    n_cf = 80
+    cf_low = 5*F0s
+    cf_high = 11*F0s
+    n_cf = 40
     n_fiber_per_chan = 40  # TODO: check this value
 
     # Encode parameters
-    delta_theta = [0.001]*21
-    API = np.zeros((21, 21))
-    API[np.diag_indices(21)] = [0] + [1/360**2]*20
+    delta_theta = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+    API = np.zeros((6, 6))
+    API[np.diag_indices(6)] = [0, 1/360**2, 1/360**2, 1/360**2, 1/360**2, 1/360**2]
     params = {'dur': dur, 'dur_ramp': dur_ramp, 'fs': fs}  # encode fixed parameters in a dict
-    params['phase'] = lambda: np.random.uniform(0, 360, 20)
+    params['phase'] = lambda: np.random.uniform(0, 360, 5)
     params = si.wiggle_parameters(params, 'F0', F0s)  # wiggle frequencies
     params = si.stitch_parameters(params, 'cf_low', cf_low)  # stitch cf_low (each F0 corresponds to a cf_low)
     params = si.stitch_parameters(params, 'cf_high', cf_high)  # stitch cf_high (each F0 corresponds to a cf_high)
@@ -237,17 +165,18 @@ def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_re
 
     # Adjust levels to be in dB re: threshold
     params = si.flatten_parameters(params)  # flatten out params
+    for ele in params:
+        ele['nominal_level'] = ele['level']  # save the nominal level (dB re: threshold)
+        ele['level'] = adjust_level(ele['F0']*8, ele['level'], model_name)  # encode the actual level (dB SPL)
 
     # Encode repeats and increments
     params = si.repeat_parameters(params, n_rep)
-    incs = dict()
-    incs['F0'] = 0.001
-    for ii in range(20):
-        key = '(' + str(ii+1) + ')_phase'
-        val = np.zeros(20)
-        val[ii] = 0.001
-        incs[key] = val
-    params = si.increment_parameters(params, incs)
+    params = si.increment_parameters(params, {'F0': 0.001,                                  # increment F0
+                                              '(1)_phase': np.array([0.001, 0, 0, 0, 0]),   # increment phase of H6
+                                              '(2)_phase': np.array([0, 0.001, 0, 0, 0]),   # increment phase of H7
+                                              '(3)_phase': np.array([0, 0, 0.001, 0, 0]),   # increment phase of H8
+                                              '(4)_phase': np.array([0, 0, 0, 0.001, 0]),   # increment phase of H9
+                                              '(5)_phase': np.array([0, 0, 0, 0, 0.001])})  # increment phase of H10
 
     # Synthesize stimuli
     synth = ISOToneGuest2021_exp1a()
@@ -256,12 +185,12 @@ def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_re
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=decode_ideal_observer_derivative_mats(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=extractfunc(sim.simulate), parallel=True, hide_progress=False)
 
     return results
 
 
-def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_rep=10):
+def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, extractfunc=get_io_partial_deriv_matrices, n_rep=25):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. Includes simulations of level roving.
@@ -276,24 +205,25 @@ def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_re
         n_rep (int): number of repetitions to perform for each simulation
     """
     # Define stimulus parameters
+    nominal_levels = [20, 30, 40]
     dur = 0.10  # seconds
     dur_ramp = 0.01  # seconds
 
     # Define model parameters
-    cf_low = 1*F0s
-    cf_high = 21*F0s
-    n_cf = 80
+    cf_low = 5*F0s
+    cf_high = 11*F0s
+    n_cf = 40
     n_fiber_per_chan = 40  # TODO: check this value
 
     # Encode parameters
-    delta_theta = [0.001]*21
-    API = np.zeros((21, 21))
-    API[np.diag_indices(21)] = [0] + [1/6**2] * 20
+    delta_theta = [0.001, 0.001, 0.001, 0.001, 0.001, 0.001]
+    API = np.zeros((6, 6))
+    API[np.diag_indices(6)] = [0, 1/6**2, 1/6**2, 1/6**2, 1/6**2, 1/6**2]
     params = {'dur': dur, 'dur_ramp': dur_ramp, 'fs': fs}  # encode fixed parameters in a dict
     params = si.wiggle_parameters(params, 'F0', F0s)  # wiggle frequencies
     params = si.stitch_parameters(params, 'cf_low', cf_low)  # stitch cf_low (each F0 corresponds to a cf_low)
     params = si.stitch_parameters(params, 'cf_high', cf_high)  # stitch cf_high (each F0 corresponds to a cf_high)
-    params = si.wiggle_parameters(params, 'level', levels)  # wiggle levels
+    params = si.wiggle_parameters_parallel(params, ['level', 'nominal_level'], [levels, nominal_levels])  # wiggle levels
     params = si.append_parameters(params, ['n_cf', 'delta_theta', 'API', 'n_fiber_per_chan', 'model_name'],
                                   [n_cf, delta_theta, API, n_fiber_per_chan, model_name])  # append other model parameters
 
@@ -302,14 +232,18 @@ def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_re
 
     # Encode repeats and increments
     params = si.repeat_parameters(params, n_rep)
-    incs = dict()
-    incs['F0'] = 0.001
-    for ii in range(20):
-        key = '(' + str(ii+1) + ')_level'
-        val = np.zeros(20)
-        val[ii] = 0.001
-        incs[key] = val
-    params = si.increment_parameters(params, incs)
+    params = si.increment_parameters(params, {'F0': 0.001,                                  # increment F0
+                                              '(1)_level': np.array([0.001, 0, 0, 0, 0]),   # increment level of H6
+                                              '(2)_level': np.array([0, 0.001, 0, 0, 0]),   # increment level of H7
+                                              '(3)_level': np.array([0, 0, 0.001, 0, 0]),   # increment level of H8
+                                              '(4)_level': np.array([0, 0, 0, 0.001, 0]),   # increment level of H9
+                                              '(5)_level': np.array([0, 0, 0, 0, 0.001])})  # increment level of H10
+
+    # Adjust levels to be in dB re: threshold
+    for ele in params:   # loop through elements of params
+        for x in ele:    # loop through repeats of params
+            for y in x:  # loop through increments of params
+                y['level'] = adjust_level(y['F0']*8, y['level'], model_name)  # encode the actual level (dB SPL)
 
     # Synthesize stimuli
     synth = ISOToneGuest2021_exp1a()
@@ -318,22 +252,34 @@ def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_re
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=decode_ideal_observer_derivative_mats(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=extractfunc(sim.simulate), parallel=True, hide_progress=False)
     return results
 
 
 def plot_derivative_matrices(results_phase, results_level):
     fig, axs = plt.subplots(2, 2)
     for ax, result, idx in zip(np.reshape(axs.T, (4,)), results_phase + results_level, range(4)):
-        im = ax.imshow(np.mean(result, axis=0), norm=colors.SymLogNorm(linthresh=0.0001, linscale=1, vmin=-1e1, vmax=1e1),
+        im = ax.imshow(np.mean(result, axis=0), norm=colors.SymLogNorm(linthresh=1e0, linscale=1, vmin=-1e4, vmax=1e4),
                        cmap='RdBu')
+        if idx == 0 or idx == 1:
+            ax.set_yticks([0, 1, 2, 3, 4, 5])
+            ax.set_yticklabels(['F0', 'H6', 'H7', 'H8', 'H9', 'H10'])
+        else:
+            ax.get_yaxis().set_visible(False)
+        if idx == 0 or idx == 2:
+            ax.get_xaxis().set_visible(False)
+            if idx == 0:
+                ax.set_title('Phase randomization', loc='left', ha='left')
+            else:
+                ax.set_title('Level roving', loc='left', ha='left')
+        else:
+            ax.set_xticks([0, 1, 2, 3, 4, 5])
+            ax.set_xticklabels(['F0', 'H6', 'H7', 'H8', 'H9', 'H10'])
     fig.colorbar(im, ax=np.reshape(axs.T, (4,))[2:4], extend='both')
 
 
-# Loop through models and calculate FDLs for each model
-results_phase = simulate_figure5_f0dls_phase_roving(np.array([300]), np.array([30]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
-results_level = simulate_figure5_f0dls_level_roving(np.array([300]), np.array([lambda: np.random.uniform(27, 33, 20)]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
-
-# Plot
+# Get and plot partial derivative matrices
+results_phase = simulate_figure5_f0dls_phase_roving(np.array([280]), np.array([30]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
+results_level = simulate_figure5_f0dls_level_roving(np.array([280]), np.array([lambda: np.random.uniform(27, 33, 5)]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
 plot_derivative_matrices(results_phase[0], results_level[0])
-
+plot_derivative_matrices(results_phase[1], results_level[1])

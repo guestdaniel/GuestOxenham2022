@@ -12,9 +12,11 @@ import warnings
 warnings.filterwarnings('ignore')
 from matplotlib import colors
 import matplotlib.pyplot as plt
+import matplotlib
+matplotlib.use('QT5Agg')
 
 
-def decode_ideal_observer_derivative_mats(ratefunc):
+def get_io_partial_deriv_matrices(ratefunc):
     """
     Returns the partial derivative matrices (i.e., samples of Fisher information matrix) for calculating an ideal
     observer. Implemented as a wrapper that can be applied to any ratefunc that accepts kwargs and returns a single
@@ -123,34 +125,123 @@ def decode_ideal_observer_derivative_mats(ratefunc):
     return inner
 
 
-def run_rates_util(ratefunc, params):
+def get_io_partial_deriv_gram(ratefunc):
     """
-    Takes inputs and processes each element recursively.
+    Returns the partial derivative matrices (i.e., samples of Fisher information matrix) for calculating an ideal
+    observer. Implemented as a wrapper that can be applied to any ratefunc that accepts kwargs and returns a single
+    firing rate simulation in the standard apcmodels style. Extracted and modified from apcmodels source code.
 
     Arguments:
-        ratefunc (function): a function that accepts input and other kwargs and returns model simulations
-
-        params (dict, list): inputs and parameters encoded as a dict or list of dicts. If the input is just a single
-            dict, we unpack it and pass it directly to ratefunc. Otherwise, we operate recursively on it.
-
-    Returns:
-        output: results of applying ratefunc to each input in params
-
+        ratefunc (function): a function that accepts **kwargs and returns firing rates for a neural simulation
     """
-    # If the input is not a list, just run ratefunc
-    output = []
-    if type(params) is dict:
-        return ratefunc(params)
-    # If the input *is* a list, process each input separately
-    elif type(params) is list:
-        for _input_element in params:
-            output.append(run_rates_util(ratefunc, _input_element))
-    else:
-        raise ValueError('params ought to be a dict or a list')
-    return output
+    def inner(params):
+        """
+        Runs ratefunc on each input encoded in params, then estimates thresholds based on an ideal observer for a
+        particular parameter. This requires some additional information to be encoded in params in the form of an
+        a priori information matrix (API) and
+
+        Arguments:
+            params (dict): parameters and inputs encoded in a dict or in a list of dicts. % TODO: explain possibilities
+
+        Returns:
+            thresholds (ndarray): predicted all-information and rate-place thresholds
+        """
+        # Pull parameters from encoded list/dict of parameters
+        fs = find_parameter(params, 'fs')
+        delta_theta = find_parameter(params, 'delta_theta')
+        n_fiber_per_chan = find_parameter(params, 'n_fiber_per_chan')
+        API = find_parameter(params, 'API')
+
+        # Run ratefunc on kwargs and get firing rates for each input
+        rates = run_rates_util(ratefunc, params)
+
+        # Check to see if the elements of rates are ndarrays or lists... if they are not lists, we need to put
+        # rates inside a list so it can be processed by the list comprehension below
+        if type(rates[0]) is not list:
+            rates = [rates]
+
+        # Compute partial derivative matrices for rates for AI and then RP
+        pdms_AI = [compute_partial_derivative_matrix(x, fs, delta_theta, n_fiber_per_chan, 'AI') for x in rates]
+        pdms_AI = np.array(pdms_AI)
+
+        pdms_RP = [compute_partial_derivative_matrix(x, fs, delta_theta, n_fiber_per_chan, 'RP') for x in rates]
+        pdms_RP = np.array(pdms_RP)
+
+        # Return ideal observer results
+        return pdms_AI, pdms_RP
+
+    def compute_partial_derivative_matrix(x, fs, delta_theta, n_fiber_per_chan, _type):
+        """
+        Given one list of simulations, computes a partial derivative matrix as in Siebert (1972).
+
+        Arguments:
+            x (list): list of ndarrays containing firing-rate simulations in shape (n_channel x n_sample). The first
+                array should be a firing-rate simulation for baseline parameter values. The following arrays should
+                be firing-rate simulations where a single parameter has been incremented by a small amount.
+
+            fs (int): sampling rate in Hz
+
+            delta_theta (ndarray): 1d ndarray containing the increment size for each element of x after the first
+            n_fiber_per_chan (array): array containing integers of len n_cf, each element indicates how many fibers
+                are theoretically represented by the single corresponding channel in x
+
+            _type (str): either 'AI' or 'RP' for all-information or rate-place
+
+        Returns:
+
+        """
+        # Calculate n_param
+        n_param = len(x)-1
+        if n_param < 1:
+            raise ValueError('There is only one simulation per condition --- ideal observer needs n_param + 1 '
+                             'simulations!')
+        # Transform from list to ndarray
+        x = np.array(x)
+        x = np.transpose(x, [1, 0, 2])  # shape: n_cf x (n_param + 1) x n_sample
+        # Add small baseline firing rate to avoid issues with zeros and NaNs
+        x += 1
+        # Construct one ndarray of baseline values and another of incremented values
+        baseline = np.tile(x[:, 0, :], [n_param, 1, 1])
+        baseline = np.transpose(baseline, [1, 0, 2])  # shape: n_cf x n_param x n_sample
+        incremented = x[:, 1:, :]  # shape: n_cf x n_param x n_sample
+        if _type == 'AI':
+            # Estimate derivative with respect to each parameter
+            deriv_estimate = np.transpose(np.transpose((incremented - baseline), [0, 2, 1]) / delta_theta, [0, 2, 1])  # shape: n_CF x n_param x n_time
+            # Normalize the derivatives by the square root of rate
+            deriv_norm = np.sqrt(1 / baseline) * deriv_estimate  # shape: n_CF x n_param x n_time
+            # Create empty matrix
+            deriv_gram = np.zeros((deriv_norm.shape[0], deriv_norm.shape[1], deriv_norm.shape[1], deriv_norm.shape[2]))
+            for ii in range(deriv_norm.shape[1]):
+                for jj in range(deriv_norm.shape[1]):
+                    if jj == ii:
+                        deriv_gram[:, ii, jj, :] = deriv_norm[:, ii, :]
+                    else:
+                        deriv_gram[:, ii, jj, :] = np.multiply(deriv_norm[:, ii, :], deriv_norm[:, jj, :])
+            return deriv_gram
+        elif _type == 'RP':
+            # Calculate the duration of the response
+            t_max = baseline.shape[2] * 1/fs
+            # Average results across time
+            baseline = np.mean(baseline, axis=2)
+            incremented = np.mean(incremented, axis=2)
+            # Estimate derivative with respect to each parameter
+            deriv_estimate = (incremented - baseline)/delta_theta
+            # Normalize the derivatives by the square root of rate
+            deriv_norm = np.sqrt(1 / baseline) * deriv_estimate  # shape: n_CF x n_param
+            # Create empty matrix
+            deriv_gram = np.zeros((deriv_norm.shape[0], deriv_norm.shape[1], deriv_norm.shape[1]))
+            for ii in range(deriv_norm.shape[1]):
+                for jj in range(deriv_norm.shape[1]):
+                    if jj == ii:
+                        deriv_gram[:, ii, jj] = deriv_norm[:, ii]
+                    else:
+                        deriv_gram[:, ii, jj] = np.multiply(deriv_norm[:, ii], deriv_norm[:, jj])
+            return deriv_gram
+
+    return inner
 
 
-def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_rep=10):
+def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, extractfunc=get_io_partial_deriv_matrices, n_rep=5):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. The simulations include phase randomization (specifically, each component from 6-10 has its
@@ -210,12 +301,12 @@ def simulate_figure5_f0dls_phase_roving(F0s, levels, model, model_name, fs, n_re
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=decode_ideal_observer(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=extractfunc(sim.simulate), parallel=True, hide_progress=False)
 
     return results
 
 
-def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_rep=10):
+def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, extractfunc=get_io_partial_deriv_matrices, n_rep=5):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. Includes simulations of level roving.
@@ -277,7 +368,7 @@ def simulate_figure5_f0dls_level_roving(F0s, levels, model, model_name, fs, n_re
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=decode_ideal_observer(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=extractfunc(sim.simulate), parallel=True, hide_progress=False)
     return results
 
 
@@ -303,12 +394,51 @@ def plot_derivative_matrices(results_phase, results_level):
     fig.colorbar(im, ax=np.reshape(axs.T, (4,))[2:4], extend='both')
 
 
-# Loop through models and calculate FDLs for each model
-results_phase = simulate_figure5_f0dls_phase_roving(np.array([280, 1400]), np.array([30]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
-results_level = simulate_figure5_f0dls_level_roving(np.array([280, 1400]), np.array([lambda: np.random.uniform(27, 33, 5)]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
+cfs = 10**np.linspace(np.log10(5*280), np.log10(12*280), 40)
 
-# Plot
+
+# Get and plot partial derivative matrices
+results_phase = simulate_figure5_f0dls_phase_roving(np.array([280]), np.array([30]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
+results_level = simulate_figure5_f0dls_level_roving(np.array([280]), np.array([lambda: np.random.uniform(27, 33, 5)]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3))
 plot_derivative_matrices(results_phase[0], results_level[0])
 plot_derivative_matrices(results_phase[1], results_level[1])
 
+# Get and plot partial derivative "grams""
+results_phase = simulate_figure5_f0dls_phase_roving(np.array([280]), np.array([30]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3), extractfunc=get_io_partial_deriv_gram)
+results_level = simulate_figure5_f0dls_level_roving(np.array([280]), np.array([lambda: np.random.uniform(27, 33, 5)]), anf.AuditoryNerveHeinz2001, 'Heinz2001', int(200e3), extractfunc=get_io_partial_deriv_gram)
 
+plt.plot(results_level[0][1][0, :, 0, 0])
+plt.yscale('symlog', linthreshy=0.001, linscaley=1)
+
+#plt.imshow(results_phase[0][0][0, :, 4, 0, :], norm=colors.SymLogNorm(linthresh=0.01, linscale=1, vmin=-1e3, vmax=1e3), cmap='RdBu', origin='lower', aspect='auto')
+plt.imshow(results_phase[0][0][0, :, 4, 0, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e1, vmax=1e1)
+plt.imshow(results_phase[0][0][0, :, 4, 4, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e0, vmax=1e0)
+#plt.imshow(results_phase[0][0][0, :, 0, 0, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e5, vmax=1e5)
+plt.xlim((5000, 10000))
+
+plt.plot(results_phase[0][0][0, 20, 0, 0, :])
+plt.plot(results_phase[0][0][0, 35, 0, 5, :])
+plt.yscale('symlog', linthreshy=0.001, linscaley=1)
+
+
+for jj in [0, 2, 4]:
+    plt.plot(cfs, results_level[0][1][0, :, jj+1, jj+1])
+    #plt.yscale('symlog', linthreshy=0.001, linscaley=1)
+    plt.xscale('log')
+    for ii in [6, 8, 10]:
+        plt.plot([ii*280, ii*280], [-1e0, 1e0], 'r--')
+
+plt.plot(cfs, results_level[0][1][0, :, 0, 1])
+plt.plot(cfs, results_level[0][1][0, :, 0, 3])
+plt.plot(cfs, results_level[0][1][0, :, 0, 5])
+plt.yscale('symlog', linthreshy=0.001, linscaley=1)
+plt.xscale('log')
+for ii in [6, 7, 8, 9, 10]:
+    plt.plot([ii*280, ii*280], [-1e3, 1e3], 'r--')
+
+
+#plt.imshow(results_phase[0][0][0, :, 4, 0, :], norm=colors.SymLogNorm(linthresh=0.01, linscale=1, vmin=-1e3, vmax=1e3), cmap='RdBu', origin='lower', aspect='auto')
+plt.imshow(results_level[0][0][0, :, 2, 0, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e2, vmax=1e2)
+plt.imshow(results_level[0][0][0, :, 4, 4, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e1, vmax=1e1)
+#plt.imshow(results_phase[0][0][0, :, 0, 0, :], cmap='RdBu', origin='lower', aspect='auto', vmin=-1e5, vmax=1e5)
+plt.xlim((5000, 10000))
