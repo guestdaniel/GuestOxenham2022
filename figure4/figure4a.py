@@ -17,11 +17,9 @@ def simulate_figure4_fdls(model, model_name, fs):
     Estimates frequency difference limens (FDLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk.
 
-    Arguments:
-        model: model object from apcmodels.anf
-
-        model_name (str): name of the model
-
+    Args:
+        model: Model object from apcmodels.anf
+        model_name (str): name of the model, either "Heinz2001", "Zilany2014", or "Verhulst2018"
         fs (int): sampling rate in Hz
     """
     # Define stimulus parameters
@@ -34,34 +32,33 @@ def simulate_figure4_fdls(model, model_name, fs):
     cf_low = 0.5*freqs
     cf_high = 1.5*freqs
     n_cf = 40
-    n_fiber_per_chan = 40
+    n_fiber_per_chan = round(((np.log10(1.5/0.5)/3)*18000)/n_cf)  # assume ~18k HSR fibers from 0.2 to 20 kHz
 
     # Encode parameters
-    params = {'dur': dur, 'dur_ramp': dur_ramp, 'fs': fs}  # encode fixed parameters in a dict
-    params = si.wiggle_parameters(params, 'freq', freqs)  # wiggle frequencies
-    params = si.stitch_parameters(params, 'cf_low', cf_low)  # stitch cf_low (each frequency corresponds to a cf_low)
-    params = si.stitch_parameters(params, 'cf_high', cf_high)  # stitch cf_high (each frequency corresponds to a cf_high)
-    params = si.wiggle_parameters(params, 'level', levels)  # wiggle levels
-    params = si.append_parameters(params, ['n_cf', 'delta_theta', 'API', 'n_fiber_per_chan', 'model_name'],
-                                  [n_cf, [0.001], np.zeros(1), n_fiber_per_chan, model_name])  # append other model parameters
+    params = si.Parameters(dur=dur, dur_ramp=dur_ramp, fs=fs, n_cf=n_cf, delta_theta=[0.001], API=np.zeros(1),
+                           n_fiber_per_chan=n_fiber_per_chan, model_name=model_name)
+    params.wiggle('freq', freqs)                               # wiggle frequencies
+    params.stitch('cf_low', cf_low)                            # stitch cf_low (each freq corresponds to a cf_low)
+    params.stitch('cf_high', cf_high)                          # stitch cf_high (each freq corresponds to a cf_high)
+    params.wiggle('level', levels)                             # wiggle levels
 
     # Adjust levels to be in dB re: threshold
-    params = si.flatten_parameters(params)  # flatten out params
+    params.flatten()
     for ele in params:
-        ele['nominal_level'] = ele['level']  # save the nominal level (dB re: threshold)
-        ele['level'] = adjust_level(ele['freq'], ele['level'], model_name)  # encode the actual level (dB SPL)
+        ele['nominal_level'] = ele['level']                                 # encode nominal level (dB re: threshold)
+        ele['level'] = adjust_level(ele['freq'], ele['level'], model_name)  # encode actual level (dB SPL)
 
     # Encode increments
-    params = si.increment_parameters(params, {'freq': 0.001})  # increment frequency
+    params.increment({'freq': 0.001})  # increment frequency
 
     # Synthesize stimuli
     synth = sy.PureTone()
     stimuli = synth.synthesize_sequence(params)
-    params = si.stitch_parameters(params, '_input', stimuli)
+    params.add_inputs(stimuli)
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate))
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
