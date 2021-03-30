@@ -20,9 +20,9 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         color ???
     """
     # Set up simulation and stimulus parameters
-    params = si.Parameters(F0=F0, F0_masker=F0 * 2 ** (1 / 12), level=float(adjust_level(F0*8, level, 'Zilany2014')),
-                           level_masker=float(adjust_level(F0*8, level, 'Zilany2014')), ten=True,
-                           level_noise=level_noise, fs=fs, cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type='msr')
+    params = si.Parameters(F0=F0, F0_masker=F0 * 2 ** (1 / 12), fs=fs,
+                           level=level, level_masker=level, ten=True, level_noise=level_noise,
+                           cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type='msr')
     params.repeat(10)
     # Synthesize stimuli
     if condition == 'ISO':
@@ -31,10 +31,10 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         stimulus = GEOMToneGuest2021().synthesize_sequence(params)
     # Add stimulus and flatten
     params.add_inputs(stimulus)
-    params.flatten()
+    params.flatten_and_unnest()
     # Estimate responses
     sim = anf.AuditoryNerveZilany2014()
-    resp = sim.run(params, parallel=True)
+    resp = sim.run(params)
     # Calculate cfs
     cfs = 10**np.linspace(np.log10(F0*4), np.log10(F0*12), 200)
     # Calculate mean over time
@@ -58,13 +58,14 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
     axis_main.set_title(title)
     axis_main.set_xlim((4, 12))
     axis_main.set_xticks([4, 5, 6, 7, 8, 9, 10, 11, 12])
-    axis_main.set_xticklabels([4, 5, 6, 7, 8, 9, 10, 11, 12])
+    axis_main.set_xticklabels([4, '', 6, 7, 8, 9, 10, '', 12])
 
 # Plot excitation patterns
-f, (a0, a1) = plt.subplots(2, 1, figsize=(3, 4))
-plot_ep(a0, 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62')
-plot_ep(a0, 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb')
-plot_ep(a1, 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62')
-plot_ep(a1, 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb')
-plt.legend(['ISO', 'GEOM'])
+f, (a0, a1) = plt.subplots(2, 1, figsize=(4.25, 4))
+plot_ep(a0, 280, 'ISO', 50, 0, '280 Hz', True, '#fc8d62')
+plot_ep(a0, 280, 'GEOM', 50, 0, '280 Hz', True, '#8da0cb')
+plot_ep(a1, 1400, 'ISO', 50, 0, '1400 Hz', False, '#fc8d62')
+plot_ep(a1, 1400, 'GEOM', 50, 0, '1400 Hz', False, '#8da0cb')
+plt.legend(['ISO', 'GEOM'], loc=3, framealpha=1)
+plt.tight_layout()
 plt.savefig('plots/fig3.png', bbox_inches='tight')

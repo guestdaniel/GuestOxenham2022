@@ -89,7 +89,7 @@ def simulate_figure4_fdls_level_roving(model, model_name, fs, n_rep=10):
     """
     # Define stimulus parameters
     freqs = 8 * 10**np.linspace(np.log10(280) - 0.2, np.log10(1400) + 0.1, 24)  # simulate 8th harmonic of F0s
-    nominal_levels = [20, 30, 40]  # dB SPL
+    nominal_levels = [20, 30, 40]  # dB SL
     levels = [lambda: np.random.uniform(17, 23, 1),
               lambda: np.random.uniform(27, 33, 1),
               lambda: np.random.uniform(37, 43, 1)]  # dB SL

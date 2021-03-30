@@ -41,6 +41,6 @@ ISIs = np.load('supplemental_figure_1/figure7d/isi_' + str(320) + '.npy')
 plot_isi_histogram(ax[0], ISIs, 320, True)
 ISIs = np.load('supplemental_figure_1/figure7d/isi_' + str(880) + '.npy')
 plot_isi_histogram(ax[1], ISIs, 880, False)
-
+plt.tight_layout()
 # Save plot
 plt.savefig('plots/fig7d.png')

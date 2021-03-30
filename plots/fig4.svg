@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig4.svg"
-   inkscape:export-filename="/home/daniel/apc_doc/hfm/manuscript/FDLs_model.png"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig4.png"
    inkscape:export-xdpi="299.97299"
    inkscape:export-ydpi="299.97299">
   <defs
@@ -107,11 +107,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.8"
-     inkscape:cx="718.13115"
-     inkscape:cy="84.267932"
+     inkscape:zoom="1.4"
+     inkscape:cx="555.58997"
+     inkscape:cy="276.24236"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
      fit-margin-top="0"
@@ -156,50 +156,50 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4a.png"
        xlink:href="fig4a.png"
-       width="152.39999"
-       height="63.5"
-       preserveAspectRatio="none"
-       id="image867"
+       y="7.5968013"
        x="-0.96833801"
-       y="7.5968013" />
+       id="image867"
+       preserveAspectRatio="none"
+       height="63.5"
+       width="152.39999" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4b.png"
        xlink:href="fig4b.png"
-       width="114.3"
-       height="63.5"
-       preserveAspectRatio="none"
-       id="image878"
+       y="85.198792"
        x="-0.45357442"
-       y="85.198792" />
+       id="image878"
+       preserveAspectRatio="none"
+       height="63.5"
+       width="114.3" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_phase_locking.png"
        xlink:href="fig4d_phase_locking.png"
-       y="94.766121"
-       x="162.99922"
-       id="image869"
-       preserveAspectRatio="none"
+       width="91.694"
        height="53.932667"
-       width="91.694" />
+       preserveAspectRatio="none"
+       id="image869"
+       x="162.99922"
+       y="94.766121" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_tuning.png"
        xlink:href="fig4d_tuning.png"
-       y="94.577133"
-       x="122.14002"
-       id="image880"
-       preserveAspectRatio="none"
-       height="53.932667"
-       width="91.694"
+       transform="translate(-7.9375004)"
        clip-path="url(#clipPath885)"
-       transform="translate(-7.9375004)" />
+       width="91.694"
+       height="53.932667"
+       preserveAspectRatio="none"
+       id="image880"
+       x="122.14002"
+       y="94.577133" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4c.png"
        xlink:href="fig4c.png"
-       y="7.5968013"
-       x="151.43166"
-       id="image908"
-       preserveAspectRatio="none"
+       width="101.6"
        height="69.849998"
-       width="101.6" />
+       preserveAspectRatio="none"
+       id="image908"
+       x="151.43166"
+       y="7.5968013" />
   </g>
   <g
      inkscape:groupmode="layer"

@@ -17,11 +17,9 @@ def simulate_figure5_f0dls(model, model_name, fs):
     the results to disk. This specific harmonic complex tone stimulus used in this simulation is from Guest and
     Oxenham (2021), although no acoustic noise is included in the stimulus.
 
-    Arguments:
+    Args:
         model: model object from apcmodels.anf
-
         model_name (str): name of the model
-
         fs (int): sampling rate in Hz
     """
     # Define stimulus parameters
@@ -34,34 +32,33 @@ def simulate_figure5_f0dls(model, model_name, fs):
     cf_low = 5*F0s
     cf_high = 11*F0s
     n_cf = 40
-    n_fiber_per_chan = 40  # TODO: check this value
+    n_fiber_per_chan = round(((np.log10(11/5)/3)*18000)/n_cf)  # assume ~18k HSR fibers from 0.2 to 20 kHz
 
     # Encode parameters
-    params = {'dur': dur, 'dur_ramp': dur_ramp, 'fs': fs}  # encode fixed parameters in a dict
-    params = si.wiggle_parameters(params, 'F0', F0s)  # wiggle frequencies
-    params = si.stitch_parameters(params, 'cf_low', cf_low)  # stitch cf_low (each F0 corresponds to a cf_low)
-    params = si.stitch_parameters(params, 'cf_high', cf_high)  # stitch cf_high (each F0 corresponds to a cf_high)
-    params = si.wiggle_parameters(params, 'level', levels)  # wiggle levels
-    params = si.append_parameters(params, ['n_cf', 'delta_theta', 'API', 'n_fiber_per_chan', 'model'],
-                                  [n_cf, [0.001], np.zeros(1), n_fiber_per_chan, model_name])  # append other model parameters
+    params = si.Parameters(dur=dur, dur_ramp=dur_ramp, fs=fs, n_cf=n_cf, delta_theta=[0.001], API=np.zeros(1),
+                           n_fiber_per_chan=n_fiber_per_chan, model_name=model_name)
+    params.wiggle('F0', F0s)                                   # wiggle F0s
+    params.stitch('cf_low', cf_low)                            # stitch cf_low (each freq corresponds to a cf_low)
+    params.stitch('cf_high', cf_high)                          # stitch cf_high (each freq corresponds to a cf_high)
+    params.wiggle('level', levels)                             # wiggle levels
 
     # Adjust levels to be in dB re: threshold
-    params = si.flatten_parameters(params)  # flatten out params
+    params.flatten()
     for ele in params:
-        ele['nominal_level'] = ele['level']
-        ele['level'] = adjust_level(ele['F0']*8, ele['level'], model_name)
+        ele['nominal_level'] = ele['level']                                 # encode nominal level (dB re: threshold)
+        ele['level'] = adjust_level(ele['F0']*8, ele['level'], model_name)  # encode actual level (dB SPL)
 
     # Encode increments
-    params = si.increment_parameters(params, {'F0': 0.001})  # increment frequency
+    params.increment({'F0': 0.001})  # increment F0
 
     # Synthesize stimuli
     synth = ISOToneGuest2021_exp1a()
     stimuli = synth.synthesize_sequence(params)
-    params = si.stitch_parameters(params, '_input', stimuli)
+    params.add_inputs(stimuli)
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate), parallel=True, hide_progress=False)
+    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate))
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
@@ -75,5 +72,5 @@ def simulate_figure5_f0dls(model, model_name, fs):
 # Loop through models and calculate FDLs for each model
 for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                                  ['Heinz2001', 'Zilany2014', 'Verhulst2018'],
-                                 [int(1000e3), int(200e3), int(200e3)]):
+                                 [int(1250e3), int(200e3), int(300e3)]):
     simulate_figure5_f0dls(model, model_name, fs)

@@ -50,6 +50,7 @@ def plot_excitation_pattern_Cedolin_2005(F0s, cf, ax, first):
     ax.set_title(str(cf) + ' Hz')
     if first:
         ax.get_xaxis().set_visible(False)
+        ax.legend(['20', '30', '40'], title='Level (dB SPL)')
     else:
         ax.set_xlabel('Neural harmonic number (CF/F0)')
     ax.set_ylabel('Firing rate (sp/s)')
@@ -58,5 +59,6 @@ def plot_excitation_pattern_Cedolin_2005(F0s, cf, ax, first):
 fig, ax = plt.subplots(nrows=2, ncols=1, figsize=(4, 4))
 plot_excitation_pattern_Cedolin_2005(10**np.linspace(np.log10(106), np.log10(474), 50), 952, ax[0], True)
 plot_excitation_pattern_Cedolin_2005(10**np.linspace(np.log10(447), np.log10(2012), 50), 4026, ax[1], False)
+plt.tight_layout()
 # Save plot to disk
 plt.savefig('plots/fig7c.png')
