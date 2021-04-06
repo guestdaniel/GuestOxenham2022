@@ -19,9 +19,14 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         first (bool): whether or not this is the first plot in the row
         color ???
     """
+    # Figure out, for this F0, how many components will be in the complex tones
+    n_freq = len(np.arange(F0, 48000 / 2, F0))
+    n_freq_masker = len(np.arange(F0 * 2 ** (1 / 12), 48000 / 2, F0 * 2 ** (1 / 12)))
     # Set up simulation and stimulus parameters
     params = si.Parameters(F0=F0, F0_masker=F0 * 2 ** (1 / 12), fs=fs,
-                           level=level, level_masker=level, ten=True, level_noise=level_noise,
+                           level=lambda: np.random.uniform(level-3, level+3, n_freq),
+                           level_masker=lambda: np.random.uniform(level-3, level+3, n_freq_masker),
+                           ten=True, level_noise=level_noise,
                            cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type='msr')
     params.repeat(10)
     # Synthesize stimuli
@@ -44,7 +49,7 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
     max_response = np.max(mean_response)
     min_response = np.min(mean_response)
     for harmonic in [6, 7, 8, 9, 10]:
-        axis_main.plot([harmonic, harmonic], [0, max_response], color='gray', linestyle='dashed', label='_nolegend_')
+        axis_main.plot([harmonic, harmonic], [0, 250], color='gray', linestyle='dashed', label='_nolegend_')
     axis_main.plot(cfs/F0, mean_response, color=color)
     axis_main.fill_between(cfs/F0, mean_response - sd_response, mean_response + sd_response,
                            color=color, alpha=0.2, label='_nolegend_')
@@ -54,11 +59,11 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         axis_main.get_xaxis().set_visible(False)
     if not first:
         axis_main.set_xlabel('CF (Harmonic Number)')
-    axis_main.set_ylim((min_response, max_response))
+    axis_main.set_ylim((50, 250))
     axis_main.set_title(title)
-    axis_main.set_xlim((4, 12))
-    axis_main.set_xticks([4, 5, 6, 7, 8, 9, 10, 11, 12])
-    axis_main.set_xticklabels([4, '', 6, 7, 8, 9, 10, '', 12])
+    axis_main.set_xlim((5, 11))
+    axis_main.set_xticks([5, 6, 7, 8, 9, 10, 11])
+    axis_main.set_xticklabels(['', 6, 7, 8, 9, 10, ''])
 
 # Plot excitation patterns
 f, (a0, a1) = plt.subplots(2, 1, figsize=(4.25, 4))

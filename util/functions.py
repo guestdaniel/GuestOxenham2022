@@ -91,10 +91,14 @@ class ISOToneGuest2021(sy.Synthesizer):
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
         elif type(level) is float or type(level) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
+        elif callable(level):
+            level = level()
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
         elif type(phase) is float or type(phase) is int:
             phase = phase + np.zeros(len(freqs))
+        elif callable(phase):
+            phase = phase()
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)
         signal = sosfiltfilt(sos, signal)
@@ -148,10 +152,14 @@ class GEOMToneGuest2021(sy.Synthesizer):
             level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
         elif type(level) is float or type(level) is int:
             level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
+        elif callable(level):
+            level = level()
         if phase is None:
             phase = np.zeros(len(freqs))  # default to sine phase
         elif type(phase) is float or type(phase) is int:
             phase = phase + np.zeros(len(freqs))
+        elif callable(phase):
+            phase = phase()
         # Synthesize, filter, and ramp complex tone signal
         signal = sg.complex_tone(freqs, level, phase, dur, fs)
         signal = sosfiltfilt(sos, signal)
@@ -162,10 +170,14 @@ class GEOMToneGuest2021(sy.Synthesizer):
             level_masker = 40*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
         elif type(level_masker) is float or type(level_masker) is int:
             level_masker = level_masker*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
+        elif callable(level_masker):
+            level_masker = level_masker()
         if phase_masker is None:
             phase_masker = np.zeros(len(freqs_masker))  # default to sine phase
         elif type(phase_masker) is float or type(phase_masker) is int:
             phase_masker = phase_masker + np.zeros(len(freqs_masker))
+        elif callable(level_masker):
+            level_masker = level_masker()
         # Synthesize, filter, and ramp complex tone signal
         masker = sg.complex_tone(freqs_masker, level_masker, phase_masker, dur, fs)
         masker = sosfiltfilt(sos_masker, masker)
