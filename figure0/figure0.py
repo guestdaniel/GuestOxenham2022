@@ -6,6 +6,7 @@ import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
 import matplotlib.pyplot as plt
+import matplotlib.patches as patches
 import os, sys
 sys.path.append(os.getcwd())
 
@@ -61,18 +62,20 @@ def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
     axs[2, 1].set_ylabel('Firing rate', rotation='horizontal')
     axs[2, 1].yaxis.tick_right()
     axs[2, 1].yaxis.set_label_position('right')
-    axs[2, 1].yaxis.set_label_coords(1.24, 0.40)
-    # Plot spectrum
+    axs[2, 1].yaxis.set_label_coords(1.20, 0.40)
+    # Plot spectrum (left)
     X = 20*np.log10(np.abs(np.fft.fft(stim, n=stim.shape[0]*10)))
     X = X - np.max(X)
     faxis = np.linspace(0, params[0]['fs'], X.shape[0])
+    rect = patches.Rectangle((-10, f0*5.5), 12, f0*5, edgecolor='none', facecolor='gold')
+    axs[1, 0].add_patch(rect)
     axs[1, 0].plot(X, faxis, color='black')
     axs[1, 0].plot([-10, 0], [f0, f0], 'r--')
     axs[1, 0].set_ylim(params[0]['cf_low'], params[0]['cf_high'])
     axs[1, 0].set_xlim((-10, 5))
     axs[1, 0].set_ylabel('Frequency or CF (Hz)')
     axs[1, 0].set_xlabel('Level (dB)')
-    # Plot excitation pattern
+    # Plot excitation pattern (right)
     axs[1, 2].plot(np.mean(resp[0], axis=1), f)
     idx = np.argmin(np.abs(f - f0*4))
     axs[1, 2].plot([0, np.mean(resp[0], axis=1)[idx]], [f0*4, f0*4], color='slateblue', linestyle='dashed')
