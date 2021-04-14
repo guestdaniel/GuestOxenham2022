@@ -58,4 +58,4 @@ temp_avg %>%
 	ylab("TMR at threshold")
 
 # Save to disk
-ggsave('../plots/fig2.png')
+ggsave('plots/fig2.png')

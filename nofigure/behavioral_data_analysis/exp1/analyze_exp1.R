@@ -75,26 +75,26 @@ model_anova[, "Pr(>F)"] = p.adjust(model_anova[, "Pr(>F)"], method="holm")
 test_F0 = testInteractions(model, pairwise="F0", fixed="masker", adjustment="none", test="F")
 test_masker = testInteractions(model, pairwise="masker", fixed="F0", adjustment="none", test="F")
 test_F0_and_masker = testInteractions(model, pairwise=c("F0", "masker"), adjustment="none", test="F")
-test_experiment_pairwise = testInteractions(model, pairwise="experiment", fixed=c("F0", "masker"), adjustment="none",
-											test="F")
+#test_experiment_pairwise = testInteractions(model, pairwise="experiment", fixed=c("masker"), adjustment="none",
+#											test="F")
 
 # Combine contrast tests and correct their p-values
 contrasts = list(test_F0, test_masker, test_F0_and_masker, test_experiment_pairwise)
 unadj_values = numeric()
-for (ii in 1:4) {
+for (ii in 1:3) {
 	unadj_values = c(unadj_values, contrasts[[ii]][, "Pr(>F)"])
 }
 adj_values = p.adjust(unadj_values, method="holm")
 test_F0[, "Pr(>F)"] = adj_values[1:3]
 test_masker[, "Pr(>F)"] = adj_values[4:6]
 test_F0_and_masker[, "Pr(>F)"] = adj_values[7:8]
-test_experiment_pairwise[, "Pr(>F)"] = adj_values[9:13]
+#test_experiment_pairwise[, "Pr(>F)"] = adj_values[9:13]
 
 # Change all the difference measures to ratio measures in the contrast tests
 test_F0[, "Value"] = 10^(abs(test_F0[, "Value"])/10)
 test_masker[, "Value"] = 10^(abs(test_masker[, "Value"])/10)
 test_F0_and_masker[, "Value"] = 10^(abs(test_F0_and_masker[, "Value"])/10)
-test_experiment_pairwise[, "Value"] = 10^(abs(test_experiment_pairwise[, "Value"])/10)
+#test_experiment_pairwise[, "Value"] = 10^(abs(test_experiment_pairwise[, "Value"])/10)
 
 # Sink the results to file
 sink(paste0(model_dir, "model_output.txt"))
@@ -106,8 +106,6 @@ test_F0
 test_masker
 "Contrasts to test F0-masker interaction // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
 test_F0_and_masker
-"Contrasts to test experiment pairwise // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
-test_experiment_pairwise
+#"Contrasts to test experiment pairwise // KR approximation of denominator DF // Joint correction by Holm-Bonferroni"
+#test_experiment_pairwise
 sink()
-
-car::linearHypothesis()

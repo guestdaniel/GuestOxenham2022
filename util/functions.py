@@ -10,8 +10,10 @@ from scipy.interpolate import interp1d
 
 
 class ISOToneGuest2021_exp1a(sy.Synthesizer):
-    """
-    Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+    """ Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+
+    Simplified version of the stimulus in Guest and Oxenham (2021). This version is the version from Experiment 1a, and
+    does not include acoustic masking noise.
     """
     def __init__(self):
         super().__init__(stimulus_name='ISO Tone')
@@ -52,9 +54,70 @@ class ISOToneGuest2021_exp1a(sy.Synthesizer):
         return signal
 
 
-class ISOToneGuest2021(sy.Synthesizer):
+def parse_level(freqs, level):
+    """ Static method to aid in processing tone stimuli below
+
+    Args:
+        freqs (ndarray): an array of frequencies of shape (n_freq, )
+        level (int, float, ndarray, function): some specification of a sequence of levels. If a function, it is first
+            called. Then, if None, we return a default sequence of levels of at 40 dB SPL. If a single number, we
+            return a sequence of levels at that level. If an array, we return the array.
+
+    Returns:
+        levels (ndarray): array of levels in dB SPL of size (n_freq, )
     """
-    Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+    # Parse level
+    if callable(level):
+        level = level()
+    if level is None:
+        level = 40 * np.ones(len(freqs))  # if we don't have a fixed level, set level to 40 dB SPL
+    elif type(level) is float or type(level) is int:
+        level = level * np.ones(len(freqs))  # if we have a float or an int, set each component to equal-level
+    return level
+
+
+def parse_phase(freqs, phase):
+    """ Static method to aid in processing tone stimuli below
+
+    Args:
+        freqs (ndarray): an array of frequencies of shape (n_freq, )
+        phase (int, float, ndarray, function): some specification of a sequence of levels. If a function, it is first
+            called. Then, if None, we return a default sequence sine phase. If a single number, we
+            return a sequence of phase offsets of that size. If an array, we return the array.
+
+    Returns:
+        phase (ndarray): array of phases in degrees of size (n_freq, )
+    """
+    # Parse level
+    if callable(phase):
+        phase = phase()
+    if phase is None:
+        phase = np.zeros(len(freqs))  # if we don't have a phase, set to sine phase
+    elif type(phase) is float or type(phase) is int:
+        phase = phase * np.zeros(
+            len(freqs))  # if we have a float or an int, set each component offset to this value
+    return phase
+
+
+def synthesize_complex_tone(freqs, level, level_noise, phase, dur, fs, dur_ramp, sos, ten):
+    """ Static method to aid in processing tone stimuli below
+
+    See docstring of ISOToneGuest2021 and others below...
+    """
+    # Synthesize, filter, and ramp complex tone signal
+    signal = sg.complex_tone(freqs, level, phase, dur, fs)
+    signal = sosfiltfilt(sos, signal)
+    signal = sg.cosine_ramp(signal, dur_ramp, fs)
+    # Synthesize noise
+    if ten:
+        signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs / 2, level_noise), dur_ramp, fs)
+    return signal
+
+
+class ISOToneGuest2021(sy.Synthesizer):
+    """ Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+
+    This is the Experiment 1b version of the stimulus from Guest and Oxenham (2021).
     """
     def __init__(self):
         super().__init__(stimulus_name='ISO Tone')
@@ -66,14 +129,19 @@ class ISOToneGuest2021(sy.Synthesizer):
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
         10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b.
 
-        Arguments:
+        Args:
             F0 (float): F0 of the complex tone in Hz
-            level (float, ndarray): level per-component of the complex tone in dB SPL, can be either a float (in this
-                case, the same level is used for all components) or an ndarray indicating the level of each component
-            phase (float, ndarray): phase offset applied to each component of the complex tone in degrees, can be
-                either a float (in which case the same phase offset is used for all components) or an ndarray indicating
-                the phase offset of each component.
             dur (float): duration in seconds
+            level (int, float, ndarray, function): level per-component of the complex tone in dB SPL, can be either a
+                an int or a float (in this case, the same level is used for all components) or an ndarray indicating the
+                level of each component. If it is callable (i.e., a function) then it is called before parsing the above
+                logic. This allows the user to specify a random variable (e.g., pass a lambda function of a call of
+                np.random.uniform) that is drawn before the level array is constructed.
+            phase (int, float, ndarray, function): phase offset per-component of the complex tone in dB SPL, can be
+                either an int or a float (in this case, the same phase offset is used for all components) or an ndarray
+                indicating the phase offset of each component. If it is callable (i.e., a function) then it is called
+                before parsing the above logic. This allows the user to specify a random variable (e.g., pass a lambda
+                function of a call of np.random.uniform) that is drawn before the phase offset array is constructed.
             dur_ramp (float): duration of raised-cosine ramp in seconds
             ten (bool): whether or not to include threshold-equalizing masking noise
             level_noise (float): the level at which to synthesize the TEN, in dB SPL
@@ -87,26 +155,10 @@ class ISOToneGuest2021(sy.Synthesizer):
                      output="sos")
         # Create array of frequencies, levels, and phases
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
-        if level is None:
-            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float or type(level) is int:
-            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif callable(level):
-            level = level()
-        if phase is None:
-            phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float or type(phase) is int:
-            phase = phase + np.zeros(len(freqs))
-        elif callable(phase):
-            phase = phase()
-        # Synthesize, filter, and ramp complex tone signal
-        signal = sg.complex_tone(freqs, level, phase, dur, fs)
-        signal = sosfiltfilt(sos, signal)
-        signal = sg.cosine_ramp(signal, dur_ramp, fs)
-        # Synthesize noise
-        if ten:
-            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level_noise), dur_ramp, fs)
-        # Return
+        level = parse_level(freqs, level)
+        phase = parse_phase(freqs, phase)
+        # Synthesize stimulus
+        signal = synthesize_complex_tone(freqs, level, level_noise, phase, dur, fs, dur_ramp, sos, ten)
         return signal
 
 
@@ -122,16 +174,25 @@ class GEOMToneGuest2021(sy.Synthesizer):
         """
         Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
         frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
-        10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b.
+        10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b. Adds a
+        masker complex tone with an F0 different from that of the target which is bandpass filtered from 4x to 12x F0.
 
-        Arguments:
+        Args:
             F0 (float): F0 of the complex tone in Hz
             F0_masker (float): F0 of the masker complex tone in Hz
-            level (float, ndarray): level per-component of the complex tone in dB SPL, can be either a float (in this
-                case, the same level is used for all components) or an ndarray indicating the level of each component.
-            phase (float, ndarray): phase offset applied to each component of the complex tone in degrees, can be
-                either a float (in which case the same phase offset is used for all components) or an ndarray indicating
-                the phase offset of each component.
+            dur (float): duration of the tones, in seconds
+            level (int, float, ndarray, function): level per-component of the complex tone in dB SPL, can be either a
+                an int or a float (in this case, the same level is used for all components) or an ndarray indicating the
+                level of each component. If it is callable (i.e., a function) then it is called before parsing the above
+                logic. This allows the user to specify a random variable (e.g., pass a lambda function of a call of
+                np.random.uniform) that is drawn before the level array is constructed.
+            phase (int, float, ndarray, function): phase offset per-component of the complex tone in dB SPL, can be
+                either an int or a float (in this case, the same phase offset is used for all components) or an ndarray
+                indicating the phase offset of each component. If it is callable (i.e., a function) then it is called
+                before parsing the above logic. This allows the user to specify a random variable (e.g., pass a lambda
+                function of a call of np.random.uniform) that is drawn before the phase offset array is constructed.
+            level_masker (int, float, ndarray, function): same as level above
+            phase_masker (int, float, ndarray, function): same as phase above
             dur_ramp (float): duration of raised-cosine ramp in seconds
             ten (bool): whether or not to include threshold-equalizing masking noise
             level_noise (float): the level at which to synthesize the TEN, in dB SPL
@@ -148,45 +209,90 @@ class GEOMToneGuest2021(sy.Synthesizer):
                      output="sos")
         # Create array of frequencies, levels, and phases
         freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
-        if level is None:
-            level = 40*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif type(level) is float or type(level) is int:
-            level = level*np.ones(len(freqs))  # default to 40 dB SPL per component
-        elif callable(level):
-            level = level()
-        if phase is None:
-            phase = np.zeros(len(freqs))  # default to sine phase
-        elif type(phase) is float or type(phase) is int:
-            phase = phase + np.zeros(len(freqs))
-        elif callable(phase):
-            phase = phase()
-        # Synthesize, filter, and ramp complex tone signal
-        signal = sg.complex_tone(freqs, level, phase, dur, fs)
-        signal = sosfiltfilt(sos, signal)
-        signal = sg.cosine_ramp(signal, dur_ramp, fs)
+        level = parse_level(freqs, level)
+        phase = parse_phase(freqs, phase)
+        # Synthesize the target signal (without TEN, because we add TEN only at the final step)
+        signal = synthesize_complex_tone(freqs, level, level_noise, phase, dur, fs, dur_ramp, sos, ten=False)
         # Create array of frequencies, levels, and phases for the masker
         freqs_masker = np.arange(F0_masker, 48000 / 2, F0_masker)  # up to Nyquist for fs=48
-        if level_masker is None:
-            level_masker = 40*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
-        elif type(level_masker) is float or type(level_masker) is int:
-            level_masker = level_masker*np.ones(len(freqs_masker))  # default to 40 dB SPL per component
-        elif callable(level_masker):
-            level_masker = level_masker()
-        if phase_masker is None:
-            phase_masker = np.zeros(len(freqs_masker))  # default to sine phase
-        elif type(phase_masker) is float or type(phase_masker) is int:
-            phase_masker = phase_masker + np.zeros(len(freqs_masker))
-        elif callable(level_masker):
-            level_masker = level_masker()
-        # Synthesize, filter, and ramp complex tone signal
-        masker = sg.complex_tone(freqs_masker, level_masker, phase_masker, dur, fs)
-        masker = sosfiltfilt(sos_masker, masker)
-        masker = sg.cosine_ramp(masker, dur_ramp, fs)
-        # Synthesize noise
-        if ten:
-            signal = signal + sg.cosine_ramp(sg.te_noise(dur, fs, 0, fs/2, level_noise), dur_ramp, fs)
-        # Return
-        return signal + masker
+        level_masker = parse_level(freqs_masker, level_masker)
+        phase_masker = parse_phase(freqs_masker, phase_masker)
+        # Synthesize the masker signal and add it to the target signal (with TEN, if requested)
+        signal += synthesize_complex_tone(freqs_masker, level_masker, level_noise, phase_masker, dur, fs, dur_ramp,
+                                          sos_masker, ten)
+        return signal
+
+
+class DBLToneGuest2021(sy.Synthesizer):
+    """
+    Synthesizes the DBL stimulus in Guest and Oxenham (2021).
+    """
+    def __init__(self):
+        super().__init__(stimulus_name='DBL Tone')
+
+    def synthesize(self, F0, F0_masker_1, F0_masker_2, dur=0.350, dur_ramp=0.02, level=None, phase=None,
+                   level_masker_1=None, phase_masker_1=None, level_masker_2=None, phase_masker_2=None, ten=False,
+                   level_noise=0, fs=int(48e3), **kwargs):
+        """
+        Synthesizes a harmonic complex tone composed of all components of the F0 up to the 24000 Hz (the Nyquist
+        frequency for the 48 kHz sampling rate used in the paper). Then, the tone is bandpass filtered from 5.5x to
+        10.5x F0 using a zero-phase Butterworth filter. This is the same stimulus as used in Experiment 1b. Adds two
+        masker complex tones with F0s different from that of the target which are bandpass filtered from 4x to 12x F0.
+
+        Args:
+            F0 (float): F0 of the complex tone in Hz
+            F0_masker_1 (float): F0 of the first masker complex tone in Hz
+            F0_masker_2 (float): F0 of the second masker complex tone in Hz
+            dur (float): duration of the tones, in seconds
+            level (int, float, ndarray, function): level per-component of the complex tone in dB SPL, can be either a
+                an int or a float (in this case, the same level is used for all components) or an ndarray indicating the
+                level of each component. If it is callable (i.e., a function) then it is called before parsing the above
+                logic. This allows the user to specify a random variable (e.g., pass a lambda function of a call of
+                np.random.uniform) that is drawn before the level array is constructed.
+            phase (int, float, ndarray, function): phase offset per-component of the complex tone in dB SPL, can be
+                either an int or a float (in this case, the same phase offset is used for all components) or an ndarray
+                indicating the phase offset of each component. If it is callable (i.e., a function) then it is called
+                before parsing the above logic. This allows the user to specify a random variable (e.g., pass a lambda
+                function of a call of np.random.uniform) that is drawn before the phase offset array is constructed.
+            level_masker_1 (int, float, ndarray, function): same as level above
+            phase_masker_1 (int, float, ndarray, function): same as phase above
+            level_masker_2 (int, float, ndarray, function): same as level above
+            phase_masker_2 (int, float, ndarray, function): same as phase above
+            dur_ramp (float): duration of raised-cosine ramp in seconds
+            ten (bool): whether or not to include threshold-equalizing masking noise
+            level_noise (float): the level at which to synthesize the TEN, in dB SPL
+            fs (int): sampling rate in Hz
+
+        Returns:
+            output (array): complex tone stimulus
+        """
+        # Set up bandpass filter for the target
+        sos = butter(N=6, Wn=[F0 * 5.5 / (fs * 0.5), F0 * 10.5 / (fs * 0.5)], btype="band",
+                     output="sos")
+        # Set up the bandpass filter for the masker
+        sos_masker = butter(N=6, Wn=[F0 * 4 / (fs * 0.5), F0 * 12 / (fs * 0.5)], btype="band",
+                     output="sos")
+        # Create array of frequencies, levels, and phases
+        freqs = np.arange(F0, 48000 / 2, F0)  # up to Nyquist for fs=48
+        level = parse_level(freqs, level)
+        phase = parse_phase(freqs, phase)
+        # Synthesize the target signal (without TEN, because we add TEN only at the final step)
+        signal = synthesize_complex_tone(freqs, level, level_noise, phase, dur, fs, dur_ramp, sos, ten=False)
+        # Create array of frequencies, levels, and phases for the masker
+        freqs_masker = np.arange(F0_masker_1, 48000 / 2, F0_masker_1)  # up to Nyquist for fs=48
+        level_masker = parse_level(freqs_masker, level_masker_1)
+        phase_masker = parse_phase(freqs_masker, phase_masker_1)
+        # Synthesize the masker signal and add it to the target signal (again without TEN)
+        signal += synthesize_complex_tone(freqs_masker, level_masker, level_noise, phase_masker, dur, fs, dur_ramp,
+                                          sos_masker, ten=False)
+        # Create array of frequencies, levels, and phases for the masker
+        freqs_masker = np.arange(F0_masker_2, 48000 / 2, F0_masker_2)  # up to Nyquist for fs=48
+        level_masker = parse_level(freqs_masker, level_masker_2)
+        phase_masker = parse_phase(freqs_masker, phase_masker_2)
+        # Synthesize the masker signal and add it to the target signal (finally with TEN, if requested)
+        signal += synthesize_complex_tone(freqs_masker, level_masker, level_noise, phase_masker, dur, fs, dur_ramp,
+                                          sos_masker, ten=True)
+        return signal
 
 
 class ComplexToneCedolin2005(sy.Synthesizer):

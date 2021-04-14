@@ -58,7 +58,7 @@ temp %>%
 	geom_line(size=size_line) +
 	geom_errorbar(size=size_error, width=width_error, aes(ymin=threshold_low, ymax=threshold_high)) +
 	# Modify axes
-	scale_y_log10(breaks=breaks, labels=labels, limits=c(3/10, 35)) +
+	scale_y_log10(breaks=breaks, labels=labels, limits=c(1.5/10, 30)) +
 	# Set theme and guide settings
 	theme_bw() +
 	guides(shape=guide_legend(
