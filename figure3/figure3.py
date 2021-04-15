@@ -1,3 +1,7 @@
+"""
+This script implements Figure 3 of Guest and Oxenham (2021).
+"""
+
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
@@ -17,7 +21,8 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         condition (str): condition from which to plot tones, either 'ISO' or 'GEOM'
         title (str): title to add to plot
         first (bool): whether or not this is the first plot in the row
-        color ???
+        color (ndarray, str): the color to use for the plot
+        fs (int): sampling rate to run the simulation at
     """
     # Figure out, for this F0, how many components will be in the complex tones
     n_freq = len(np.arange(F0, 48000 / 2, F0))
@@ -73,4 +78,5 @@ plot_ep(a1, 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62')
 plot_ep(a1, 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb')
 plt.legend(['ISO', 'GEOM'], loc=3, framealpha=1)
 plt.tight_layout()
+# Save to disk
 plt.savefig('plots/fig3.png', bbox_inches='tight')

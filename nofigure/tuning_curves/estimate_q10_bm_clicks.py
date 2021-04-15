@@ -82,7 +82,7 @@ def calc_Q(vm, cfs, fs):
     return Q
 
 
-# Simulate Verhulst basilar membrane response to 30 dB SPL click
+# Simulate Verhulst basilar membrane response to 40 dB SPL click
 fs = int(500e3)
 click = synthesize_click(fs=fs)
 p0 = 2e-5

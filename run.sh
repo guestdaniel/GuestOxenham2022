@@ -1,16 +1,27 @@
 conda activate GuestOxenham2021_code
 
+# Code check:   4/14/2021
+# Output check: 4/14/2021
 echo 'Calculating absolute thresholds'
 python3 nofigure/absolute_thresholds/absolute_thresholds.py
 
+# Code check:   4/14/2021
+# Output check: 4/14/2021
 echo 'Calculating tuning_curves'
 python3 nofigure/tuning_curves/estimate_freq_level_functions.py
 python3 nofigure/tuning_curves/extract_tuning_curves.py
 python3 nofigure/tuning_curves/estimate_q10.py
 python3 nofigure/tuning_curves/estimate_q10_bm_clicks.py
 
+# Code check:   4/14/2021
+# Output check: 4/14/2021
 echo 'Calculating vector strength'
 python3 nofigure/vector_strength_curves/vector_strength_curves.py
+
+# Code check:   4/14/2021
+# Output check: 4/14/2021
+echo 'Generating Figure 0'
+python3 figure0/figure0.py
 
 echo 'Generating Figure 3'
 python3 figure3/figure3.py
@@ -23,7 +34,6 @@ Rscript figure4/figure4b.R
 Rscript figure4/figure4c.R
 Rscript figure4/figure4d.R
 
-
 echo 'Generating Figure 5'
 python3 figure5/figure5a.py
 Rscript figure5/figure5a.R
@@ -31,7 +41,6 @@ python3 figure5/figure5b.py
 Rscript figure5/figure5b.R
 Rscript figure5/figure5c.R
 Rscript figure5/figure5d.R
-
 
 echo 'Generating Figure 6'
 python3 figure6/figure6.py
