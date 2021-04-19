@@ -5,7 +5,7 @@ This script implements Figure 3 of Guest and Oxenham (2021).
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from util.functions import ISOToneGuest2021, GEOMToneGuest2021, adjust_level
+from util.functions import ISOToneGuest2021, GEOMToneGuest2021
 import matplotlib.pyplot as plt
 import os, sys
 sys.path.append(os.getcwd())
@@ -19,6 +19,8 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         axis_main (axis): axis object on which to plot
         F0 (float): F0 of the tone in Hz
         condition (str): condition from which to plot tones, either 'ISO' or 'GEOM'
+        level (float): nominal level of the tones per-component, in dB SPL
+        level_noise (float): nominal level of the noise, in units of dB SPL in the ERB centered at 1 kHz
         title (str): title to add to plot
         first (bool): whether or not this is the first plot in the row
         color (ndarray, str): the color to use for the plot
@@ -47,12 +49,11 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
     resp = sim.run(params)
     # Calculate cfs
     cfs = 10**np.linspace(np.log10(F0*4), np.log10(F0*12), 200)
-    # Calculate mean over time
+    # Calculate mean over time and standard deivation over means
     firing_rates = np.array([np.mean(r, axis=1) for r in resp])
     mean_response = np.mean(firing_rates, axis=0)
     sd_response = np.std(firing_rates, axis=0)
-    max_response = np.max(mean_response)
-    min_response = np.min(mean_response)
+    # Plot
     for harmonic in [6, 7, 8, 9, 10]:
         axis_main.plot([harmonic, harmonic], [0, 250], color='gray', linestyle='dashed', label='_nolegend_')
     axis_main.plot(cfs/F0, mean_response, color=color)

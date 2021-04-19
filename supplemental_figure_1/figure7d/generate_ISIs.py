@@ -18,15 +18,15 @@ def calculate_ISIs_Cedolin_2005(F0):
     # Setup params
     params = si.Parameters(fs=int(200e3), fiber_type='hsr', n_cf=60, cf_low=450, cf_high=9200, F0=F0, species='cat')
     params.repeat(100)
-    params.flatten()
+    params.flatten_and_unnest()
 
     # Synthesize stimuli and add to params
     stim = ComplexToneCedolin2005()
     params.add_inputs(stim.synthesize_sequence(params))
 
     # Select model and run
-    sim = anf.AuditoryNerveZilany2014()
-    results = sim.run(params, runfunc=sim.simulate_spikes)
+    sim = anf.AuditoryNerveZilany2014Spikes()
+    results = sim.run(params, runfunc=sim.simulate)
 
     # Extract spike times from results
     ISIs = []

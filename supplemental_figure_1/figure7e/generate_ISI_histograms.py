@@ -31,8 +31,8 @@ def calculate_ISI_histograms_Larsen_2008(cf, neural_harm_nums):
     params.repeat(200)
 
     # Select model and run
-    sim = anf.AuditoryNerveZilany2014()
-    results = sim.run(params, runfunc=lambda x: [sim.simulate_spikes(ele) for ele in x])
+    sim = anf.AuditoryNerveZilany2014Spikes()
+    results = sim.run(params, runfunc=lambda x: [sim.simulate(ele) for ele in x])
 
     # Extract spike times from results
     histograms = []  # top-level list that will store the histogram for all neural harm numbers

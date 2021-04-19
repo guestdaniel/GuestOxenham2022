@@ -2,7 +2,7 @@
 
 This repository contains all the code and behavioral data necessary to completely replicate the figures and analyses found in [Guest and Oxenham (2021)](link to paper). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
 
-The repository does not include the files used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.), but these files are available upon request to the authors. The repository does contain the preprocessed behavioral data, code to replicate the analyses and visualizations of the behavioral data, and code to replicate the computational models described in the manuscript. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
+The repository does not include the code used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.), but these files are available upon request to the authors. The repository does contain the preprocessed behavioral data, code to replicate the analyses and visualizations of the behavioral data, and code to replicate the computational models described in the manuscript. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
 
 The code in this repository is licensed under GNU GPLv3 (see `LICENSE.txt`). The behavioral data in this repository is licensed under CC BY-NC 4.0 (see `data/LICENSE.txt`). 
 
@@ -38,7 +38,7 @@ The file structure of this repository is shown in the file hierarchy below. Esse
 
 # Docker instructions
 
-Docker is our recommended solution for replicating the results from [Guest and Oxenham (2021)](link to paper). If you are unfamiliar with Docker, you may want to [orient yourself](https://docs.docker.com/get-started/). The Docker image associated with this repository will allow you to start up a containerized Ubuntu environment with Python and R, all packages needed to replicate our paper pre-installed, and a copy of this repository. Inside this environment, which is separated from the rest of your system, you can replicate the results of our paper with a single command. When you are done with this process and leave the environment, the environment will clean itself up and stop consuming system resources. The major advantage of using Docker in this way is that you do not have to install Python or R yourself and the versions of Python and R inside the Docker image will not interfere with any existing versions you have on your computer.
+Docker is our recommended solution for replicating the results from [Guest and Oxenham (2021)](link to paper). If you are unfamiliar with Docker, you may want to [orient yourself](https://docs.docker.com/get-started/). The Docker image associated with this repository will allow you to start up a Linux container with Python and R, all required packages/programs, and a copy of this repository. Inside this environment, which is sandboxed from the rest of your system, you can replicate the results of our paper with a single command. When you are done with this process and leave the environment, the environment will clean itself up and stop consuming system resources. The major advantage of using Docker in this way is that you do not have to install Python, R, or any other programs yourself. 
 
 To get started, make sure you have [Docker installed](https://docs.docker.com/get-docker/). Then, follow the instructions below. The instructions below are written for command line interface (such as PowerShell and Terminal) but equivalent commands likely exist in graphical user interface versions of the Docker software.
 
@@ -124,13 +124,9 @@ Presently, `gammatone` can be installed via GitHub as:
 pip install git+https://github.com/detly/gammatone.git
 ```
 
-Presently, `apcmodels` can be installed via GitHub as:
+To install `apcmodels`, follow the instructions at https://github.com/guestdaniel/apcmodels.
 
-``` 
-pip install git+https://github.com/guestdaniel/apcmodels.git
-```
-
-Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Then, run `.py` files as needed. Note that all the outputs of `.py` files (usually either `.csv` or `.npy`) are already included in the repository, so no Python code needs to be run to reproduce the manuscript figures. 
+Once your Python interpreter is configured successfully, set your working directory to your local copy of this repository. Then, run `.py` files as needed. We recommend running the files in the order specified in `run.sh` because some figure files depend on the outputs of earlier scripts.
 
 ## R
 
@@ -149,7 +145,7 @@ R is required to generate all the behavioral and modeling figures. The paper fig
 - `lmerTest` - 3.1-3
 - `RcppCNPy` - 0.2.10
 
-Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. However, every required output has been pre-generated and included in this repository. As a result, all the R scripts should correctly generate the paper figures even if you don't have Python installed.
+Once your R  is configured successfully, set your working directory to your local copy of this repository. Now, you can run any of the plotting scripts (e.g., `figure1.R`) Some of these scripts depend on the output of the Python scripts. 
 
 # Figures
 
@@ -166,6 +162,10 @@ Figure 2 plots behavioral results from Experiment 2. The entire figure is genera
 ### Figure 3
 
 Figure 3 plots excitation patterns for simulated medium spontaneous rate (MSR) auditory nerve fibers responding to the ISO and GEOM stimuli from Experiment 1. The simulations and plot are generated by a single `.py` script.
+
+### Figure 3.5
+
+Figure 3.5 plots excitation patterns for simulated medium spontaneous rate (MSR) auditory nerve fibers responding to the DBL stimuli from Experiment 2. The simulations and plot are generated by a single `.py` script.
 
 ### Figure 4
 

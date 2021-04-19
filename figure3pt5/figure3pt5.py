@@ -1,7 +1,7 @@
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
-from util.functions import ISOToneGuest2021, GEOMToneGuest2021, DBLToneGuest2021, adjust_level
+from util.functions import DBLToneGuest2021
 import matplotlib.pyplot as plt
 import os, sys
 sys.path.append(os.getcwd())
@@ -17,7 +17,8 @@ def plot_ep(axis_main, F0, level, level_noise, title, first, color, fs=int(100e3
         level_noise (float): level of the TEN in the ERB centered on 1 kHz
         title (str): title to add to plot
         first (bool): whether or not this is the first plot in the row
-        color ???
+        color (ndarray, str): the color to use for the plot
+        fs (int): sampling rate, in Hz
     """
     # Set masker F0s
     masker_F0_1 = F0 * 2 ** (-6.25/12)
@@ -46,10 +47,11 @@ def plot_ep(axis_main, F0, level, level_noise, title, first, color, fs=int(100e3
     resp = sim.run(params)
     # Calculate cfs
     cfs = 10**np.linspace(np.log10(F0*4), np.log10(F0*12), 200)
-    # Calculate mean over time
+    # Calculate mean over time and standard deivation over means
     firing_rates = np.array([np.mean(r, axis=1) for r in resp])
     mean_response = np.mean(firing_rates, axis=0)
     sd_response = np.std(firing_rates, axis=0)
+    # Plot
     for harmonic in [6, 7, 8, 9, 10]:
         axis_main.plot([harmonic, harmonic], [0, 250], color='gray', linestyle='dashed', label='_nolegend_')
     axis_main.plot(cfs/F0, mean_response, color=color)

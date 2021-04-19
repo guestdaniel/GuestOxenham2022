@@ -23,9 +23,18 @@ python3 nofigure/vector_strength_curves/vector_strength_curves.py
 echo 'Generating Figure 0'
 python3 figure0/figure0.py
 
+# Code check:   4/19/2021
+# Output check: 4/19/2021
 echo 'Generating Figure 3'
 python3 figure3/figure3.py
 
+# Code check:   4/19/2021
+# Output check: 4/19/2021
+echo 'Generating Figure 3.5'
+python3 figure3pt5/figure3pt5.py
+
+# Code check:   4/19/2021
+# Output check: 4/19/2021
 echo 'Generating Figure 4'
 python3 figure4/figure4a.py
 Rscript figure4/figure4a.R
@@ -34,6 +43,8 @@ Rscript figure4/figure4b.R
 Rscript figure4/figure4c.R
 Rscript figure4/figure4d.R
 
+# Code check:   4/19/2021
+# Output check: 4/19/2021
 echo 'Generating Figure 5'
 python3 figure5/figure5a.py
 Rscript figure5/figure5a.R
@@ -42,9 +53,8 @@ Rscript figure5/figure5b.R
 Rscript figure5/figure5c.R
 Rscript figure5/figure5d.R
 
-echo 'Generating Figure 6'
-python3 figure6/figure6.py
-
+# Code check:   4/19/2021
+# Output check: 4/19/2021
 echo 'Generating Figure 7 (supplemental figure 1)'
 python3 supplemental_figure_1/figure7a.py
 python3 supplemental_figure_1/figure7b.py
