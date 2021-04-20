@@ -87,4 +87,4 @@ temp %>%
 	facet_grid(. ~ experiment)
 
 # Save plot to disk
-ggsave('plots/fig1.png', width=7, height=3)
+ggsave('plots/fig2.png', width=7, height=3)
