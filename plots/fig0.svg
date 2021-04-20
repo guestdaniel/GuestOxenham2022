@@ -64,12 +64,12 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig0b.png"
        xlink:href="fig0b.png"
-       y="13.799338"
-       x="176.90236"
-       id="image845"
-       preserveAspectRatio="none"
+       width="162.56001"
        height="121.92"
-       width="162.56001" />
+       preserveAspectRatio="none"
+       id="image845"
+       x="176.90236"
+       y="13.799338" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -95,11 +95,11 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig0a.png"
        xlink:href="fig0a.png"
-       y="13.799338"
-       x="3.1395586"
-       id="image878"
-       preserveAspectRatio="none"
+       width="162.56001"
        height="121.92"
-       width="162.56001" />
+       preserveAspectRatio="none"
+       id="image878"
+       x="3.1395586"
+       y="13.799338" />
   </g>
 </svg>

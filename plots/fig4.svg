@@ -108,7 +108,7 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="555.58997"
+     inkscape:cx="425.94711"
      inkscape:cy="276.24236"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -156,50 +156,50 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4a.png"
        xlink:href="fig4a.png"
-       y="7.5968013"
-       x="-0.96833801"
-       id="image867"
-       preserveAspectRatio="none"
+       width="152.39999"
        height="63.5"
-       width="152.39999" />
+       preserveAspectRatio="none"
+       id="image867"
+       x="-0.96833801"
+       y="7.5968013" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4b.png"
        xlink:href="fig4b.png"
-       y="85.198792"
-       x="-0.45357442"
-       id="image878"
-       preserveAspectRatio="none"
+       width="114.3"
        height="63.5"
-       width="114.3" />
+       preserveAspectRatio="none"
+       id="image878"
+       x="-0.45357442"
+       y="85.198792" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_phase_locking.png"
        xlink:href="fig4d_phase_locking.png"
-       width="91.694"
-       height="53.932667"
-       preserveAspectRatio="none"
-       id="image869"
+       y="94.766121"
        x="162.99922"
-       y="94.766121" />
+       id="image869"
+       preserveAspectRatio="none"
+       height="53.932667"
+       width="91.694" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_tuning.png"
        xlink:href="fig4d_tuning.png"
-       transform="translate(-7.9375004)"
-       clip-path="url(#clipPath885)"
-       width="91.694"
-       height="53.932667"
-       preserveAspectRatio="none"
-       id="image880"
+       y="94.577133"
        x="122.14002"
-       y="94.577133" />
+       id="image880"
+       preserveAspectRatio="none"
+       height="53.932667"
+       width="91.694"
+       clip-path="url(#clipPath885)"
+       transform="translate(-7.9375004)" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4c.png"
        xlink:href="fig4c.png"
-       width="101.6"
-       height="69.849998"
-       preserveAspectRatio="none"
-       id="image908"
+       y="7.5968013"
        x="151.43166"
-       y="7.5968013" />
+       id="image908"
+       preserveAspectRatio="none"
+       height="69.849998"
+       width="101.6" />
   </g>
   <g
      inkscape:groupmode="layer"
