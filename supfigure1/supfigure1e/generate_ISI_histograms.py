@@ -59,6 +59,6 @@ def calculate_ISI_histograms_Larsen_2008(cf, neural_harm_nums):
 
 # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
 histograms = calculate_ISI_histograms_Larsen_2008(816, np.linspace(2, 6, 40))
-np.save('supplemental_figure_1/figure7e/isi_histograms.npy', histograms)
-np.save('supplemental_figure_1/figure7e/neural_harm_nums.npy', np.linspace(2, 6, 40))
+np.save('supfigure1/supfigure1e/isi_histograms.npy', histograms)
+np.save('supfigure1/supfigure1e/neural_harm_nums.npy', np.linspace(2, 6, 40))
 

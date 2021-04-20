@@ -44,4 +44,4 @@ def calculate_ISIs_Cedolin_2005(F0):
 # Loop through F0s we want to test, generate ISIs, and save to disk
 for F0 in [320, 880]:
     ISIs = calculate_ISIs_Cedolin_2005(F0)
-    np.save('supplemental_figure_1/figure7d/isi_' + str(F0) + '.npy', ISIs)
+    np.save('supfigure1/supfigure1d/isi_' + str(F0) + '.npy', ISIs)

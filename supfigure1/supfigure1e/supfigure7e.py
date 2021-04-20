@@ -7,8 +7,8 @@ import util as cfg
 
 
 # Load in histograms and calculate edges
-histograms = np.load('supplemental_figure_1/figure7e/isi_histograms.npy')
-neural_harm_nums = np.load('supplemental_figure_1/figure7e/neural_harm_nums.npy')
+histograms = np.load('supfigure1/supfigure1e/isi_histograms.npy')
+neural_harm_nums = np.load('supfigure1/supfigure1e/neural_harm_nums.npy')
 edges = np.linspace(start=0, stop=20, num=2200)
 
 # Create plot
@@ -34,4 +34,4 @@ ax.annotate("6/F0", xy=(6, 5), xytext=(6.2, 5.2), arrowprops=dict(arrowstyle='->
 ax.annotate("7/F0", xy=(7/(11/9), 5), xytext=(7/(11/9) - 0.6, 5.2), arrowprops=dict(arrowstyle='->', color='blue'), color='blue')
 # Save to disk
 plt.tight_layout()
-plt.savefig('plots/fig7e.png')
+plt.savefig('plots/supfig1e.png')

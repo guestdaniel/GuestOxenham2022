@@ -57,4 +57,4 @@ plt.text(20, 4.4, 'Guinea\nPig', bbox={'edgecolor': 'gray', 'facecolor': 'white'
 # Handle layout
 plt.tight_layout()
 # Save figure to disk
-plt.savefig('plots/fig7b.png')
+plt.savefig('plots/supfig1b.png')

@@ -16,8 +16,8 @@
    version="1.1"
    id="svg1696"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="fig7.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig7.png"
+   sodipodi:docname="supfig1.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/supfig1.png"
    inkscape:export-xdpi="150.03"
    inkscape:export-ydpi="150.03"
    enable-background="new">
@@ -42,8 +42,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="74.115042"
-     inkscape:cy="507.03368"
+     inkscape:cx="73.104889"
+     inkscape:cy="547.43978"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -64,7 +64,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -75,15 +75,15 @@
      transform="translate(-0.04568207,-0.08868994)"
      style="filter:url(#filter879);opacity:0.98">
     <image
-       sodipodi:absref="/home/daniel/apc_doc/hfm/manuscript/figures/control_figure/Larsen2008.png"
-       y="211.9789"
-       x="3.3449609"
-       id="image2293"
-       xlink:href="file:///home/daniel/apc_doc/hfm/manuscript/figures/control_figure/Larsen2008.png"
-       preserveAspectRatio="none"
-       height="76.199997"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig1e.png"
+       xlink:href="supfig1e.png"
+       style=""
        width="203.2"
-       style="" />
+       height="76.199997"
+       preserveAspectRatio="none"
+       id="image2293"
+       x="3.3449609"
+       y="211.9789" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -140,42 +140,42 @@
          y="6.7894001"
          style="stroke-width:0.26458332">B. Filter tuning</tspan></text>
     <image
-       sodipodi:absref="/home/daniel/Dropbox/manuscripts/GuestOxenham2021/manuscript/revision1/figures/fig7a.png"
-       y="7.1213703"
-       x="0.045682069"
-       id="image843"
-       xlink:href="file:///home/daniel/Dropbox/manuscripts/GuestOxenham2021/manuscript/revision1/figures/fig7a.png"
-       preserveAspectRatio="none"
-       height="81.149185"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig1a.png"
+       xlink:href="supfig1a.png"
+       style=""
        width="104.33467"
-       style="" />
-    <image
-       sodipodi:absref="/home/daniel/Dropbox/manuscripts/GuestOxenham2021/manuscript/revision1/figures/fig7b.png"
-       y="8.6897688"
-       x="104.38036"
-       id="image854"
-       xlink:href="file:///home/daniel/Dropbox/manuscripts/GuestOxenham2021/manuscript/revision1/figures/fig7b.png"
+       height="81.149185"
        preserveAspectRatio="none"
-       height="79.580788"
+       id="image843"
+       x="0.045682069"
+       y="7.1213703" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig1b.png"
+       xlink:href="supfig1b.png"
+       style=""
        width="103.75446"
-       style="" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7c.png"
-       xlink:href="fig7c.png"
-       width="101.6"
-       height="101.6"
+       height="79.580788"
        preserveAspectRatio="none"
-       id="image865"
+       id="image854"
+       x="104.38036"
+       y="8.6897688" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig1c.png"
+       xlink:href="supfig1c.png"
+       y="97.608864"
        x="0.045682084"
-       y="97.608864" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d.png"
-       xlink:href="fig7d.png"
-       width="101.6"
-       height="101.6"
+       id="image865"
        preserveAspectRatio="none"
-       id="image876"
+       height="101.6"
+       width="101.6" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig1d.png"
+       xlink:href="supfig1d.png"
+       y="97.608864"
        x="105.38673"
-       y="97.608864" />
+       id="image876"
+       preserveAspectRatio="none"
+       height="101.6"
+       width="101.6" />
   </g>
 </svg>
