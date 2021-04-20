@@ -1,3 +1,6 @@
+"""
+This script implements the simulations described in Figure 5 of Guest and Oxenham (2021).
+"""
 import apcmodels.simulation as si
 import apcmodels.anf as anf
 import numpy as np
@@ -74,4 +77,4 @@ f, (a0, a1) = plt.subplots(2, 1, figsize=(4.25, 4))
 plot_ep(a0, 280, 50, 40, '280 Hz', True, '#fc8d62')
 plot_ep(a1, 1400, 50, 40, '1400 Hz', False, '#8da0cb')
 plt.tight_layout()
-plt.savefig('plots/fig3pt5.png', bbox_inches='tight')
+plt.savefig('plots/fig5.png', bbox_inches='tight')
