@@ -2,11 +2,11 @@ source('config.R')
 library(RcppCNPy)
 
 # Load simulations
-sims = list.files(file.path(root_directory, '/figure5/'), pattern='.csv')
+sims = list.files(file.path(root_directory, '/figure7/'), pattern='.csv')
 f0dls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path(root_directory, '/figure5/', sims[sim]))
+	temp = read.csv(file.path(root_directory, '/figure7/', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -99,7 +99,7 @@ f0dls %>%
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
-ggsave('plots/fig5d_phase_locking.png', width=4.25*0.85, height=2.5*0.85)
+ggsave('plots/fig7d_phase_locking.png', width=4.25*0.85, height=2.5*0.85)
 
 # Plot F0DLs vs Q10
 f0dls %>%
@@ -137,4 +137,4 @@ f0dls %>%
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
-ggsave('plots/fig5d_tuning.png', width=4.25*0.85, height=2.5*0.85)
+ggsave('plots/fig7d_tuning.png', width=4.25*0.85, height=2.5*0.85)

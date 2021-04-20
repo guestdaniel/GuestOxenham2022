@@ -11,7 +11,7 @@ sys.path.append(os.getcwd())
 from util.functions import ISOToneGuest2021_exp1a, adjust_level
 
 
-def simulate_figure5_f0dls(model, model_name, fs):
+def simulate_figure7_f0dls(model, model_name, fs):
     """
     Estimates F0 difference limens (FDLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. This specific harmonic complex tone stimulus used in this simulation is from Guest and
@@ -62,10 +62,10 @@ def simulate_figure5_f0dls(model, model_name, fs):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'figure5/' + model_name + '_figure5_unroved_AI.csv', decoding_type='AI',
+                'figure7/' + model_name + '_figure7_unroved_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='none')
     save_to_csv([res[1] for res in results], params,
-                'figure5/' + model_name + '_figure5_unroved_RP.csv', decoding_type='RP',
+                'figure7/' + model_name + '_figure7_unroved_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='none')
 
 
@@ -73,4 +73,4 @@ def simulate_figure5_f0dls(model, model_name, fs):
 for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                                  ['Heinz2001', 'Zilany2014', 'Verhulst2018'],
                                  [int(1250e3), int(200e3), int(300e3)]):
-    simulate_figure5_f0dls(model, model_name, fs)
+    simulate_figure7_f0dls(model, model_name, fs)

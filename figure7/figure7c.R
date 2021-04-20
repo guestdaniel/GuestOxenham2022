@@ -1,11 +1,11 @@
 source('config.R')
 
 # Load simulations
-sims = list.files(file.path(root_directory, '/figure5/'), pattern='.csv')
+sims = list.files(file.path(root_directory, '/figure7/'), pattern='.csv')
 f0dls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path(root_directory, '/figure5/', sims[sim]))
+	temp = read.csv(file.path(root_directory, '/figure7/', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -84,4 +84,4 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		xlab("Source (model or paper)") +
 		ylab("Ratio (1.4 kHz / 0.28 kHz)") +
 		guides(shape=guide_legend(title="Type"))
-ggsave('plots/fig5c.png', width=4, height=2.75)
+ggsave('plots/fig7c.png', width=4, height=2.75)

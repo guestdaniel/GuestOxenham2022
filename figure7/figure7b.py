@@ -11,7 +11,7 @@ sys.path.append(os.getcwd())
 from util.functions import adjust_level, ISOToneGuest2021_exp1a
 
 
-def simulate_figure5_f0dls_phase_roving(model, model_name, fs, n_rep=10):
+def simulate_figure7_f0dls_phase_roving(model, model_name, fs, n_rep=10):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. The simulations include phase randomization (specifically, each component from 6-10 has its
@@ -75,14 +75,14 @@ def simulate_figure5_f0dls_phase_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'figure5/' + model_name + '_figure5_phase_roving_AI.csv', decoding_type='AI',
+                'figure7/' + model_name + '_figure7_phase_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='phase')
     save_to_csv([res[1] for res in results], params,
-                'figure5/' + model_name + '_figure5_phase_roving_RP.csv', decoding_type='RP',
+                'figure7/' + model_name + '_figure7_phase_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='phase')
 
 
-def simulate_figure5_f0dls_level_roving(model, model_name, fs, n_rep=10):
+def simulate_figure7_f0dls_level_roving(model, model_name, fs, n_rep=10):
     """
     Estimates F0 difference limens (F0DLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk. Includes simulations of level roving.
@@ -150,10 +150,10 @@ def simulate_figure5_f0dls_level_roving(model, model_name, fs, n_rep=10):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'figure5/' + model_name + '_figure5_level_roving_AI.csv', decoding_type='AI',
+                'figure7/' + model_name + '_figure7_level_roving_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='level')
     save_to_csv([res[1] for res in results], params,
-                'figure5/' + model_name + '_figure5_level_roving_RP.csv', decoding_type='RP',
+                'figure7/' + model_name + '_figure7_level_roving_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='level')
 
 
@@ -161,6 +161,6 @@ def simulate_figure5_f0dls_level_roving(model, model_name, fs, n_rep=10):
 for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
                                  ['Zilany2014'],
                                  [int(200e3)]):
-    simulate_figure5_f0dls_phase_roving(model, model_name, fs)
-    simulate_figure5_f0dls_level_roving(model, model_name, fs)
+    simulate_figure7_f0dls_phase_roving(model, model_name, fs)
+    simulate_figure7_f0dls_level_roving(model, model_name, fs)
 

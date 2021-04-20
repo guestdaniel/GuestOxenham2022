@@ -46,12 +46,12 @@ Rscript figure4/figure4d.R
 # Code check:   4/19/2021
 # Output check: 4/19/2021
 echo 'Generating Figure 5'
-python3 figure5/figure5a.py
-Rscript figure5/figure5a.R
-python3 figure5/figure5b.py
-Rscript figure5/figure5b.R
-Rscript figure5/figure5c.R
-Rscript figure5/figure5d.R
+python3 figure7/figure7a.py
+Rscript figure7/figure7a.R
+python3 figure7/figure7b.py
+Rscript figure7/figure7b.R
+Rscript figure7/figure7c.R
+Rscript figure7/figure7d.R
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
