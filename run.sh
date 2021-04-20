@@ -35,7 +35,7 @@ python3 figure3pt5/figure3pt5.py
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
-echo 'Generating Figure 4'
+echo 'Generating Figure 6'
 python3 figure4/figure4a.py
 Rscript figure4/figure4a.R
 python3 figure4/figure4b.py
@@ -45,7 +45,7 @@ Rscript figure4/figure4d.R
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
-echo 'Generating Figure 5'
+echo 'Generating Figure 6'
 python3 figure7/figure7a.py
 Rscript figure7/figure7a.R
 python3 figure7/figure7b.py

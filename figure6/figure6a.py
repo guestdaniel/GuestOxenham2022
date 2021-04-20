@@ -1,5 +1,5 @@
 """
-This script implements the simulations described in Figure 4 of Guest and Oxenham (2021).
+This script implements the simulations described in Figure 6 of Guest and Oxenham (2021).
 """
 import apcmodels.synthesis as sy
 import apcmodels.simulation as si
@@ -12,7 +12,7 @@ sys.path.append(os.getcwd())
 from util.functions import adjust_level
 
 
-def simulate_figure4_fdls(model, model_name, fs):
+def simulate_figure6_fdls(model, model_name, fs):
     """
     Estimates frequency difference limens (FDLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk.
@@ -62,10 +62,10 @@ def simulate_figure4_fdls(model, model_name, fs):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'figure4/' + model_name + '_figure4_unroved_AI.csv', decoding_type='AI',
+                'figure6/' + model_name + '_figure6_unroved_AI.csv', decoding_type='AI',
                 model=model_name, roving_type='none')
     save_to_csv([res[1] for res in results], params,
-                'figure4/' + model_name + '_figure4_unroved_RP.csv', decoding_type='RP',
+                'figure6/' + model_name + '_figure6_unroved_RP.csv', decoding_type='RP',
                 model=model_name, roving_type='none')
 
 
@@ -73,4 +73,4 @@ def simulate_figure4_fdls(model, model_name, fs):
 for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014, anf.AuditoryNerveVerhulst2018],
                                  ['Heinz2001', 'Zilany2014', 'Verhulst2018'],
                                  [int(1250e3), int(200e3), int(300e3)]):
-    simulate_figure4_fdls(model, model_name, fs)
+    simulate_figure6_fdls(model, model_name, fs)

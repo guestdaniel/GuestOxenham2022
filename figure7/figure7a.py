@@ -1,5 +1,5 @@
 """
-This script implements the simulations described in Figure 5 of Guest and Oxenham (2021).
+This script implements the simulations described in Figure 6 of Guest and Oxenham (2021).
 """
 import apcmodels.simulation as si
 import apcmodels.anf as anf
