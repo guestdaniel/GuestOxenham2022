@@ -1,5 +1,5 @@
 """
-This script implements Figure 0 of Guest and Oxenham (2021).
+This script implements Figure 1 of Guest and Oxenham (2021).
 """
 import apcmodels.synthesis as sy
 import apcmodels.simulation as si
@@ -104,8 +104,8 @@ def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
 
 # Plot F0 = 280 Hz
 sim_and_plot_neurogram(280, 20, 25)
-plt.savefig('plots/fig0a.png')
+plt.savefig('plots/fig1a.png')
 
 # Plot F0 = 1400 Hz
 sim_and_plot_neurogram(1400, 20*4, 20*4+5)
-plt.savefig('plots/fig0b.png')
+plt.savefig('plots/fig1b.png')

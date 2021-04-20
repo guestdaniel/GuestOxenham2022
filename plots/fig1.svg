@@ -16,8 +16,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="fig0.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig0.png"
+   sodipodi:docname="fig1.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig1.png"
    inkscape:export-xdpi="150.03"
    inkscape:export-ydpi="150.03">
   <defs
@@ -62,8 +62,8 @@
      id="layer1"
      transform="translate(-3.1395586,-4.2118179)">
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig0b.png"
-       xlink:href="fig0b.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1b.png"
+       xlink:href="fig1b.png"
        width="162.56001"
        height="121.92"
        preserveAspectRatio="none"
@@ -93,8 +93,8 @@
          y="10.757499"
          style="font-weight:bold;stroke-width:0.26458332">F0 = 1400 Hz</tspan></text>
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig0a.png"
-       xlink:href="fig0a.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1a.png"
+       xlink:href="fig1a.png"
        width="162.56001"
        height="121.92"
        preserveAspectRatio="none"

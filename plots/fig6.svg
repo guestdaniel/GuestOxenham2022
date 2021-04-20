@@ -16,8 +16,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="fig4.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig4.png"
+   sodipodi:docname="fig6.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig6.png"
    inkscape:export-xdpi="299.97299"
    inkscape:export-ydpi="299.97299">
   <defs
@@ -154,8 +154,8 @@
          y="93.775635"
          style="stroke-width:0.26458332">Q10</tspan></text>
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4a.png"
-       xlink:href="fig4a.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6a.png"
+       xlink:href="fig6a.png"
        width="152.39999"
        height="63.5"
        preserveAspectRatio="none"
@@ -163,8 +163,8 @@
        x="-0.96833801"
        y="7.5968013" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4b.png"
-       xlink:href="fig4b.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6b.png"
+       xlink:href="fig6b.png"
        width="114.3"
        height="63.5"
        preserveAspectRatio="none"
@@ -172,8 +172,8 @@
        x="-0.45357442"
        y="85.198792" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_phase_locking.png"
-       xlink:href="fig4d_phase_locking.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_phase_locking.png"
+       xlink:href="fig6d_phase_locking.png"
        y="94.766121"
        x="162.99922"
        id="image869"
@@ -181,8 +181,8 @@
        height="53.932667"
        width="91.694" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4d_tuning.png"
-       xlink:href="fig4d_tuning.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_tuning.png"
+       xlink:href="fig6d_tuning.png"
        y="94.577133"
        x="122.14002"
        id="image880"
@@ -192,8 +192,8 @@
        clip-path="url(#clipPath885)"
        transform="translate(-7.9375004)" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4c.png"
-       xlink:href="fig4c.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
+       xlink:href="fig6c.png"
        y="7.5968013"
        x="151.43166"
        id="image908"
