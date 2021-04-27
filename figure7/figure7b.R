@@ -33,7 +33,7 @@ f0dls_temp2$comparison = 'Roved'
 f0dls_temp = rbind(f0dls_temp1, f0dls_temp2)
 f0dls_temp %>%
 	# Filter out simulations and roving types to only get what we want
-	filter(model == 'Heinz et al. (2001)') %>%  # TODO: switch to Zilany
+	filter(model == 'Zilany et al. (2014)') %>%
 	filter(roving_type != 'None') %>%
 	filter(nominal_level == 30) %>%
 	# Aesthetics

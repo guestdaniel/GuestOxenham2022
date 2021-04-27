@@ -2,11 +2,11 @@ source('config.R')
 library(RcppCNPy)
 
 # Load simulations
-sims = list.files('', pattern='.csv')
+sims = list.files('figure6', pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path('', sims[sim]))
+	temp = read.csv(file.path('figure6', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)

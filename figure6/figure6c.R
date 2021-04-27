@@ -1,11 +1,21 @@
 source('config.R')
 
+# Define a function to implement predictions from Micheyl, Xiao, and Oxenham (2012)
+predict_micheyl = function(freq, dur, level, gamma_f=0.82, gamma_d=-0.42, gamma_s=-1.09, beta_f=0.38, beta_d=0.42,
+						   beta_s=0.37, alpha=-0.38) {
+	# Args:
+	#	freq (numeric): frequency in Hz
+	#   dur (numeriuc): duration in ms
+	#   level (numeric): sensation level in dB
+	beta_f * (freq / 1000) ^ gamma_f + beta_d * (dur / 100) ^ gamma_d + beta_s * (level / 10) ^ gamma_s + alpha
+}
+
 # Load simulations
-sims = list.files('', pattern='.csv')
+sims = list.files('figure6', pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path('', sims[sim]))
+	temp = read.csv(file.path('figure6', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -42,12 +52,16 @@ temp_behavior = pd_fdl %>%
 temp_behavior$model = temp_behavior$src
 temp_behavior$decoding_type = 'Behavior'
 
+# Add the Micheyl, Xiao, and Oxenham (2021) prediction in for the behavioral data
+ratio = (10^(predict_micheyl(8500, 200, 25))/8500*100) / (10^(predict_micheyl(2000, 200, 25))/2000*100)
+temp_behavior = rbind(temp_behavior, data.frame(src='Micheyl2012', high=0, low=0, ratio=ratio, model='Micheyl2012', decoding_type='Behavior'))
+
 # Bind together the model data and behavioral data and re-label factors
 temp = bind_rows(temp_comp, temp_behavior)
 temp$decoding_type = factor(temp$decoding_type, levels=c('Behavior', 'AI', 'RP'), labels=c('Behavior', 'All-information', 'Rate-place'))
 temp$model = factor(temp$model,
-					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore1973', 'Moore2012', 'Lau2017', 'Gockel2020'),
-					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)'))
+					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore1973', 'Moore2012', 'Lau2017', 'Gockel2020', 'Micheyl2012'),
+					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)'))
 
 # Play some tricks to space out the various data points along the x-axis
 temp$mod_num = as.numeric(temp$model)
@@ -61,12 +75,12 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		# Annotate
 		annotate('rect', xmin=0.5, xmax=3.5, ymin=0.5, ymax=90, alpha=0, linetype='dashed', size=1, color='#b3cde3') +
 		annotate('label', x=1.95, y=90, size=3, label.size=1, label='AN', color='#b3cde3') +
-		annotate('rect', xmin=4.5, xmax=8.5, ymin=1.8, ymax=40, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
-		annotate('label', x=6.5, y=40, size=3, label.size=1, label='Behavior', color='#ccebc5') +
+		annotate('rect', xmin=4.5, xmax=9.5, ymin=1.8, ymax=40, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
+		annotate('label', x=7, y=40, size=3, label.size=1, label='Behavior', color='#ccebc5') +
 		# Axes
 		scale_y_log10(breaks=breaks, labels=labels, limits=c(0.4, 100)) +
-		scale_x_continuous(breaks=c(1, 2, 3, 5, 6, 7, 8),
-						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)')) +
+		scale_x_continuous(breaks=c(1, 2, 3, 5, 6, 7, 8, 9),
+						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)')) +
 		# Theme
 		theme_bw() +
 		theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size

@@ -1,11 +1,25 @@
 source('config.R')
 
+# Define a function to implement predictions from Micheyl, Xiao, and Oxenham (2012)
+predict_micheyl = function(freq, dur, level, gamma_f=0.82, gamma_d=-0.42, gamma_s=-1.09, beta_f=0.38, beta_d=0.42,
+						   beta_s=0.37, alpha=-0.38) {
+	# Args:
+	#	freq (numeric): frequency in Hz
+	#   dur (numeriuc): duration in ms
+	#   level (numeric): sensation level in dB
+	beta_f * (freq / 1000) ^ gamma_f + beta_d * (dur / 100) ^ gamma_d + beta_s * (level / 10) ^ gamma_s + alpha
+}
+
+# Predict data from Micheyl at al. model
+f = 8*10^seq(log10(280) - 0.2, log10(1400) + 0.1, length.out=100)
+model_data = data.frame(freq=f, threshold=10^(predict_micheyl(f, 200, 25))/f*100)
+
 # Load simulations
-sims = list.files('', pattern='.csv')
+sims = list.files('figure6', pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path('', sims[sim]))
+	temp = read.csv(file.path('figure6', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -22,13 +36,14 @@ fdls$model = factor(fdls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst201
 # Construct plot
 fdls %>% 
 	filter(roving_type == 'None') %>%
-	ggplot(aes(x=freq, y=threshold/(freq)*100, color=nominal_level, shape=decoding_type)) + 
+	ggplot(aes(x=freq, y=threshold/(freq)*100)) +
 	# Geoms
-	geom_vline(xintercept=c(280*8, 1400*8), linetype="dashed", color="gray") + 
-	geom_smooth(se=FALSE, size=size_smooth) + 
-	geom_point(size=size_point) + 
+	geom_vline(xintercept=c(280*8, 1400*8), linetype="dashed", color="gray") +
+	geom_smooth(aes(x=freq, y=threshold*2e-3), se=FALSE, size=size_smooth, data=model_data, color='black', shape=1) +
+	geom_smooth(aes(color=nominal_level, shape=decoding_type), se=FALSE, size=size_smooth) +
+	geom_point(aes(color=nominal_level, shape=decoding_type), size=size_point) +
 	# Axes
-	scale_y_log10(breaks=breaks, labels=labels) + 
+	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ . * 5e2, breaks=breaks, labels=labels)) +
 	scale_x_log10(breaks=breaks, labels=labels) + 
 	# Theme
 	theme_bw() +

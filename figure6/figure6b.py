@@ -58,7 +58,7 @@ def simulate_figure6_fdls_phase_roving(model, model_name, fs, n_rep=10):
     # Synthesize stimuli
     synth = sy.PureTone()
     stimuli = synth.synthesize_sequence(params)
-    params = si.stitch_parameters(params, '_input', stimuli)
+    params.add_inputs(stimuli)
 
     # Construct simulation and run
     sim = model()

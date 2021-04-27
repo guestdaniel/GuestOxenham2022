@@ -1,11 +1,11 @@
 source('config.R')
 
 # Load simulations
-sims = list.files('', pattern='.csv')
+sims = list.files('figure6', pattern='.csv')
 fdls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path('', sims[sim]))
+	temp = read.csv(file.path('figure6', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -33,7 +33,7 @@ fdls_temp2$comparison = 'Roved'
 fdls_temp = rbind(fdls_temp1, fdls_temp2)
 fdls_temp %>%
 	# Filter out simulations and roving types to only get what we want
-	filter(model == 'Heinz et al. (2001)') %>%  # TODO: switch to Zilany
+	filter(model == 'Zilany et al. (2014)') %>%
 	filter(roving_type != 'None') %>%
 	filter(nominal_level == 30) %>%
 	# Aesthetics

@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="255.547mm"
-   height="146.85429mm"
-   viewBox="0 0 255.547 146.85429"
+   width="256.71988mm"
+   height="146.95mm"
+   viewBox="0 0 256.71988 146.94999"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -108,8 +108,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="425.94711"
-     inkscape:cy="276.24236"
+     inkscape:cx="423.24743"
+     inkscape:cy="329.29261"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -132,7 +132,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -141,81 +141,60 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="opacity:1"
-     transform="translate(0.96833801,-1.7144682)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722242px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="128.7005"
-       y="93.775635"
-       id="text1054"><tspan
-         sodipodi:role="line"
-         id="tspan1052"
-         x="128.7005"
-         y="93.775635"
-         style="stroke-width:0.26458332">Q10</tspan></text>
+     transform="translate(0.96833801,-1.7487891)">
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6a.png"
        xlink:href="fig6a.png"
-       width="152.39999"
-       height="63.5"
-       preserveAspectRatio="none"
-       id="image867"
+       y="7.5968013"
        x="-0.96833801"
-       y="7.5968013" />
+       id="image867"
+       preserveAspectRatio="none"
+       height="63.5"
+       width="152.39999" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6b.png"
        xlink:href="fig6b.png"
-       width="114.3"
-       height="63.5"
-       preserveAspectRatio="none"
-       id="image878"
+       y="85.198792"
        x="-0.45357442"
-       y="85.198792" />
+       id="image878"
+       preserveAspectRatio="none"
+       height="63.5"
+       width="114.3" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_phase_locking.png"
        xlink:href="fig6d_phase_locking.png"
-       y="94.766121"
-       x="162.99922"
-       id="image869"
+       width="93.420853"
+       height="54.948368"
        preserveAspectRatio="none"
-       height="53.932667"
-       width="91.694" />
+       id="image869"
+       x="162.33069"
+       y="88.458748" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_tuning.png"
        xlink:href="fig6d_tuning.png"
-       y="94.577133"
-       x="122.14002"
-       id="image880"
-       preserveAspectRatio="none"
-       height="53.932667"
-       width="91.694"
+       transform="matrix(1.0188328,0,0,1.0188328,-11.825238,-8.0920816)"
        clip-path="url(#clipPath885)"
-       transform="translate(-7.9375004)" />
+       width="91.694"
+       height="53.932667"
+       preserveAspectRatio="none"
+       id="image880"
+       x="122.14002"
+       y="94.577133" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
        xlink:href="fig6c.png"
-       y="7.5968013"
-       x="151.43166"
-       id="image908"
-       preserveAspectRatio="none"
+       width="101.6"
        height="69.849998"
-       width="101.6" />
+       preserveAspectRatio="none"
+       id="image908"
+       x="151.43166"
+       y="7.5968013" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722242px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="178.80931"
-       y="92.061165"
-       id="text1058"><tspan
-         sodipodi:role="line"
-         id="tspan1056"
-         x="178.80931"
-         y="92.061165"
-         style="stroke-width:0.26458332">Vector strength</tspan></text>
+     inkscape:label="Layer 2"
+     transform="translate(0,-0.03432094)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -229,7 +208,7 @@
          style="stroke-width:0.26458332">A. Effect of model</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555556px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="-0.089990497"
        y="81.123749"
        id="text966-6"><tspan
@@ -248,7 +227,7 @@
          id="tspan964-3"
          x="152.00381"
          y="5.3948894"
-         style="stroke-width:0.26458332">C. Effect of freq</tspan></text>
+         style="stroke-width:0.26458332">C. Effect of frequency</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
