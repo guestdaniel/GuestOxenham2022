@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="8.3872423in"
+   width="9.4268332in"
    height="8.5793791in"
-   viewBox="0 0 213.03593 217.91623"
+   viewBox="0 0 239.44153 217.91623"
    version="1.1"
    id="svg5982"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -30,8 +30,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.9899495"
-     inkscape:cx="316.56038"
-     inkscape:cy="361.78051"
+     inkscape:cx="378.07441"
+     inkscape:cy="479.02638"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,10 +39,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2488"
-     inkscape:window-height="1376"
-     inkscape:window-x="1992"
-     inkscape:window-y="27"
+     inkscape:window-width="1920"
+     inkscape:window-height="1043"
+     inkscape:window-x="0"
+     inkscape:window-y="590"
      inkscape:window-maximized="1"
      units="in" />
   <metadata
@@ -97,47 +97,47 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="94.05349"
-       y="162.53346"
+       x="93.960739"
+       y="164.6501"
        id="text6562"><tspan
          sodipodi:role="line"
          id="tspan6560"
-         x="94.05349"
-         y="162.53346"
+         x="93.960739"
+         y="164.6501"
          style="stroke-width:0.12977906">0 dB TMR</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="93.981499"
-       y="189.25653"
+       x="94.011955"
+       y="191.37317"
        id="text6562-7"><tspan
          sodipodi:role="line"
          id="tspan6560-5"
-         x="93.981499"
-         y="189.25653"
-         style="stroke-width:0.12977906">5 dB TMR</tspan></text>
+         x="94.011955"
+         y="191.37317"
+         style="stroke-width:0.12977906">4 dB TMR</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="92.303719"
-       y="215.98653"
+       x="93.909515"
+       y="218.10316"
        id="text6562-3"><tspan
          sodipodi:role="line"
          id="tspan6560-56"
-         x="92.303719"
-         y="215.98653"
-         style="stroke-width:0.12977906">10 dB TMR</tspan></text>
+         x="93.909515"
+         y="218.10316"
+         style="stroke-width:0.12977906">8 dB TMR</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="92.303719"
-       y="242.70958"
+       x="92.210968"
+       y="244.29706"
        id="text6562-2"><tspan
          sodipodi:role="line"
          id="tspan6560-9"
-         x="92.303719"
-         y="242.70958"
-         style="stroke-width:0.12977906">15 dB TMR</tspan></text>
+         x="92.210968"
+         y="244.29706"
+         style="stroke-width:0.12977906">12 dB TMR</tspan></text>
     <rect
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.69403994;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:2.77615948, 0.69403987;stroke-dashoffset:0;stroke-opacity:1"
        id="rect10333"
@@ -146,8 +146,8 @@
        x="46.135757"
        y="151.2699" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig8c.png"
-       xlink:href="fig8c.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5a2.png"
+       xlink:href="fig5a2.png"
        width="49.835155"
        height="74.752731"
        preserveAspectRatio="none"
@@ -155,8 +155,8 @@
        x="46.48629"
        y="259.45673" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig8b.png"
-       xlink:href="fig8b.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5a3.png"
+       xlink:href="fig5a3.png"
        width="49.835155"
        height="74.752731"
        preserveAspectRatio="none"
@@ -219,15 +219,6 @@
          x="1.429112"
          y="139.18474"
          style="stroke-width:0.26458332">A. Temporal coding</tspan></text>
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5b1.png"
-       xlink:href="fig5b1.png"
-       width="87.211525"
-       height="112.1291"
-       preserveAspectRatio="none"
-       id="image2020"
-       x="120.81336"
-       y="148.83315" />
     <flowRoot
        xml:space="preserve"
        id="flowRoot2023"
@@ -239,7 +230,7 @@
            height="365.67523"
            x="624.27429"
            y="199.39066" /></flowRegion><flowPara
-         id="flowPara2029"></flowPara></flowRoot>    <text
+         id="flowPara2029" /></flowRoot>    <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:10.58333302px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="119.84499"
@@ -253,32 +244,127 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="-231.01225"
-       y="212.43137"
+       x="-235.15656"
+       y="239.89188"
        id="text6540-7"
        transform="rotate(-90)"><tspan
          sodipodi:role="line"
          id="tspan6538-5"
-         x="-231.01225"
-         y="212.43137"
+         x="-235.15656"
+         y="239.89188"
          style="stroke-width:0.12977906">Average firing rate (sp/s)</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
-       x="120.29998"
-       y="264.36111"
+       x="181.45206"
+       y="266.93369"
        id="text6540-3-3"><tspan
          sodipodi:role="line"
          id="tspan6538-6-5"
-         x="120.29998"
-         y="264.36111"
-         style="stroke-width:0.12977906">Neural harmonic number (CF/F0)</tspan></text>
+         x="181.45206"
+         y="266.93369"
+         style="stroke-width:0.12977906">Neural harmonic </tspan><tspan
+         sodipodi:role="line"
+         x="181.45206"
+         y="271.64035"
+         style="stroke-width:0.12977906"
+         id="tspan4744">number (CF/F0)</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5b1.png"
+       xlink:href="fig5b1.png"
+       y="149.2186"
+       x="119.8703"
+       id="image4592"
+       preserveAspectRatio="none"
+       height="113.43667"
+       width="114.77383" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
+       x="190.90569"
+       y="149.15031"
+       id="text6540-3-36"><tspan
+         sodipodi:role="line"
+         id="tspan6538-6-7"
+         x="190.90569"
+         y="149.15031"
+         style="stroke-width:0.12977906">LSR fibers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.53723955px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.12977906"
+       x="134.36063"
+       y="149.15031"
+       id="text6540-3-36-5"><tspan
+         sodipodi:role="line"
+         id="tspan6538-6-7-3"
+         x="134.36063"
+         y="149.15031"
+         style="stroke-width:0.12977906">HSR fibers</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#707070;fill-opacity:1;stroke:none;stroke-width:0.4922449;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect4774-3"
+       width="47.078354"
+       height="13.998243"
+       x="123.34361"
+       y="262.42108" />
+    <path
+       style="fill:none;stroke:#1e1eff;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.58999994, 1.58999994;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 125.19075,269.49303 h 13.32366"
+       id="path4631"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#00ff00;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.58999994, 1.58999994;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 125.09625,265.49888 h 13.32366"
+       id="path4631-5"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#0dffff;stroke-width:0.26499999;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.58999994, 1.58999994;stroke-dashoffset:0;stroke-opacity:1"
+       d="M 125.28524,273.48726 H 138.6089"
+       id="path4631-6"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.46077466px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.12977906"
+       x="141.02129"
+       y="270.75449"
+       id="text10449-0-6-5-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan10447-9-0-6-0-9"
+         x="141.02129"
+         y="270.75449"
+         style="fill:#0000ff;fill-opacity:1;stroke-width:0.12977906">Middle F0</tspan></text>
+    <a
+       transform="translate(53.290652,-55.486852)"
+       id="a1047-9-1">
+      <text
+         id="text10449-3-2"
+         y="330.01926"
+         x="87.761765"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.46077466px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#00fdfe;fill-opacity:1;stroke:none;stroke-width:0.12977906"
+         xml:space="preserve"><tspan
+           style="fill:#00fdfe;fill-opacity:1;stroke-width:0.12977906"
+           y="330.01926"
+           x="87.761765"
+           id="tspan10447-6-7"
+           sodipodi:role="line">Upper F0 (6 ST)</tspan></text>
+    </a>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.46077466px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#00ff04;fill-opacity:1;stroke:none;stroke-width:0.12977906"
+       x="141.02129"
+       y="266.58731"
+       id="text10449-0-2-0-0"><tspan
+         sodipodi:role="line"
+         id="tspan10447-9-9-6-9"
+         x="141.02129"
+         y="266.58731"
+         style="fill:#00ff04;fill-opacity:1;stroke-width:0.12977906">Lower F0 (-5.5 ST)</tspan></text>
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
-     transform="translate(-1.36858,-1.9065634)">
+     transform="translate(-1.36858,-1.9065668)">
     <a
        transform="translate(-5.3839488,-124.72102)"
        id="a1047">

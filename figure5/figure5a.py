@@ -26,7 +26,7 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
         histograms (list): list of histograms counts for ISI histogram for each neural harmonic number
     """
     # Setup params [simulation]
-    params = si.Parameters(fs=int(200e3), n_cf=1, anf_num=(0, 1, 0),                                          # model
+    params = si.Parameters(fs=int(200e3), n_cf=1, anf_num=(1, 0, 0),                                          # model
                            F0=280, F0_masker_1=280*2**(-5.5/12), F0_masker_2=280*2**(6/12),                   # F0s
                            level=50, level_masker_1=50-tmr, level_masker_2=50-tmr,                            # levels
                            phase=0, phase_masker_1=0, phase_masker_2=0,                                       # phases
@@ -66,7 +66,9 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
     # Return
     return histograms
 
-for tmr in [0, 5, 10, 15]:
+tmrs = [0, 4, 8, 12]  # set TMR for each simulation
+
+for tmr in tmrs:
     # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
     histograms = calculate_ISI_histogram(280, np.linspace(4, 12, 40), tmr=tmr)
     np.save('figure5/isi_histograms_tmr_' + str(tmr) + '.npy', histograms)
@@ -74,7 +76,7 @@ for tmr in [0, 5, 10, 15]:
 
 # Create main plot (part a)
 fig, ax = plt.subplots(4, 1, figsize=(7, 9), sharex='all')
-for idx_tmr, tmr in enumerate([0, 5, 10, 15]):
+for idx_tmr, tmr in enumerate(tmrs):
     # Load in histograms and calculate edges
     histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
     neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')
@@ -93,7 +95,7 @@ plt.savefig('plots/fig5a1.png')
 
 # Create subplot (part b)
 fig, ax = plt.subplots(4, 1, figsize=(4, 6), sharex='all')
-for idx_tmr, tmr in enumerate([0, 5, 10, 15]):
+for idx_tmr, tmr in enumerate(tmrs):
     # Load in histograms and calculate edges
     histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
     neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')
@@ -115,7 +117,7 @@ plt.savefig('plots/fig5a2.png')
 
 # Create subplot (part c)
 fig, ax = plt.subplots(4, 1, figsize=(4, 6), sharex='all')
-for idx_tmr, tmr in enumerate([0, 5, 10, 15]):
+for idx_tmr, tmr in enumerate(tmrs):
     # Load in histograms and calculate edges
     histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
     neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')

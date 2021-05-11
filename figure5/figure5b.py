@@ -11,7 +11,7 @@ sys.path.append(os.getcwd())
 from functools import partial
 
 
-def prep_ep(F0, level, level_maskers, level_noise, fs=int(100e3)):
+def prep_ep(F0, level, level_maskers, level_noise, fs=int(100e3), fiber_type='msr'):
     """ Helper function for plotting excitation patterns
 
     Args:
@@ -37,7 +37,7 @@ def prep_ep(F0, level, level_maskers, level_noise, fs=int(100e3)):
                            level_masker_1=lambda: np.random.uniform(level_maskers-3, level+3, n_freq_masker_1),  # levels
                            level_masker_2=lambda: np.random.uniform(level_maskers-3, level+3, n_freq_masker_2),  # levels
                            ten=True, level_noise=level_noise,                                                    # noise
-                           cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type='msr',                           # anf
+                           cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type=fiber_type,                      # anf
                            fs=fs)
 
     return params
@@ -65,7 +65,7 @@ def handle_labels_and_axes(axis_main, first, title):
 
 
 
-def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, fs=int(100e3)):
+def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, fs=int(100e3), fiber_type='msr'):
     """ Function to plot excitation pattern of DBL tones from Experiment 2
 
     Args:
@@ -80,7 +80,7 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
         fs (int): sampling rate, in Hz
     """
     # Get params
-    params = prep_ep(F0, level, level_maskers, level_noise, fs)
+    params = prep_ep(F0, level, level_maskers, level_noise, fs, fiber_type)
     params.append(['F0', 'level'], [F0, lambda: np.random.uniform(level-3, level+3, len(np.arange(F0, 48000 / 2, F0)))])
     params.repeat(10)
     # Synthesize stimuli
@@ -97,23 +97,38 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
     firing_rates = np.array([np.mean(r, axis=1) for r in resp])
     mean_response = np.mean(firing_rates, axis=0)
     sd_response = np.std(firing_rates, axis=0)
-    # Plot
+    # Plot masker components
+    for harmonic in [2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12]:
+        idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(6/12)))
+        axis_main.plot([harmonic*2**(6/12), harmonic*2**(6/12)], [0, mean_response[idx_min]], color='cyan',
+                       linestyle='dashed', label='_nolegend_')
+        idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(-5.5/12)))
+        axis_main.plot([harmonic*2**(-5.5/12), harmonic*2**(-5.5/12)], [0, mean_response[idx_min]], color=[0, 1, 0],
+                       linestyle='dashed', label='_nolegend_')
+    # Plot target components
     for harmonic in [6, 7, 8, 9, 10]:
-        axis_main.plot([harmonic, harmonic], [0, 250], color='gray', linestyle='dashed', label='_nolegend_')
+        idx_min = np.argmin(np.abs(cfs/F0 - harmonic))
+        axis_main.plot([harmonic, harmonic], [0, mean_response[idx_min]], color='blue', linestyle='dashed',
+                       label='_nolegend_', linewidth=2)
     axis_main.plot(cfs/F0, mean_response, color=color)
     axis_main.fill_between(cfs/F0, mean_response - sd_response, mean_response + sd_response,
                            color=color, alpha=0.2, label='_nolegend_')
     # Handle labels and axes
     handle_labels_and_axes(axis_main, first, title)
-    axis_main.set_ylim((50, 250))
+    if fiber_type == 'hsr':
+        axis_main.set_ylim((0, 375))
+    elif fiber_type == 'msr':
+        axis_main.set_ylim((0, 250))
+    else:
+        axis_main.set_ylim((0, 50))
 
 
-f, axs = plt.subplots(4, 1, figsize=(4, 6), sharex='all')
-for ax, tmr in zip(axs, [0, 5, 10, 15]):
-    plot_ep(ax, 1400, 50, 50-tmr, 40, '1400 Hz', False, '#a28ac1')
+# Plot excitation patterns for HSR and LSR fibers at various TMRs
+f, axs = plt.subplots(4, 2, figsize=(6, 6), sharex='all')
+tmrs = [0, 4, 8, 12]
+fiber_types = ['hsr', 'lsr']
+for idx_tmr in range(4):
+    for idx_fiber_type in range(2):
+        plot_ep(axs[idx_tmr, idx_fiber_type], 1400, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', False, '#a28ac1',
+                fiber_type=fiber_types[idx_fiber_type])
 plt.savefig('plots/fig5b1.png', bbox_inches='tight')
-
-f, ax = plt.subplots(1, 1, figsize=(4, 3), sharex='all')
-for tmr in [0, 5, 10, 15]:
-    plot_ep(ax, 1400, 50, 50-tmr, 40, '1400 Hz', False, '#a28ac1')
-plt.savefig('plots/fig5e.png', bbox_inches='tight')
