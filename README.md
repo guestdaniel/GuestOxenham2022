@@ -1,3 +1,6 @@
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.4750503.svg)](https://doi.org/10.5281/zenodo.4750503)
+
+
 # Introduction
 
 This repository contains all the code necessary to completely replicate the figures and analyses found in Guest and Oxenham (2021). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
