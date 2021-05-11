@@ -1,10 +1,10 @@
 # Introduction
 
-This repository contains all the code and behavioral data necessary to completely replicate the figures and analyses found in [Guest and Oxenham (2021)](link to paper). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
+This repository contains all the code necessary to completely replicate the figures and analyses found in Guest and Oxenham (2021). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
 
-The repository does not include the code used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.), but these files are available upon request to the authors. The repository does contain the preprocessed behavioral data, code to replicate the analyses and visualizations of the behavioral data, and code to replicate the computational models described in the manuscript. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
+The repository includes the code used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.) as a single archive. This code is only sparsely documented and relies on MATLAB and the [`afc`](http://medi.uni-oldenburg.de/afc/index.htm) package. The repository does not contain the preprocessed behavioral data but this can be easily downloaded from [Zenodo](https://doi.org/10.5281/zenodo.4750383) and placed in the `data` folder. Code to replicate the analyses and visualizations of the behavioral data and code to replicate the computational models described in the manuscript are available in this respository and are thoroughly documented. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
 
-The code in this repository is licensed under GNU GPLv3 (see `LICENSE.txt`). The behavioral data in this repository is licensed under CC BY-NC 4.0 (see `data/LICENSE.txt`). 
+The code in this repository is licensed under GNU GPLv3 (see `LICENSE.txt`).
 
 # File structure
 
@@ -12,7 +12,7 @@ The file structure of this repository is shown in the file hierarchy below. Esse
 
 ```
 .  
-├── data                     # Behavioral data 
+├── data                     # Behavioral data goes here!
 ├── figure1                  # Code for Figure 1
 ├── ...  
 ├── figure6                  # Code for Figure 6
@@ -24,7 +24,8 @@ The file structure of this repository is shown in the file hierarchy below. Esse
 │   ├── absolute_thresholds  # Scripts to estimate absolute thresholds at a range of CFs
 │   ├── behavioral_data...   # Scripts to perform linear mixed effects modeling on behavioral data
 │   ├── tuning_curves        # Scripts to estimate tuning curves and Q10 values at a range of CFs
-│   └── vector_strength      # Scripts to estimate vector strength at a range of CFs
+│   ├── vector_strength      # Scripts to estimate vector strength at a range of CFs
+│   └── data_coll...         # .zip file containing code used to collect and preprocess behavioral data
 ├── plots                    # .png files, exact matches for figures in manuscript
 ├── supplemental_figure_1    # Scripts to generate the supplemental figure
 ├── util                     # Miniature package to provide some functions used across repo (e.g., stimuli)
@@ -37,7 +38,7 @@ The file structure of this repository is shown in the file hierarchy below. Esse
 
 # Docker instructions
 
-Docker is our recommended solution for replicating the results from [Guest and Oxenham (2021)](link to paper). If you are unfamiliar with Docker, you may want to [orient yourself](https://docs.docker.com/get-started/). The Docker image associated with this repository will allow you to start up a Linux container with Python and R, all required packages/programs, and a copy of this repository. Inside this environment, which is sandboxed from the rest of your system, you can replicate the results of our paper with a single command. When you are done with this process and leave the environment, the environment will clean itself up and stop consuming system resources. The major advantage of using Docker in this way is that you do not have to install Python, R, or any other programs yourself. 
+Docker is our recommended solution for replicating the results from Guest and Oxenham (2021). If you are unfamiliar with Docker, you may want to [orient yourself](https://docs.docker.com/get-started/). The Docker image associated with this repository will allow you to start up a Linux container with Python and R, all required packages/programs, and a copy of this repository. Inside this environment, which is sandboxed from the rest of your system, you can replicate the results of our paper with a single command. When you are done with this process and leave the environment, the environment will clean itself up and stop consuming system resources. The major advantage of using Docker in this way is that you do not have to install Python, R, or any other programs yourself. 
 
 To get started, make sure you have [Docker installed](https://docs.docker.com/get-docker/). Then, follow the instructions below. The instructions below are written for command line interface (such as PowerShell and Terminal) but equivalent commands likely exist in graphical user interface versions of the Docker software.
 
@@ -70,37 +71,8 @@ Now, if you call `run.sh` or any of the individual plotting files (e.g., `figure
 
 ## Behavioral data
 
-Two behavioral data files from [Guest and Oxenham (2021)](link to paper) are included in the repository in the folder `data`. Each is a `.csv` file where each row corresponds to a single run in the adaptive procedure. These data are not raw data, but reflect only a minor amount of preprocessing. First, data from Experiment 1 were screened to exclude data from participants whose average thresholds in the task did not exceed our screening task thresholds (6% and 12% in the low- and high-frequency conditions, respectively). Second, data from runs where the procedure did not converge and was terminated early were excluded. Third, data were combined across subjects. These same data files are also offered as `.RData` files. The objects inside these files containing the data frames are `data_exp1` and `data_exp2`, respectively. The columns in each datafile are documented below. 
+Behavioral data described in Guest and Oxenham (2021) is stored separately from this code repository on [Zenodo](https://doi.org/10.5281/zenodo.4750383). We recommend that you download the data files (as a `.zip` file) and extract them into the top-level `data` folder in this repository. All the scripts in this repository expect the data to be in this folder. The data is described in a `README.md` file in the Zenodo repository.
 
-- `exp1.csv`
-  - `F0`: F0 of run in Hz
-  - `masker`: Masker condition of run, either ISO or GEOM
-  - `threshold`: Threshold calculated from run, in 10*log10(%)
-  - `sd`: Standard deviation of threshold from run
-  - `subj`: Anonymized participant identifier
-  - `experiment`: Sub-experiment threshold was collected in (either Experiment 1a or Experiment 1b)
-  
-- `exp2.csv`
-  - `F0`: F0 of run in Hz
-  - `interval`: Interval size of run, either 1.5 times or 2.5 times the listener's average F0DL in Experiment 1
-  - `threshold`: Threshold calculated from run, in 10*log10(%)
-  - `sd`: Standard deviation of threshold from run
-  - `subj`: Anonymized participant identifier. Same identifiers were used in Experiment 1 and Experiment 2, so some participants can be identified across experiments.
-  
-## FDL and F0DL data
-  
-Two additional files are included in the folder `data` that contain FDL and F0DL measurements extracted from various published figures in the literature. These files are called `FDL_data.csv` and `F0DL_data.csv` respectively and their contents are described below. `.RData` versions of these files are also included, and the variables inside these files that contain the data frames are called `data`. The papers from which these results were extracted are described in more detail in the manuscript. It should be noted that these results were extracted by hand and many be somewhat inaccurate. 
-
-- `FDL_data.csv`
-  - `src`: The shortened name of the paper from which the data were extracted, in the form LastnameYear
-  - `f`: Frequency of the measurement in Hz
-  - `t` Threshold of the measurement in %
-  
-- `F0DL_data.csv`
-  - `src`: The shortened name of the paper from which the data were extracted, in the form LastnameYear
-  - `f`: F0 of the measurement in Hz
-  - `t` Threshold of the measurement in %
-  
 # Manual installation
 
 If you do not want to use Docker, you will need Python and R installed on your computer. Instructions for how to install each and configure your environments are provided below. Once you have successfully installed both R and Python and the requisite packages for each, proceed to `Figures` below and read about the code for each figure there. Output figure images will be saved in the `plots` folder as `.png` files.
@@ -168,7 +140,7 @@ Figure 4 plots behavioral results from Experiment 2. The entire figure is genera
 
 ### Figure 5
 
-Figure 5 plots excitation patterns for simulated medium spontaneous rate (MSR) auditory nerve fibers responding to the DBL stimuli from Experiment 2. The simulations and plot are generated by a single `.py` script.
+Figure 5 plots ISI histogram sand excitation patterns for the DBL stimuli from Experiment 2. The simulations and plots are generated by two `.py` scripts.
 
 ### Figure 6
 

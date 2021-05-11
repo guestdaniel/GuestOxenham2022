@@ -20,10 +20,11 @@ python3 figure3/figure3.py
 echo 'Generating Figure 4'
 Rscript figure4/figure4.R
 
-# Code check:   4/19/2021
-# Output check: 4/19/2021
+# Code check:   5/11/2021
+# Output check: 5/11/2021
 echo 'Generating Figure 5'
-python3 figure5/figure5.py
+python3 figure5/figure5a.py
+python3 figure5/figure5b.py
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
