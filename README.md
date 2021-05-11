@@ -71,7 +71,7 @@ Now, if you call `run.sh` or any of the individual plotting files (e.g., `figure
 
 ## Behavioral data
 
-Behavioral data described in Guest and Oxenham (2021) is stored separately from this code repository on [Zenodo](https://doi.org/10.5281/zenodo.4750383). We recommend that you download the data files (as a `.zip` file) and extract them into the top-level `data` folder in this repository. All the scripts in this repository expect the data to be in this folder. The data is described in a `README.md` file in the Zenodo repository.
+Behavioral data described in Guest and Oxenham (2021) is stored separately from this code repository on [Zenodo](https://doi.org/10.5281/zenodo.4750383). We recommend that you download the data files (as a `.zip` file) and extract them into the top-level `data` folder in this repository. All the scripts in this repository expect the data to be in this folder. The data is described in a `README.md` file in the Zenodo repository. This step can be performed automatically by the first few lines of `run.sh`. 
 
 # Manual installation
 

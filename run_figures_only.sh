@@ -1,5 +1,12 @@
 # Replicates every figure in Guest and Oxenham (2021), does not re-run simulations
 
+# Get the behavioral data before we start running scripts
+wget https://zenodo.org/record/4750384/files/data_archive.zip?download=1 -O data/data_archive.zip
+unzip data/data_archive.zip
+cp data_archive/* data
+rm -r data_archive
+rm data/data_archive.zip
+
 # Code check:   4/14/2021
 # Output check: 4/14/2021
 echo 'Generating Figure 1'
