@@ -54,6 +54,9 @@ Next, use the image to create an interactive container.
 docker run --rm -it guestoxenham2021
 ```
 
+- `--rm` flag tells Docker to "clean up" after itself and to remove any files generated while running the image after the container is closed
+- `-it` tells Docker this is an interactive session 
+
 This container starts with an interactive bash shell located in a copy of the present repository. From there, you can either manually run individual scripts using the `python3` and `Rscript` commands for Python and R, respectively, or you can generate the all the figures in the paper via:
 ```
 bash run.sh
@@ -62,8 +65,10 @@ bash run.sh
 However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk (called `output` in the example below). First, exit the container with the `exit` command, then run the following:
 
 ```
-docker run --rm -v output:/GuestOxenham2021/plots -it guestoxenham2021
+docker run --rm -v /home/daniel/GuestOxenham2021/plots:/GuestOxenham2021/plots -it guestoxenham2021
 ```
+
+- `-v` flag tells Docker to link the `plots` folder on your disk (path to the left of `:`) with the `plots` folder in the container (path to the right of `:`). Obviously, you will need to adjust the path on the  left to point to wherever you have stored your local copy of the repository.
 
 Now, if you call `run.sh` or any of the individual plotting files (e.g., `figure1.R`), whatever is saved in the `plots` folder of the repository will be accessible on your hard drive (outside of the container) in the `output` folder. 
 
