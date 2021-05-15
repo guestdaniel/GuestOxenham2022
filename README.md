@@ -65,7 +65,7 @@ This container starts with an interactive bash shell located in a copy of the pr
 bash run.sh
 ```
 
-However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk (called `output` in the example below). First, exit the container with the `exit` command, then run the following:
+However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk. First, exit the container with the `exit` command, then run the following:
 
 ```
 docker run --rm -v /home/daniel/GuestOxenham2021/plots:/GuestOxenham2021/plots -it guestoxenham2021
