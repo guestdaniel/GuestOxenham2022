@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg921"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="fig5cd.svg">
+  <defs
+     id="defs915" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="543.37018"
+     inkscape:cy="822.95987"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="2540"
+     inkscape:window-height="1401"
+     inkscape:window-x="1930"
+     inkscape:window-y="10"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata918">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5c1.png"
+       xlink:href="fig5c1.png"
+       width="85.106911"
+       height="84.115379"
+       preserveAspectRatio="none"
+       id="image1474"
+       x="7.6712241"
+       y="22.218548" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="19.881533"
+       y="21.341967"
+       id="text1479"><tspan
+         sodipodi:role="line"
+         id="tspan1477"
+         x="19.881533"
+         y="21.341967"
+         style="stroke-width:0.26458332">HSR fibers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="81.075897"
+       y="23.15625"
+       id="text1483"><tspan
+         sodipodi:role="line"
+         id="tspan1481"
+         x="81.075897"
+         y="25.731527"
+         style="stroke-width:0.26458332" /></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="7.2949505"
+       y="110.92231"
+       id="text1491"><tspan
+         sodipodi:role="line"
+         id="tspan1489"
+         x="7.2949505"
+         y="110.92231"
+         style="stroke-width:0.26458332">Neural harmonic number (CF/F0)</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5d1.png"
+       xlink:href="fig5d1.png"
+       inkscape:transform-center-y="-9.8889725"
+       inkscape:transform-center-x="28.330569"
+       y="22.218548"
+       x="116.06145"
+       id="image1474-6"
+       preserveAspectRatio="none"
+       height="84.115387"
+       width="85.106911" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="62.637413"
+       y="21.341967"
+       id="text1479-7"><tspan
+         sodipodi:role="line"
+         id="tspan1477-5"
+         x="62.637413"
+         y="21.341967"
+         style="stroke-width:0.26458332">LSR fibers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="122.84906"
+       y="21.341967"
+       id="text1479-3"><tspan
+         sodipodi:role="line"
+         id="tspan1477-56"
+         x="122.84906"
+         y="21.341967"
+         style="stroke-width:0.26458332">HSR fibers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="165.18237"
+       y="21.341967"
+       id="text1479-2"><tspan
+         sodipodi:role="line"
+         id="tspan1477-9"
+         x="165.18237"
+         y="21.341967"
+         style="stroke-width:0.26458332">LSR fibers</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.64444447px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="114.87434"
+       y="110.92231"
+       id="text1491-1"><tspan
+         sodipodi:role="line"
+         id="tspan1489-2"
+         x="114.87434"
+         y="110.92231"
+         style="stroke-width:0.26458332">Neural harmonic number (CF/F0)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
+       x="94.872589"
+       y="33.883732"
+       id="text6562-5"><tspan
+         sodipodi:role="line"
+         id="tspan6560-6"
+         x="94.872589"
+         y="33.883732"
+         style="stroke-width:0.10473511">0 dB TMR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
+       x="94.913925"
+       y="54.017654"
+       id="text6562-7-2"><tspan
+         sodipodi:role="line"
+         id="tspan6560-5-9"
+         x="94.913925"
+         y="54.017654"
+         style="stroke-width:0.10473511">4 dB TMR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
+       x="94.831253"
+       y="74.149345"
+       id="text6562-3-1"><tspan
+         sodipodi:role="line"
+         id="tspan6560-56-2"
+         x="94.831253"
+         y="74.149345"
+         style="stroke-width:0.10473511">8 dB TMR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
+       x="93.46048"
+       y="94.285492"
+       id="text6562-2-7"><tspan
+         sodipodi:role="line"
+         id="tspan6560-9-0"
+         x="93.46048"
+         y="94.285492"
+         style="stroke-width:0.10473511">12 dB TMR</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.54102707px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21352568"
+       x="130.15997"
+       y="15.036881"
+       id="text915-9"><tspan
+         sodipodi:role="line"
+         id="tspan913-2"
+         x="130.15997"
+         y="15.036881"
+         style="stroke-width:0.21352568">F0 = 1400 Hz</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.54102707px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21352568"
+       x="29.44342"
+       y="14.469912"
+       id="text915"><tspan
+         sodipodi:role="line"
+         id="tspan913"
+         x="29.44342"
+         y="14.469912"
+         style="stroke-width:0.21352568">F0 = 280 Hz</tspan></text>
+    <rect
+       style="opacity:1;vector-effect:none;fill:#5e1767;fill-opacity:1;stroke:#5e1767;stroke-width:0.43128571;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect5352"
+       width="176.36661"
+       height="45.682934"
+       x="15.629689"
+       y="115.22937" />
+  </g>
+</svg>

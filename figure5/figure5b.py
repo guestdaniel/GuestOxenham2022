@@ -43,7 +43,7 @@ def prep_ep(F0, level, level_maskers, level_noise, fs=int(100e3), fiber_type='ms
     return params
 
 
-def handle_labels_and_axes(axis_main, first, title):
+def handle_labels_and_axes(axis_main, first, title, yaxis_side='left'):
     """ Helper function for plotting excitation patterns
 
     Args:
@@ -61,11 +61,12 @@ def handle_labels_and_axes(axis_main, first, title):
     axis_main.set_xlim((4, 12))
     axis_main.set_xticks([4, 5, 6, 7, 8, 9, 10, 11, 12])
     axis_main.set_xticklabels(['', '', 6, 7, 8, 9, 10, '', ''])
-    axis_main.yaxis.set_ticks_position('right')
+    if yaxis_side == 'right':
+        axis_main.yaxis.set_ticks_position('right')
 
 
 
-def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, fs=int(100e3), fiber_type='msr'):
+def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, fs=int(100e3), fiber_type='msr', yaxis_side='left'):
     """ Function to plot excitation pattern of DBL tones from Experiment 2
 
     Args:
@@ -78,6 +79,8 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
         first (bool): whether or not this is the first plot in the row
         color (ndarray, str): the color to use for the plot
         fs (int): sampling rate, in Hz
+        fiber_type (str): which fiber type ('high', 'medium', or 'low') to use
+        yaxis_side (str): where to plot the yticks and yticklabels ('left' or 'right')
     """
     # Get params
     params = prep_ep(F0, level, level_maskers, level_noise, fs, fiber_type)
@@ -114,7 +117,7 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
     axis_main.fill_between(cfs/F0, mean_response - sd_response, mean_response + sd_response,
                            color=color, alpha=0.2, label='_nolegend_')
     # Handle labels and axes
-    handle_labels_and_axes(axis_main, first, title)
+    handle_labels_and_axes(axis_main, first, title, yaxis_side)
     if fiber_type == 'hsr':
         axis_main.set_ylim((0, 375))
     elif fiber_type == 'msr':
@@ -124,11 +127,12 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
 
 
 # Plot excitation patterns for HSR and LSR fibers at various TMRs
-f, axs = plt.subplots(4, 2, figsize=(6, 6), sharex='all')
-tmrs = [0, 4, 8, 12]
-fiber_types = ['hsr', 'lsr']
-for idx_tmr in range(4):
-    for idx_fiber_type in range(2):
-        plot_ep(axs[idx_tmr, idx_fiber_type], 1400, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', False, '#a28ac1',
-                fiber_type=fiber_types[idx_fiber_type])
-plt.savefig('plots/fig5b1.png', bbox_inches='tight')
+for F0, label, side in zip([280, 1400], ['c', 'd'], ['left', 'right']):
+    f, axs = plt.subplots(4, 2, figsize=(6, 6), sharex='all')
+    tmrs = [0, 4, 8, 12]
+    fiber_types = ['hsr', 'lsr']
+    for idx_tmr in range(4):
+        for idx_fiber_type in range(2):
+            plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', False, '#a28ac1',
+                    fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
+    plt.savefig('plots/fig5' + label + '1.png', bbox_inches='tight')

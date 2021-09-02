@@ -13,7 +13,7 @@ import matplotlib.patches as patches
 import util as cfg
 
 
-def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
+def calculate_ISI_histogram(f0, neural_harm_nums, tmr, n_repeat=20):
     """ Synthesizes complex tone mixture and simulates interspike interval histogram response.
 
     Args:
@@ -21,6 +21,7 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
         neural_harm_nums (np.ndarray): array of neural harmonic numbers (CF/F0) to test. This is performed by keeping
             the F0 of the tone fixed while manipulating the range of CFs tested.
         tmr (float): Target-to-masker ratio of the target complex tone vs the masker complex tone
+        n_repeat (int): number of repeats to run for each CF/F0 to test
 
     Returns:
         histograms (list): list of histograms counts for ISI histogram for each neural harmonic number
@@ -38,7 +39,7 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
     params.add_inputs(stim.synthesize_sequence(params))
 
     # Encode repeats
-    params.repeat(200)
+    params.repeat(n_repeat)
 
     # Select model and run
     sim = anf.AuditoryNerveZilany2014Spikes()
@@ -66,73 +67,81 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr):
     # Return
     return histograms
 
+
+def plot_ISI_histogram(f0, xlims=None):
+    """ Plots outputs of calculate_ISI_histogram saved to disk
+
+    Args:
+        f0 (float): F0 of the stimulus in Hz
+        xlims (None, tuple, list): either None (in which case default xlims are used) or a tuple/list containing
+            xlims in units of periods of the F0
+
+    Returns:
+        fig (Figure): figure object generated, useful for adding to plot or adjusting settings post hoc
+        ax (Axes): axes object generated, useful for adding to plot or adjusting settings post hoc
+    """
+    # Create main plot (part a)
+    fig, ax = plt.subplots(4, 1, figsize=(7, 9), sharex='all')
+    for idx_tmr, tmr in enumerate(tmrs):
+        # Load in histograms and calculate edges
+        histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
+        neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
+        edges = np.linspace(start=0, stop=20, num=2200)
+        # Plot pcolormesh
+        ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap='inferno')
+        # Set labels
+        if xlims == None:
+            ax[idx_tmr].set_xlim((0, 8))
+        else:
+            ax[idx_tmr].set_xlim(xlims)
+        # Hide x-axis
+        if idx_tmr > 0:
+            ax[idx_tmr].get_xaxis().set_visible(False)
+        ax[idx_tmr].xaxis.set_ticks_position('top')
+    # Save to disk
+    plt.tight_layout()
+    # Return figures
+    return fig, ax
+
+
+# Run simulations
 tmrs = [0, 4, 8, 12]  # set TMR for each simulation
+f0s = [280, 1400]     # set F0s for each simulation
 
 for tmr in tmrs:
-    # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
-    histograms = calculate_ISI_histogram(280, np.linspace(4, 12, 40), tmr=tmr)
-    np.save('figure5/isi_histograms_tmr_' + str(tmr) + '.npy', histograms)
-    np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy', np.linspace(4, 12, 40))
+    for f0 in f0s:
+        # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
+        histograms = calculate_ISI_histogram(f0, np.linspace(4, 12, 40), tmr=tmr)
+        np.save('figure5/isi_histograms_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
+        np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', np.linspace(4, 12, 40))
 
-# Create main plot (part a)
-fig, ax = plt.subplots(4, 1, figsize=(7, 9), sharex='all')
-for idx_tmr, tmr in enumerate(tmrs):
-    # Load in histograms and calculate edges
-    histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
-    neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')
-    edges = np.linspace(start=0, stop=20, num=2200)
-    # Plot pcolormesh
-    ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap='plasma')
-    # Set labels
-    ax[idx_tmr].set_xlim((0, 8))
-    # Hide x-axis
-    if idx_tmr > 0:
-        ax[idx_tmr].get_xaxis().set_visible(False)
-    ax[idx_tmr].xaxis.set_ticks_position('top')
-# Save to disk
-plt.tight_layout()
-plt.savefig('plots/fig5a1.png')
+# Create plots
+# Define colorscheme for different F0s
+color_lower = '#ACFF00'
+color_middle = '#00FF76'
+color_upper = '#1DD0FF'
 
-# Create subplot (part b)
-fig, ax = plt.subplots(4, 1, figsize=(4, 6), sharex='all')
-for idx_tmr, tmr in enumerate(tmrs):
-    # Load in histograms and calculate edges
-    histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
-    neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')
-    edges = np.linspace(start=0, stop=20, num=2200)
-    # Plot pcolormesh
-    ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap='plasma')
-    # Set labels
-    ax[idx_tmr].set_xlim((3.5, 4.5))
-    # Hide x-axis
-    ax[idx_tmr].get_xaxis().set_visible(False)
-    # Highlight peaks at F0 multiples
-    ax[idx_tmr].plot([4, 4], [4, 12], color=np.array([0, 0, 255])/255, linewidth=2)
-    ax[idx_tmr].plot([3/2**(-5.5/12), 3/2**(-5.5/12)], [4, 12], color=np.array([0, 255, 0])/255, linewidth=2)
-    ax[idx_tmr].plot([5/2**(6/12), 5/2**(6/12)], [4, 12], color=np.array([0, 255, 255])/255, linewidth=2)
-    ax[idx_tmr].plot([6/2**(6/12), 6/2**(6/12)], [4, 12], color=np.array([0, 255, 255])/255, linewidth=2)
-# Save to disk
-plt.tight_layout()
-plt.savefig('plots/fig5a2.png')
+# Create main plot (zoomed-out histograms surfaces)
+for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
+    plot_ISI_histogram(F0)
+    plt.savefig('plots/fig5' + fig_subnum + '1.png')
 
-# Create subplot (part c)
-fig, ax = plt.subplots(4, 1, figsize=(4, 6), sharex='all')
-for idx_tmr, tmr in enumerate(tmrs):
-    # Load in histograms and calculate edges
-    histograms = np.load('figure5/isi_histograms_tmr_' + str(tmr) + '.npy')
-    neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '.npy')
-    edges = np.linspace(start=0, stop=20, num=2200)
-    # Plot pcolormesh
-    ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap='plasma')
-    # Set labels
-    ax[idx_tmr].set_xlim((0.5, 1.5))
-    # Hide x-axis
-    ax[idx_tmr].get_xaxis().set_visible(False)
-    # Highlight peaks at F0 multiples
-    ax[idx_tmr].plot([1, 1], [4, 12], color=np.array([0, 0, 255])/255, linewidth=2)
-    ax[idx_tmr].plot([1/2**(-5.5/12), 1/2**(-5.5/12)], [4, 12], color=np.array([0, 255, 0])/255, linewidth=2)
-    ax[idx_tmr].plot([1/2**(6/12), 1/2**(6/12)], [4, 12], color=np.array([0, 255, 255])/255, linewidth=2)
-    ax[idx_tmr].plot([2/2**(6/12), 2/2**(6/12)], [4, 12], color=np.array([0, 255, 255])/255, linewidth=2)
-# Save to disk
-plt.tight_layout()
-plt.savefig('plots/fig5a3.png')
+    # Create subplot #1 (zoomed-in histogram surface, focused on 3.5 to 4.5 periods of F0)
+    fig, ax = plot_ISI_histogram(F0, (3.5, 4.5))
+    for idx_tmr in range(4):
+        # Highlight peaks at F0 multiples
+        ax[idx_tmr].plot([4, 4], [4, 12], color=color_middle, linewidth=2)
+        ax[idx_tmr].plot([3/2**(-5.5/12), 3/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=2)
+        ax[idx_tmr].plot([5/2**(6/12), 5/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+        ax[idx_tmr].plot([6/2**(6/12), 6/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+    plt.savefig('plots/fig5' + fig_subnum + '2.png')
+
+    # Create subplot #2 (zoomed-in histogram surface, focused on 0.5 to 1.5 periods of F0)
+    fig, ax = plot_ISI_histogram(F0, (0.5, 1.5))
+    for idx_tmr in range(4):
+        # Highlight peaks at F0 multiples
+        ax[idx_tmr].plot([1, 1], [4, 12], color=color_middle, linewidth=2)
+        ax[idx_tmr].plot([1/2**(-5.5/12), 1/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=2)
+        ax[idx_tmr].plot([1/2**(6/12), 1/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+        ax[idx_tmr].plot([2/2**(6/12), 2/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+    plt.savefig('plots/fig5' + fig_subnum + '3.png')
