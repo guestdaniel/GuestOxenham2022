@@ -111,15 +111,17 @@ f0s = [280, 1400]     # set F0s for each simulation
 for tmr in tmrs:
     for f0 in f0s:
         # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
-        histograms = calculate_ISI_histogram(f0, np.linspace(4, 12, 40), tmr=tmr)
+        histograms = calculate_ISI_histogram(f0, np.linspace(4, 12, 40), tmr=tmr, n_repeat=100)
         np.save('figure5/isi_histograms_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
         np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', np.linspace(4, 12, 40))
 
 # Create plots
 # Define colorscheme for different F0s
-color_lower = '#ACFF00'
-color_middle = '#00FF76'
-color_upper = '#1DD0FF'
+color_lower = '#03fffb'
+color_middle = '#035bff'
+color_upper = '#2dff03'
+linewidth = 4
+linestyle = 'dashed'
 
 # Create main plot (zoomed-out histograms surfaces)
 for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
@@ -130,18 +132,18 @@ for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
     fig, ax = plot_ISI_histogram(F0, (3.5, 4.5))
     for idx_tmr in range(4):
         # Highlight peaks at F0 multiples
-        ax[idx_tmr].plot([4, 4], [4, 12], color=color_middle, linewidth=2)
-        ax[idx_tmr].plot([3/2**(-5.5/12), 3/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=2)
-        ax[idx_tmr].plot([5/2**(6/12), 5/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
-        ax[idx_tmr].plot([6/2**(6/12), 6/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+        ax[idx_tmr].plot([4, 4], [4, 12], color=color_middle, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([3/2**(-5.5/12), 3/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([5/2**(6/12), 5/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([6/2**(6/12), 6/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
     plt.savefig('plots/fig5' + fig_subnum + '2.png')
 
     # Create subplot #2 (zoomed-in histogram surface, focused on 0.5 to 1.5 periods of F0)
     fig, ax = plot_ISI_histogram(F0, (0.5, 1.5))
     for idx_tmr in range(4):
         # Highlight peaks at F0 multiples
-        ax[idx_tmr].plot([1, 1], [4, 12], color=color_middle, linewidth=2)
-        ax[idx_tmr].plot([1/2**(-5.5/12), 1/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=2)
-        ax[idx_tmr].plot([1/2**(6/12), 1/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
-        ax[idx_tmr].plot([2/2**(6/12), 2/2**(6/12)], [4, 12], color=color_upper, linewidth=2)
+        ax[idx_tmr].plot([1, 1], [4, 12], color=color_middle, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([1/2**(-5.5/12), 1/2**(-5.5/12)], [4, 12], color=color_lower, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([1/2**(6/12), 1/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
+        ax[idx_tmr].plot([2/2**(6/12), 2/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
     plt.savefig('plots/fig5' + fig_subnum + '3.png')
