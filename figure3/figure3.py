@@ -11,7 +11,7 @@ import os, sys
 sys.path.append(os.getcwd())
 
 
-def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, fs=int(100e3)):
+def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, interval_size=0.5, fs=int(100e3)):
     """
     Function to plot excitation pattern of a single tone from Experiment 1.
 
@@ -28,9 +28,9 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
     """
     # Figure out, for this F0, how many components will be in the complex tones
     n_freq = len(np.arange(F0, 48000 / 2, F0))
-    n_freq_masker = len(np.arange(F0 * 2 ** (1 / 12), 48000 / 2, F0 * 2 ** (1 / 12)))
+    n_freq_masker = len(np.arange(F0 * 2 ** (interval_size / 12), 48000 / 2, F0 * 2 ** (interval_size / 12)))
     # Set up simulation and stimulus parameters
-    params = si.Parameters(F0=F0, F0_masker=F0 * 2 ** (1 / 12), fs=fs,
+    params = si.Parameters(F0=F0, F0_masker=F0 * 2 ** (interval_size / 12), fs=fs,
                            level=lambda: np.random.uniform(level-3, level+3, n_freq),
                            level_masker=lambda: np.random.uniform(level-3, level+3, n_freq_masker),
                            ten=True, level_noise=level_noise,
@@ -55,7 +55,7 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
     sd_response = np.std(firing_rates, axis=0)
     # Plot
     for harmonic in [6, 7, 8, 9, 10]:
-        axis_main.plot([harmonic, harmonic], [0, 250], color='gray', linestyle='dashed', label='_nolegend_')
+        axis_main.plot([harmonic, harmonic], [0, 350], color='gray', linestyle='dashed', label='_nolegend_')
     axis_main.plot(cfs/F0, mean_response, color=color)
     axis_main.fill_between(cfs/F0, mean_response - sd_response, mean_response + sd_response,
                            color=color, alpha=0.2, label='_nolegend_')
@@ -65,7 +65,7 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, f
         axis_main.get_xaxis().set_visible(False)
     if not first:
         axis_main.set_xlabel('CF (Harmonic Number)')
-    axis_main.set_ylim((50, 250))
+    axis_main.set_ylim((50, 350))
     axis_main.set_title(title)
     axis_main.set_xlim((5, 11))
     axis_main.set_xticks([5, 6, 7, 8, 9, 10, 11])
