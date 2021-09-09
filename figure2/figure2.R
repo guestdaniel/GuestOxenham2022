@@ -21,7 +21,7 @@ load('data/exp1.RData')
 data = data_exp1
 
 # Define breaks for plotting logarithmic axes
-breaks_ST = 1/(1/2^(-7:2))
+breaks_ST = 1/(1/2^(-7:2 + 0.46))
 n_breaks = 10
 breaks = c(seq(2, 10, 10/n_breaks) %o% 10^(-3:3))
 labels = as.character(breaks)
