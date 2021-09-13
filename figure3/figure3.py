@@ -77,7 +77,7 @@ plot_ep(a0, 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62')
 plot_ep(a0, 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb')
 plot_ep(a1, 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62')
 plot_ep(a1, 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb')
-plt.legend(['ISO', 'GEOM'], loc=3, framealpha=1)
+plt.legend(['ISO', 'GEOM'], loc=1, framealpha=1)
 plt.tight_layout()
 # Save to disk
 plt.savefig('plots/fig3.png', bbox_inches='tight')

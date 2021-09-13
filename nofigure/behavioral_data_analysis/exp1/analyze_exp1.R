@@ -77,11 +77,12 @@ test_masker = testInteractions(model, pairwise="masker", fixed="F0", adjustment=
 test_F0_and_masker = testInteractions(model, pairwise=c("F0", "masker"), adjustment="none", test="F")
 test_experiment_pairwise = testInteractions(model, pairwise="experiment", fixed=c("masker", "F0"), adjustment="none",
 											test="F")
+test_masker_and_experiment = testInteractions(model, pairwise=c("masker", "experiment"), adjustment="none", test="F")											
 
 # Combine contrast tests and correct their p-values
-contrasts = list(test_F0, test_masker, test_F0_and_masker, test_experiment_pairwise)
+contrasts = list(test_F0, test_masker, test_F0_and_masker, test_experiment_pairwise, test_masker_and_experiment)
 unadj_values = numeric()
-for (ii in 1:4) {
+for (ii in 1:5) {
 	unadj_values = c(unadj_values, contrasts[[ii]][, "Pr(>F)"])
 }
 adj_values = p.adjust(unadj_values, method="holm")
@@ -89,12 +90,14 @@ test_F0[, "Pr(>F)"] = adj_values[1:3]
 test_masker[, "Pr(>F)"] = adj_values[4:6]
 test_F0_and_masker[, "Pr(>F)"] = adj_values[7:8]
 test_experiment_pairwise[, "Pr(>F)"] = adj_values[9:13]
+test_masker_and_experiment[, "Pr(>F)"] = adj_values[14]
 
 # Change all the difference measures to ratio measures in the contrast tests
 test_F0[, "Value"] = 10^(abs(test_F0[, "Value"])/10)
 test_masker[, "Value"] = 10^(abs(test_masker[, "Value"])/10)
 test_F0_and_masker[, "Value"] = 10^(abs(test_F0_and_masker[, "Value"])/10)
 test_experiment_pairwise[, "Value"] = 10^(abs(test_experiment_pairwise[, "Value"])/10)
+test_masker_and_experiment[, "Value"] = 10^(abs(test_masker_and_experiment[, "Value"])/10)
 
 # Sink the results to file
 sink(paste0(model_dir, "model_output.txt"))
