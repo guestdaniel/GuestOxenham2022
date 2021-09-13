@@ -35,6 +35,7 @@ fdls$model = factor(fdls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst201
 
 # Construct plot
 fdls %>% 
+	filter(nominal_level %in% c(20, 30, 40)) %>%
 	filter(roving_type == 'None') %>%
 	ggplot(aes(x=freq, y=threshold/(freq)*100)) +
 	# Geoms
@@ -70,4 +71,4 @@ fdls %>%
 	# Facets
 	facet_grid(. ~ model)
 # Save plot to disk
-ggsave('plots/fig6a.png', width=6, height=2.5)
+ggsave('plots/fig6a.png', width=8, height=3.5)

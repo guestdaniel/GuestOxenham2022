@@ -13,7 +13,7 @@ labels = as.character(breaks)
 labels[!(log10(breaks)%%1==0) & breaks != 2000] = ''
 ticksizes = rep(.25, length(breaks))
 ticksizes[log10(breaks)%%1==0] = 1
-font_scale = 8
-size_point=1.0
+font_scale = 11.0
+size_point=2.0
 size_smooth=0.5
 

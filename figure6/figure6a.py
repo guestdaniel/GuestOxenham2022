@@ -24,7 +24,7 @@ def simulate_figure6_fdls(model, model_name, fs):
     """
     # Define stimulus parameters
     freqs = 8 * 10**np.linspace(np.log10(280) - 0.2, np.log10(1400) + 0.1, 24)  # simulate 8th harmonic of F0s
-    levels = [20, 30, 40]  # dB SPL
+    levels = [20, 30, 40, 80]  # dB SPL
     dur = 0.10  # seconds
     dur_ramp = 0.01  # seconds
 
