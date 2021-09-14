@@ -70,4 +70,4 @@ fdls_temp %>%
 	scale_linetype_manual(values=c('dotted', 'solid')) +
 	# Facets
 	facet_grid(. ~ roving_type)
-ggsave('plots/fig6b.png', width=4.5, height=2.5)
+ggsave('plots/fig6b.png', width=6, height=2.5)

@@ -62,28 +62,39 @@ for (model in levels(q10$model)) {
 	fdls[fdls$model == model, ]$q10 = approx(log10(q10[q10$model == model, ]$freq), q10[q10$model == model, ]$q, log10(fdls[fdls$model == model, ]$freq))[[2]]
 }
 
-# Define function to plot dual y-axis vector strength
+# At this point, fdls should contain, for each test frequency, predicted thresholds for each model and decoding type, Q10 values, and vector strenght values
+
 plot_vs <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
 			        filename="fig6d_vector_strength_new", width=7, height=3) {
+#' Plots a correlation between all-information thresholds and vector strength at the corresponding frequency in each model
+#' @param models A vector of model names to plot
+#' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
+#' @param width Passed to ggsave
+#' @param height passed to ggsave
+
+# Filter the data to only include no-roving simulations at 30 dB SPL 
 filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'AI') %>%
 	filter(model %in% models) 
+
+# Extract the correlation between log-transformed thresholds and log-transformed reciprocal of vector strength
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(vs*2000))))
 
+# Plot the data
 filtered_data %>%
+	# Aesthetics calls
 	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
+	# Geoms
 	geom_point() +
 	geom_point(aes(y=1/(vs*2000))) +
-	# Geoms
 	geom_smooth(se=FALSE, size=size_smooth) +
 	geom_point(size=size_point*2) +
-	geom_label(data=corrs, aes(label=paste("r = ", round(corr, 2)), x=3000, y=0.07, shape=NULL), color='black') +
-	# Annotations
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/(2000*.), name="Vector strength")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
+	# Faceting
 	facet_grid(. ~ model) +
 	# Theme
 	theme_bw() +
@@ -102,43 +113,51 @@ filtered_data %>%
 	  axis.ticks.x=element_line(size=ticksizes),
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
-	# Labels
+	# Labels and legends
 	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
 	guides(color=FALSE,
 	       shape=FALSE,
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
+
+# Save plot to disk
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 }
-
-plot_vs()
-plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=3, height=2)
 
 
 # Define function to plot dual y-axis q10
 plot_q10 <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
 			        filename="fig6d_tuning_new", width=7, height=3) {
+#' Plots a correlation between rate-place thresholds and Q10 at the corresponding frequency in each model
+#' @param models A vector of model names to plot
+#' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
+#' @param width Passed to ggsave
+#' @param height passed to ggsave
+
 # Start by filtering data and calculating some correlations
 filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'RP') %>%
 	filter(model %in% models)
+
+# Extract the correlation between log-transformed thresholds and log-transformed reciprocal of q10
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(q10*1))))
 
+# Plot the data
 filtered_data %>%
+	# Aesthetics calls
 	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
+	# Geoms
 	geom_point() +
 	geom_point(aes(y=1/(q10*1))) +
-	# Geoms
 	geom_smooth(se=FALSE, size=size_smooth) +
 	geom_point(size=size_point*2) +
-	geom_label(data=corrs, aes(label=paste("r = ", round(corr, 2)), x=3000, y=0.07, shape=NULL), color='black') +
-	# Annotations
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/(1*.), name="Q10")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
+	# Facets
 	facet_grid(. ~ model) +
 	# Theme
 	theme_bw() +
@@ -157,21 +176,28 @@ filtered_data %>%
 	  axis.ticks.x=element_line(size=ticksizes),
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
-	# Labels
+	# Labels and legends
 	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
 	guides(color=FALSE,
 	       shape=FALSE,
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
+
+# Save to disk
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 }
-plot_q10()
-plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=3, height=2)
 
 # Plot summmary figure
 plot_correlations <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
           			          filename="fig6d_correlations", width=4, height=4) {
+#' Plots correlation values (i.e., Pearson's r) for correlations between AI thresholds and vector strength,
+#' or between RP threshold and q10
+#' @param models A vector of model names to plot
+#' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
+#' @param width Passed to ggsave
+#' @param height passed to ggsave
+
 filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
@@ -217,4 +243,7 @@ corrs %>% ggplot(aes(x=model, y=corr)) +
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 }
 
+# Now, call these functions to generate our plots! 
+plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=2.5, height=2)
+plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=2.5, height=2)
 plot_correlations(width=2.5)

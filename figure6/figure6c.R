@@ -84,7 +84,7 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		# Theme
 		theme_bw() +
 		theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
-		  axis.text.x=element_text(size=0.7*font_scale, angle=45, hjust=1),
+		  axis.text.x=element_text(size=1*font_scale, angle=25, hjust=1),
 		  axis.title.y=element_text(size=1.2*font_scale),    # axis label font size
 		  axis.title.x=element_text(size=1.2*font_scale),
 		  legend.text=element_text(size=1*font_scale),     # legend text font size
@@ -101,4 +101,4 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		xlab("Source (model or paper)") +
 		ylab("Ratio (8.5 kHz / 2.0 kHz)") +
 		guides(shape=guide_legend(title="Type"))
-ggsave('plots/fig6c.png', width=4.5, height=4)
+ggsave('plots/fig6c.png', width=8, height=3)
