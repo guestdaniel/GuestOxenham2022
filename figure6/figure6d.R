@@ -73,7 +73,7 @@ filtered_data = fdls %>%
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(vs*2000))))
 
 filtered_data %>%
-	ggplot(aes(x=freq, y=threshold/(freq)*100, color=model, shape=decoding_type)) +
+	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
 	geom_point() +
 	geom_point(aes(y=1/(vs*2000))) +
 	# Geoms
@@ -93,7 +93,8 @@ filtered_data %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
+	  strip.text.x=element_blank(),    # facet label font size
+	  strip.background=element_blank(),
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -102,7 +103,7 @@ filtered_data %>%
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
 	# Labels
-	xlab("Vector Strength") +
+	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
 	guides(color=FALSE,
 	       shape=FALSE,
@@ -127,7 +128,7 @@ filtered_data = fdls %>%
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(q10*1))))
 
 filtered_data %>%
-	ggplot(aes(x=freq, y=threshold/(freq)*100, color=model, shape=decoding_type)) +
+	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
 	geom_point() +
 	geom_point(aes(y=1/(q10*1))) +
 	# Geoms
@@ -138,7 +139,7 @@ filtered_data %>%
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/(1*.), name="Q10")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
-	#facet_grid(. ~ model) +
+	facet_grid(. ~ model) +
 	# Theme
 	theme_bw() +
 	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
@@ -147,7 +148,8 @@ filtered_data %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
+	  strip.text.x=element_blank(),    # facet label font size
+	  strip.background=element_blank(),
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -156,7 +158,7 @@ filtered_data %>%
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
 	# Labels
-	xlab("Vector Strength") +
+	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
 	guides(color=FALSE,
 	       shape=FALSE,
@@ -169,7 +171,7 @@ plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=3, height=
 
 # Plot summmary figure
 plot_correlations <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-			        filename="fig6d_correlations", width=4, height=4) {
+          			          filename="fig6d_correlations", width=4, height=4) {
 filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
@@ -181,7 +183,11 @@ corrs_q10 = filtered_data %>% group_by(model, decoding_type) %>% summarize(corr=
 corrs_q10$source = "Q10"
 corrs = rbind(corrs_vs, corrs_q10)
 
-corrs %>% ggplot(aes(x=model, y=corr, shape=decoding_type)) + 
+# Get rid of AI -> Q10 and RP -> VS
+corrs = corrs %>% filter((source=="Q10" & decoding_type=="RP") | (source=="Vector strength" & decoding_type=="AI"))
+corrs$source = factor(corrs$source, levels=c("Vector strength", "Q10"), labels=c("Vector strength\nAI", "Q10\nRP"))
+
+corrs %>% ggplot(aes(x=model, y=corr)) + 
 	geom_point(size=size_point*2) +
 	geom_hline(yintercept=0, linetype="dashed", color="gray", size=1) + 
 	# Theme
@@ -203,12 +209,12 @@ corrs %>% ggplot(aes(x=model, y=corr, shape=decoding_type)) +
 	# Labels
 	xlab("Model") +
 	ylab("Correlation (r)") +
+	ylim(c(-0.1, 1.1)) + 
 	guides(color=FALSE,
 	       shape=FALSE,
 	       linetype=guide_legend(title="Decoding Type")) +
-	facet_grid(decoding_type ~ source)
+	facet_grid(source ~ .)
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
-
 }
 
-plot_correlations()
+plot_correlations(width=2.5)

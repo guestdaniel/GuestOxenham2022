@@ -1,6 +1,7 @@
 # Replicates every figure in Guest and Oxenham (2021), including reproducing underlying simulations
 
 # Get the behavioral data before we start running scripts
+mkdir data
 wget https://zenodo.org/record/4750384/files/data_archive.zip?download=1 -O data/data_archive.zip
 unzip data/data_archive.zip
 cp data_archive/* data
