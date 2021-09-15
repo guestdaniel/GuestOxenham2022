@@ -68,6 +68,7 @@ f0dls %>%
 f0dls %>%
 	# Filter out simulations and roving types to only get what we want
 	filter(decoding_type == 'AI') %>%
+	filter(model == 'Zilany et al. (2014)') %>%
 	filter(nominal_level == 30) %>%
 	# Aesthetics
 	ggplot(aes(x=as.numeric(F0)*as.numeric(as.character(h_low)), 
@@ -79,6 +80,55 @@ f0dls %>%
 	geom_line() + 
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels) +
+	scale_x_log10(breaks=breaks, labels=labels) +
+	# Theme
+	theme_bw() +
+	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
+	  axis.text.x=element_text(size=1*font_scale),
+	  axis.title.y=element_text(size=1.2*font_scale),    # axis label font size
+	  axis.title.x=element_text(size=1.2*font_scale),
+	  legend.text=element_text(size=1*font_scale),     # legend text font size
+		  legend.title=element_text(size=1.2*font_scale),  # legend title font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
+	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
+	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
+	  panel.grid.major=element_blank(),
+	  panel.grid.minor = element_blank(),
+	  axis.ticks.x=element_line(size=ticksizes),
+	  legend.spacing.y=unit(0.05, 'cm'),
+	  legend.margin=unit(0, 'cm')) +
+	# Labels
+	xlab("Frequency of lowest component (Hz)") +
+	ylab("F0DL (%)") +
+	guides(color=guide_legend(title="Level per\ncomponent\n(dB re:\nthreshold)"),
+	       shape=guide_legend(title="Decoding Type"),
+	       linetype=guide_legend(title="Roving Type")) +
+	# Line types
+	scale_linetype_manual(values=c('dotted', 'solid'))
+	# Facets
+	#facet_grid(. ~ roving_type)
+#ggsave('plots/fig7b.png', width=4.5, height=2.5)
+
+# Construct plot (in terms of lowest frequency)
+f0dls %>%
+	# Filter out simulations and roving types to only get what we want
+	filter(decoding_type == 'AI') %>%
+	filter(model == 'Zilany et al. (2014)') %>%
+	filter(nominal_level == 30) %>%
+	# Pivot
+	mutate(threshold=threshold/(F0)*100) %>%
+	pivot_wider(id_cols=c(F0, h_low), names_from=roving_type, values_from=threshold) %>%
+	mutate(ratio=`Phase Randomized`/None) %>%
+	# Aesthetics
+	ggplot(aes(x=as.numeric(F0)*as.numeric(as.character(h_low)), 
+			   y=ratio, color=h_low)) +
+	# Geoms
+	#geom_vline(xintercept=c(280, 1400), linetype="dashed", color="gray") +
+	#geom_smooth(se=FALSE, size=size_smooth) +
+	geom_point(size=size_point) + 
+	geom_line() + 
+	# Axes
+	scale_y_log10() +
 	scale_x_log10(breaks=breaks, labels=labels) +
 	# Theme
 	theme_bw() +

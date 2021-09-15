@@ -163,7 +163,6 @@ def simulate_supfigure2_f0dls_phase_roving(model, model_name, fs, n_rep=10):
     # Encode parameters
     params = si.Parameters(dur=dur, dur_ramp=dur_ramp, fs=fs, n_cf=n_cf, delta_theta=delta_theta, API=API,
                            n_fiber_per_chan=n_fiber_per_chan, model_name=model_name)
-    params.append('phase', lambda: np.random.uniform(0, 360, 5))  # append random phase
     params.wiggle('F0', F0s)                                   # wiggle F0s
     params.wiggle('h_low', h_lows)
     params.stitch('cf_low', cf_low)                            # stitch cf_low (each F0 * h_low combo corresponds to a cf_low)
@@ -178,6 +177,7 @@ def simulate_supfigure2_f0dls_phase_roving(model, model_name, fs, n_rep=10):
 
     # Encode repeats and increments
     params.repeat(n_rep)
+    params.append('phase', lambda: np.random.uniform(0, 360, 5))  # append random phase
     params.increment({'F0': 0.001,                                  # increment F0
                       '(1)_phase': np.array([0.001, 0, 0, 0, 0]),   # increment phase of H6
                       '(2)_phase': np.array([0, 0.001, 0, 0, 0]),   # increment phase of H7

@@ -60,7 +60,7 @@ class ISOToneGuest2021_exp1a_variable_harms(sy.Synthesizer):
 
 
 # Now, look at responses off-CF as function of relative phase
-def sim_one_response2(F0, h_low, n_harm, cf=None):
+def sim_one_response2(F0, h_low, n_harm, cf=None, n_samp=50):
     params = si.Parameters(dur=0.10, dur_ramp=0.01, level=30, fs=200e3, n_cf=1, F0=F0,
                            h_low=h_low, n_harm=n_harm,
                            n_fiber_per_chan=50, cf_low=cf, cf_high=cf)
@@ -71,7 +71,7 @@ def sim_one_response2(F0, h_low, n_harm, cf=None):
         # encode actual level (dB SPL)
         ele['level'] = adjust_level(ele['F0']*8, ele['level'], 'Zilany2014')
 
-    phase = [np.random.uniform(0, 360, n_harm) for samp in range(50)]
+    phase = [np.random.uniform(0, 360, n_harm) for samp in range(n_samp)]
     params.wiggle('phase', phase)
 
     # Synthesize stimuli
@@ -88,11 +88,11 @@ def sim_one_response2(F0, h_low, n_harm, cf=None):
 
 
 # Write fancier function to plot good version of these plots
-def plot_fancy_stack(F0):
+def plot_fancy_stack(F0, n_samp=50):
     h_lows = [2, 6, 10]
     fig, axs = plt.subplots(3, 1, sharex=True, sharey=True)
     for ax, h_low in zip(axs, h_lows):
-        results = sim_one_response2(F0, h_low, 5, F0*(h_low+0.5))
+        results = sim_one_response2(F0, h_low, 5, F0*(h_low+0.5), n_samp)
         mean_response = np.squeeze(np.mean(results).T)
         sd_response = np.squeeze(np.std(results).T)
         t = np.linspace(0, len(mean_response)/200e3, len(mean_response))
@@ -107,4 +107,4 @@ def plot_fancy_stack(F0):
     plt.xlabel('Time (s)')
     plt.show()
 
-plot_fancy_stack(1400)
+plot_fancy_stack(1400, n_samp=1000)

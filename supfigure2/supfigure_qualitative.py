@@ -145,7 +145,7 @@ def sim_one_response2(F0, h_low, n_harm, cf=None):
         # encode actual level (dB SPL)
         ele['level'] = adjust_level(ele['F0']*8, ele['level'], 'Zilany2014')
 
-    phase = [np.random.uniform(0, 360, n_harm) for samp in range(10)]
+    phase = [np.random.uniform(0, 360, n_harm) for samp in range(30)]
     params.wiggle('phase', phase)
 
     # Synthesize stimuli
@@ -186,3 +186,26 @@ plot_phase_range(1400, 6)
 plt.subplot(3, 1, 3)
 plot_phase_range(1400, 10)
 plt.show()
+
+
+# Write fancier function to plot good version of these plots
+def plot_fancy_stack(F0):
+    h_lows = [2, 6, 10]
+    fig, axs = plt.subplots(3, 1, sharex=True, sharey=True)
+    for ax, h_low in zip(axs, h_lows):
+        results = sim_one_response2(F0, h_low, 5, F0*(h_low+0.5))
+        mean_response = np.squeeze(np.mean(results).T)
+        sd_response = np.squeeze(np.std(results).T)
+        t = np.linspace(0, len(mean_response)/200e3, len(mean_response))
+        ax.plot(t, mean_response)
+        ax.fill_between(t, mean_response - sd_response, mean_response + sd_response,
+                        alpha=0.2, label='_nolegend_')
+        ax.set_xlim((0.03, 0.04))
+        # Clean up axis
+        ax.spines['right'].set_visible(False)
+        ax.spines['top'].set_visible(False)
+    plt.ylabel('Firing rate (sp/s)')
+    plt.xlabel('Time (s)')
+    plt.show()
+
+plot_fancy_stack(1400)
