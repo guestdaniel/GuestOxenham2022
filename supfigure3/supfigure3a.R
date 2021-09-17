@@ -33,7 +33,7 @@ f0dls %>%
 	# Axes
 #	scale_y_log10(breaks=breaks, labels=labels) + 
 	scale_x_log10(breaks=breaks, labels=labels) + 
-	# Theme
+	# Themke
 	theme_bw() +
 	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
 	  axis.text.x=element_text(size=1*font_scale),
@@ -51,7 +51,7 @@ f0dls %>%
 	  legend.margin=unit(0, 'cm')) +
 	# Labels
 	xlab("F0 (Hz)") + 
-	ylab("F0DL (%)") + 
+	ylab("Ratio (Exp1b/Exp1a)") + 
 	guides(color=guide_legend(title="Level per\ncomponent\n(dB re:\nthreshold)"),
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type"))
