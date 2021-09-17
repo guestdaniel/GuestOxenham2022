@@ -143,6 +143,28 @@
          x="-66.783287"
          y="83.453163" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5042">
+      <rect
+         style="opacity:1;fill:#ff0000;fill-opacity:0;stroke:#ff0000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5044"
+         width="36.419926"
+         height="28.437479"
+         x="-62.58287"
+         y="-24.420601" />
+    </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath5048">
+      <rect
+         style="fill:#ff0000;fill-opacity:0;stroke:#ff0000;stroke-width:0.25;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         id="rect5050"
+         width="114.11664"
+         height="114.52386"
+         x="0.66055095"
+         y="-34.923149" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -151,20 +173,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="452.96075"
-     inkscape:cy="581.66045"
+     inkscape:zoom="0.75"
+     inkscape:cx="174.08827"
+     inkscape:cy="614.75732"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="layer2"
      showgrid="false"
      showguides="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2560"
-     inkscape:window-height="1440"
-     inkscape:window-x="1920"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:snap-global="true"
@@ -177,7 +199,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -187,78 +209,53 @@
      id="layer1"
      style="opacity:1"
      transform="translate(0.96833801,130.70121)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:10.58333302px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="43.665672"
+       y="88.830414"
+       id="text1096"><tspan
+         sodipodi:role="line"
+         id="tspan1094"
+         x="43.665672"
+         y="98.194183"
+         style="font-size:4.93888903px;stroke-width:0.26458332" /></text>
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6a.png"
-       y="-118.30614"
-       x="4.5906272"
-       id="image989"
-       xlink:href="/h"
+       xlink:href="fig6a.png"
+       width="203.2"
+       height="76.199997"
        preserveAspectRatio="none"
+       id="image1186"
+       x="4.1721392"
+       y="-118.1524" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
+       xlink:href="fig6c.png"
+       width="152.39999"
        height="88.900002"
-       width="203.2" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
-       xlink:href="fig6c.png"
-       clip-path="url(#clipPath4966)"
-       width="114.3"
-       height="101.6"
        preserveAspectRatio="none"
-       id="image4827"
-       x="7.0954247"
-       y="-19.165262" />
+       id="image5060"
+       x="-154.01262"
+       y="-28.199625" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_correlations.png"
-       xlink:href="fig6d_correlations.png"
-       width="101.6"
-       height="101.6"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_vector_strength_new.png"
+       xlink:href="fig6d_vector_strength_new.png"
+       width="177.8"
+       height="76.199997"
        preserveAspectRatio="none"
-       id="image4898"
-       x="89.598427"
-       y="-19.16526" />
+       id="image5137"
+       x="3.8316183"
+       y="-30.482426" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_vector_strength_zilany_only.png"
-       xlink:href="fig6d_vector_strength_zilany_only.png"
-       width="76.199997"
-       height="50.799999"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_tuning_new.png"
+       xlink:href="fig6d_tuning_new.png"
+       width="177.8"
+       height="76.199997"
        preserveAspectRatio="none"
-       id="image4909"
-       x="132.60843"
-       y="88.902954" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_tuning_zilany_only.png"
-       xlink:href="fig6d_tuning_zilany_only.png"
-       width="76.199997"
-       height="50.799999"
-       preserveAspectRatio="none"
-       id="image4920"
-       x="56.40844"
-       y="88.902954" />
-    <rect
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.50000004, 1.50000004;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect4923"
-       width="5.6669497"
-       height="4.8290215"
-       x="161.29626"
-       y="-11.397847" />
-    <rect
-       style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#ff0000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:1.50000006, 1.50000006;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect4923-6"
-       width="5.6669497"
-       height="4.8290215"
-       x="121.83781"
-       y="17.961363" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
-       xlink:href="fig6c.png"
-       transform="translate(73.878712,-0.76994324)"
-       clip-path="url(#clipPath5005)"
-       style="opacity:1"
-       y="62.886482"
-       x="-143.64459"
-       id="image4827-7"
-       preserveAspectRatio="none"
-       height="101.6"
-       width="114.30001" />
+       id="image5148"
+       x="5.4191184"
+       y="45.717579" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -279,24 +276,24 @@
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="12.379082"
-       y="-25.27953"
+       x="-149.68436"
+       y="-32.511501"
        id="text966-5"><tspan
          sodipodi:role="line"
          id="tspan964-3"
-         x="12.379082"
-         y="-25.27953"
+         x="-149.68436"
+         y="-32.511501"
          style="stroke-width:0.26458332">B. Effect of frequency</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="106.13952"
-       y="-24.646027"
+       x="11.65496"
+       y="-36.257572"
        id="text966-6-5"><tspan
          sodipodi:role="line"
-         id="tspan964-7-6"
-         x="106.13952"
-         y="-24.646027"
-         style="stroke-width:0.26458332">C. Tuning and phase locking</tspan></text>
+         x="11.65496"
+         y="-36.257572"
+         style="stroke-width:0.26458332"
+         id="tspan1033">B. Effects of tuning and phase locking</tspan></text>
   </g>
 </svg>

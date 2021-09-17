@@ -59,28 +59,54 @@ temp_behavior = rbind(temp_behavior, data.frame(src='Micheyl2012', high=0, low=0
 # Bind together the model data and behavioral data and re-label factors
 temp = bind_rows(temp_comp, temp_behavior)
 temp$decoding_type = factor(temp$decoding_type, levels=c('Behavior', 'AI', 'RP'), labels=c('Behavior', 'All-information', 'Rate-place'))
+
+# Add means
+mean_for_models = temp %>% 
+	filter(is.na(src)) %>% 
+	group_by(decoding_type) %>% 
+	mutate(ratio=log10(ratio)) %>%
+	summarize(low=mean(ratio)-sd(ratio)/sqrt(n()), 
+  			  high=mean(ratio)+sd(ratio)/sqrt(n()),
+              ratio=mean(ratio)) %>%
+	mutate(low=10^(low), high=10^(high), ratio=10^(ratio))
+mean_for_models$model = "Mean (models)"
+mean_for_behavior = temp %>% 
+	filter(!is.na(src)) %>% 
+	group_by(decoding_type) %>% 
+	mutate(ratio=log10(ratio)) %>%
+	summarize(low=mean(ratio)-sd(ratio)/sqrt(n()), 
+	    	  high=mean(ratio)+sd(ratio)/sqrt(n()),
+              ratio=mean(ratio)) %>%
+	mutate(low=10^(low), high=10^(high), ratio=10^(ratio))
+mean_for_behavior$model = "Mean (behavior)"
+temp = rbind(temp, mean_for_models)
+temp = rbind(temp, mean_for_behavior)
+
+# Refactor "model"
 temp$model = factor(temp$model,
-					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore1973', 'Moore2012', 'Lau2017', 'Gockel2020', 'Micheyl2012'),
-					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)'))
+					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Moore1973', 'Moore2012', 'Lau2017', 'Gockel2020', 'Micheyl2012'),
+					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)'))
 
 # Play some tricks to space out the various data points along the x-axis
 temp$mod_num = as.numeric(temp$model)
-temp[temp$mod_num > 3, ]$mod_num = temp[temp$mod_num > 3, ]$mod_num + 1  # move behavior numbers right by one
+temp[temp$mod_num > 4, ]$mod_num = temp[temp$mod_num > 4, ]$mod_num + 1  # move behavior numbers right by one
 
 # Construct plot
 temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		# Geoms
 		geom_hline(yintercept=1) +
 		geom_point(size=size_point*1.5) +
+		geom_point(data=temp[temp$model %in% c('Mean (models)', 'Mean (behavior)'), ], size=size_point*2.5) +
+		geom_errorbar(data=temp[temp$model %in% c('Mean (models)', 'Mean (behavior)'), ], aes(ymin=low, ymax=high), width=0.25, size=2) +
 		# Annotate
-		annotate('rect', xmin=0.5, xmax=3.5, ymin=0.5, ymax=90, alpha=0, linetype='dashed', size=1, color='#b3cde3') +
+		annotate('rect', xmin=0.5, xmax=4.5, ymin=0.5, ymax=90, alpha=0, linetype='dashed', size=1, color='#b3cde3') +
 		annotate('label', x=1.95, y=90, size=3, label.size=1, label='AN', color='#b3cde3') +
-		annotate('rect', xmin=4.5, xmax=9.5, ymin=1.8, ymax=40, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
+		annotate('rect', xmin=5.5, xmax=11.5, ymin=1.8, ymax=40, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
 		annotate('label', x=7, y=40, size=3, label.size=1, label='Behavior', color='#ccebc5') +
 		# Axes
 		scale_y_log10(breaks=breaks, labels=labels, limits=c(0.4, 100)) +
-		scale_x_continuous(breaks=c(1, 2, 3, 5, 6, 7, 8, 9),
-						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)')) +
+		scale_x_continuous(breaks=c(1, 2, 3, 4, 6, 7, 8, 9, 10, 11),
+						   labels=c('Heinz', 'Zilany', 'Verhulst', 'Mean (models)', 'Mean (behavior)', 'Moore (1973)', 'Moore and Ernst (2012)', 'Lau et al. (2017)', 'Gockel et al. (2020)', 'Micheyl et al. (2012)')) +
 		# Theme
 		theme_bw() +
 		theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
@@ -101,4 +127,4 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		xlab("Source (model or paper)") +
 		ylab("Ratio (8.5 kHz / 2.0 kHz)") +
 		guides(shape=guide_legend(title="Type"))
-ggsave('plots/fig6c.png', width=8, height=3)
+ggsave('plots/fig6c.png', width=6, height=3.5)

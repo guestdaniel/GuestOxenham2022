@@ -82,17 +82,24 @@ filtered_data = fdls %>%
 # Extract the correlation between log-transformed thresholds and log-transformed reciprocal of vector strength
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(vs*2000))))
 
+# Fit LM between log-transformed thresholds and log-transformed reciprocal of vector strength
+filtered_data$rvs = 1/filtered_data$vs
+vs_vs_pred_model = lm(log10(threshold/(freq)*100) ~ log10(rvs), data=filtered_data)
+beta_0 = coef(vs_vs_pred_model)[1]
+beta_1 = coef(vs_vs_pred_model)[2]
+
 # Plot the data
 filtered_data %>%
 	# Aesthetics calls
 	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
 	# Geoms
-	geom_point() +
-	geom_point(aes(y=1/(vs*2000))) +
-	geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2) +
+	geom_hline(yintercept=0.004, linetype='dotted', color='gray') +
+	geom_vline(xintercept=5000, linetype='dotted', color='gray') + 
+	geom_point(aes(y=10^(beta_0 + beta_1*log10(rvs))), color='blue') +
+	#geom_smooth(se=FALSE, size=size_smooth) +
+	geom_point(size=size_point*2, shape=1) +
 	# Axes
-	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/(2000*.), name="Vector strength")) +
+	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Vector strength")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
 	# Faceting
 	facet_grid(. ~ model) +
@@ -104,8 +111,7 @@ filtered_data %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_blank(),    # facet label font size
-	  strip.background=element_blank(),
+	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -140,22 +146,30 @@ filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'RP') %>%
-	filter(model %in% models)
+	filter(model %in% models) %>%
+	filter(model != 'Verhulst et al. (2018)')  # TODO: remove once I having tuning curves again!
 
 # Extract the correlation between log-transformed thresholds and log-transformed reciprocal of q10
-corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(q10*1))))
+corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)), log10(1/(q10))))
+
+# Fit LM between log-transformed thresholds and log-transformed reciprocal of Q10
+filtered_data$rq10 = 1/filtered_data$q10
+q10_vs_pred_model = lm(log10(threshold/(freq)*100) ~ log10(rq10), data=filtered_data)
+beta_0 = coef(q10_vs_pred_model)[1]
+beta_1 = coef(q10_vs_pred_model)[2]
 
 # Plot the data
 filtered_data %>%
 	# Aesthetics calls
 	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
 	# Geoms
-	geom_point() +
-	geom_point(aes(y=1/(q10*1))) +
-	geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2) +
+	geom_hline(yintercept=0.12, linetype='dotted', color='gray') +
+	geom_vline(xintercept=4000, linetype='dotted', color='gray') + 
+	geom_point(aes(y=10^(beta_0 + beta_1*log10(rq10))), color='blue') +
+	#geom_smooth(se=FALSE, size=size_smooth) +
+	geom_point(size=size_point*2, shape=0) +
 	# Axes
-	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/(1*.), name="Q10")) +
+	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Q10")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
 	# Facets
 	facet_grid(. ~ model) +
@@ -198,11 +212,13 @@ plot_correlations <- function(models=c("Heinz et al. (2001)", "Zilany et al. (20
 #' @param width Passed to ggsave
 #' @param height passed to ggsave
 
+# Start by filtering to only include no-roving and 30 dB SL simulations
 filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(model %in% models) 
 
+# Get Pearson's r for correlation between thresholds and reciprocal of either Q10 or vector strength
 corrs_vs = filtered_data %>% group_by(model, decoding_type) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(vs*2000))))
 corrs_vs$source = "Vector strength"
 corrs_q10 = filtered_data %>% group_by(model, decoding_type) %>% summarize(corr=cor(log10(threshold/(freq)*100), log10(1/(q10*1))))
@@ -213,7 +229,11 @@ corrs = rbind(corrs_vs, corrs_q10)
 corrs = corrs %>% filter((source=="Q10" & decoding_type=="RP") | (source=="Vector strength" & decoding_type=="AI"))
 corrs$source = factor(corrs$source, levels=c("Vector strength", "Q10"), labels=c("Vector strength\nAI", "Q10\nRP"))
 
-corrs %>% ggplot(aes(x=model, y=corr)) + 
+# Plot!
+corrs %>% 
+	# Aesthetics call
+	ggplot(aes(x=model, y=corr)) + 
+	# Geoms
 	geom_point(size=size_point*2) +
 	geom_hline(yintercept=0, linetype="dashed", color="gray", size=1) + 
 	# Theme
@@ -232,18 +252,20 @@ corrs %>% ggplot(aes(x=model, y=corr)) +
 	  axis.ticks.x=element_line(size=ticksizes),
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
-	# Labels
+	# Labels, limits, and legends
 	xlab("Model") +
 	ylab("Correlation (r)") +
-	ylim(c(-0.1, 1.1)) + 
+	ylim(c(-0.5, 1.1)) + 
 	guides(color=FALSE,
 	       shape=FALSE,
 	       linetype=guide_legend(title="Decoding Type")) +
-	facet_grid(source ~ .)
+	facet_grid(. ~ source)
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 }
 
 # Now, call these functions to generate our plots! 
-plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=2.5, height=2)
-plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=2.5, height=2)
-plot_correlations(width=2.5)
+#plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=2.5, height=2.0)
+#plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=2.5, height=2.0)
+plot_q10()
+plot_vs()
+plot_correlations(width=3.5, height=3)
