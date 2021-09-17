@@ -54,4 +54,4 @@ f0dls %>%
 	       linetype=guide_legend(title="Decoding Type")) +
 	# Facets
 	facet_grid(. ~ model)
-ggsave(file.path('plots', 'fig7a.png'), width=6, height=2.5)
+ggsave(file.path('plots', 'fig7a.png'), width=8, height=3)

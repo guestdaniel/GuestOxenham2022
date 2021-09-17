@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="255.547mm"
-   height="146.85429mm"
-   viewBox="0 0 255.547 146.85429"
+   width="8.5in"
+   height="11in"
+   viewBox="0 0 215.9 279.39999"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
@@ -140,9 +140,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="406.56663"
-     inkscape:cy="257.6523"
+     inkscape:zoom="0.7"
+     inkscape:cx="466.26388"
+     inkscape:cy="681.5145"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -151,12 +151,13 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2488"
-     inkscape:window-height="1376"
-     inkscape:window-x="1992"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1"
-     inkscape:snap-global="true" />
+     inkscape:window-width="625"
+     inkscape:window-height="1041"
+     inkscape:window-x="1285"
+     inkscape:window-y="10"
+     inkscape:window-maximized="0"
+     inkscape:snap-global="true"
+     units="in" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -165,7 +166,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -174,123 +175,50 @@
      inkscape:groupmode="layer"
      id="layer1"
      style="opacity:1"
-     transform="translate(0.96833801,-1.7144682)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722242px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="128.7005"
-       y="93.775635"
-       id="text1054"><tspan
-         sodipodi:role="line"
-         id="tspan1052"
-         x="128.7005"
-         y="93.775635"
-         style="stroke-width:0.26458332">Q10</tspan></text>
+     transform="translate(0.96833801,130.83124)">
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7a.png"
        xlink:href="fig7a.png"
-       y="7.5968013"
-       x="-0.96833801"
-       id="image957"
+       width="203.2"
+       height="76.199997"
        preserveAspectRatio="none"
-       height="63.5"
-       width="152.39999" />
+       id="image901"
+       x="4.3989263"
+       y="-118.13122" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7b.png"
-       xlink:href="fig7b.png"
-       y="85.198792"
-       x="-0.45357442"
-       id="image968"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_vector_strength_new.png"
+       xlink:href="fig7d_vector_strength_new.png"
+       width="177.8"
+       height="76.199997"
        preserveAspectRatio="none"
-       height="63.5"
-       width="114.3" />
+       id="image912"
+       x="3.3405929"
+       y="-34.522881" />
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7c.png"
-       xlink:href="fig7c.png"
-       y="7.5968013"
-       x="151.43166"
-       id="image979"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_tuning_new.png"
+       xlink:href="fig7d_tuning_new.png"
+       width="177.8"
+       height="76.199997"
        preserveAspectRatio="none"
-       height="69.849998"
-       width="101.6" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_phase_locking.png"
-       xlink:href="fig7d_phase_locking.png"
-       y="94.766121"
-       x="162.99922"
-       id="image990"
-       preserveAspectRatio="none"
-       height="53.932667"
-       width="91.694" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_tuning.png"
-       xlink:href="fig7d_tuning.png"
-       y="94.766121"
-       x="113.84643"
-       id="image1022"
-       preserveAspectRatio="none"
-       height="53.932667"
-       width="91.694"
-       clip-path="url(#clipPath1052)" />
+       id="image923"
+       x="4.928093"
+       y="41.677116" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
-     inkscape:label="Layer 2">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.99722242px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="178.80931"
-       y="92.061165"
-       id="text1058"><tspan
-         sodipodi:role="line"
-         id="tspan1056"
-         x="178.80931"
-         y="92.061165"
-         style="stroke-width:0.26458332">Vector strength</tspan></text>
+     inkscape:label="Layer 2"
+     transform="translate(0,132.54571)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="0.70668775"
-       y="5.3948894"
+       x="8.2662125"
+       y="-123.87297"
        id="text966"><tspan
          sodipodi:role="line"
          id="tspan964"
-         x="0.70668775"
-         y="5.3948894"
+         x="8.2662125"
+         y="-123.87297"
          style="stroke-width:0.26458332">A. Effect of model</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555556px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-0.089990497"
-       y="81.123749"
-       id="text966-6"><tspan
-         sodipodi:role="line"
-         id="tspan964-7"
-         x="-0.089990497"
-         y="81.123749"
-         style="stroke-width:0.26458332">B. Effect of roving</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="152.00381"
-       y="5.3948894"
-       id="text966-5"><tspan
-         sodipodi:role="line"
-         id="tspan964-3"
-         x="152.00381"
-         y="5.3948894"
-         style="stroke-width:0.26458332">C. Effect of freq</tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="116.29575"
-       y="83.865402"
-       id="text966-6-5"><tspan
-         sodipodi:role="line"
-         id="tspan964-7-6"
-         x="116.29575"
-         y="83.865402"
-         style="stroke-width:0.26458332">D. Tuning and phase locking</tspan></text>
   </g>
 </svg>
