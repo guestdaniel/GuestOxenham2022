@@ -1,3 +1,5 @@
+# This script generates the plots in Figure 6c
+
 source('config.R')
 
 # Define a function to implement predictions from Micheyl, Xiao, and Oxenham (2012)

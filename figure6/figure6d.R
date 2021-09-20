@@ -1,3 +1,5 @@
+# This script generates the plots in Figure 6d
+
 source('config.R')
 library(RcppCNPy)
 
@@ -88,16 +90,17 @@ vs_vs_pred_model = lm(log10(threshold/(freq)*100) ~ log10(rvs), data=filtered_da
 beta_0 = coef(vs_vs_pred_model)[1]
 beta_1 = coef(vs_vs_pred_model)[2]
 
+# Make wide data tall for ggplot
+filtered_data = filtered_data %>% pivot_longer(cols=c(threshold, rvs), names_to="data_type", values_to="data")
+
 # Plot the data
-filtered_data %>%
+filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	# Aesthetics calls
-	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
+	ggplot(aes(x=freq, y=data/(freq)*100, shape=data_type, color=data_type)) +
 	# Geoms
-	geom_hline(yintercept=0.004, linetype='dotted', color='gray') +
-	geom_vline(xintercept=5000, linetype='dotted', color='gray') + 
-	geom_point(aes(y=10^(beta_0 + beta_1*log10(rvs))), color='blue') +
+	geom_point(data=filtered_data[filtered_data$data_type == 'rvs', ], aes(y=10^(beta_0 + beta_1*log10(data)))) +
 	#geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2, shape=1) +
+	geom_point(size=size_point*2) +
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Vector strength")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
@@ -122,10 +125,10 @@ filtered_data %>%
 	# Labels and legends
 	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
-	guides(color=FALSE,
-	       shape=FALSE,
-	       linetype=guide_legend(title="Decoding Type")) +
-	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
+	guides(color=guide_legend(title="Data type"),
+	       shape=guide_legend(title="Data type")) +
+	scale_color_manual(values=c('blue', 'black'), labels=c('Vector\nstrength', 'Thresholds')) +
+	scale_shape_manual(values=c(16, 1), labels=c('Vector\nstrength', 'Thresholds'))
 
 # Save plot to disk
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
@@ -146,8 +149,7 @@ filtered_data = fdls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'RP') %>%
-	filter(model %in% models) %>%
-	filter(model != 'Verhulst et al. (2018)')  # TODO: remove once I having tuning curves again!
+	filter(model %in% models)
 
 # Extract the correlation between log-transformed thresholds and log-transformed reciprocal of q10
 corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(freq)), log10(1/(q10))))
@@ -158,16 +160,17 @@ q10_vs_pred_model = lm(log10(threshold/(freq)*100) ~ log10(rq10), data=filtered_
 beta_0 = coef(q10_vs_pred_model)[1]
 beta_1 = coef(q10_vs_pred_model)[2]
 
+# Make wide data tall for ggplot
+filtered_data = filtered_data %>% pivot_longer(cols=c(threshold, rq10), names_to="data_type", values_to="data")
+
 # Plot the data
-filtered_data %>%
+filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	# Aesthetics calls
-	ggplot(aes(x=freq, y=threshold/(freq)*100, shape=decoding_type)) +
+	ggplot(aes(x=freq, y=data/(freq)*100, shape=data_type, color=data_type)) +
 	# Geoms
-	geom_hline(yintercept=0.12, linetype='dotted', color='gray') +
-	geom_vline(xintercept=4000, linetype='dotted', color='gray') + 
-	geom_point(aes(y=10^(beta_0 + beta_1*log10(rq10))), color='blue') +
+	geom_point(data=filtered_data[filtered_data$data_type == 'rq10', ], aes(y=10^(beta_0 + beta_1*log10(data)))) +
 	#geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2, shape=0) +
+	geom_point(size=size_point*2) +
 	# Axes
 	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Q10")) +
 	scale_x_log10(breaks=breaks, labels=labels) +
@@ -181,8 +184,7 @@ filtered_data %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_blank(),    # facet label font size
-	  strip.background=element_blank(),
+	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -193,10 +195,10 @@ filtered_data %>%
 	# Labels and legends
 	xlab("Frequency (Hz)") +
 	ylab("FDL (%)") +
-	guides(color=FALSE,
-	       shape=FALSE,
-	       linetype=guide_legend(title="Decoding Type")) +
-	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
+	guides(color=guide_legend(title="Data type"),
+	       shape=guide_legend(title="Data type")) +
+	scale_color_manual(values=c('blue', 'black'), labels=c('Q10', 'Thresholds')) +
+	scale_shape_manual(values=c(16, 1), labels=c('Q10', 'Thresholds'))
 
 # Save to disk
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
@@ -256,8 +258,7 @@ corrs %>%
 	xlab("Model") +
 	ylab("Correlation (r)") +
 	ylim(c(-0.5, 1.1)) + 
-	guides(color=FALSE,
-	       shape=FALSE,
+	guides(shape=FALSE,
 	       linetype=guide_legend(title="Decoding Type")) +
 	facet_grid(. ~ source)
 ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
@@ -266,6 +267,6 @@ ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 # Now, call these functions to generate our plots! 
 #plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=2.5, height=2.0)
 #plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=2.5, height=2.0)
-plot_q10()
-plot_vs()
-plot_correlations(width=3.5, height=3)
+plot_q10(width=7.67, height=2)
+plot_vs(width=8, height=2)
+#plot_correlations(width=3.5, height=3)
