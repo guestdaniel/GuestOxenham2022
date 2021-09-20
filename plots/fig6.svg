@@ -165,6 +165,17 @@
          x="0.66055095"
          y="-34.923149" />
     </clipPath>
+    <clipPath
+       clipPathUnits="userSpaceOnUse"
+       id="clipPath1001">
+      <rect
+         style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:#000000;stroke-width:0.10036182;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+         id="rect1003"
+         width="220.10184"
+         height="34.788708"
+         x="-4.4591179"
+         y="17.278" />
+    </clipPath>
   </defs>
   <sodipodi:namedview
      id="base"
@@ -173,20 +184,20 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.75"
-     inkscape:cx="174.08827"
-     inkscape:cy="614.75732"
+     inkscape:zoom="1.0606602"
+     inkscape:cx="488.15247"
+     inkscape:cy="326.18809"
      inkscape:document-units="mm"
-     inkscape:current-layer="layer2"
+     inkscape:current-layer="layer1"
      showgrid="false"
      showguides="false"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="1920"
-     inkscape:window-height="1080"
-     inkscape:window-x="0"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="1920"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
      inkscape:snap-global="true"
@@ -221,78 +232,85 @@
          y="98.194183"
          style="font-size:4.93888903px;stroke-width:0.26458332" /></text>
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6a.png"
-       xlink:href="fig6a.png"
-       width="203.2"
-       height="76.199997"
-       preserveAspectRatio="none"
-       id="image1186"
-       x="4.1721392"
-       y="-118.1524" />
-    <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6c.png"
        xlink:href="fig6c.png"
        width="152.39999"
        height="88.900002"
        preserveAspectRatio="none"
        id="image5060"
-       x="-154.01262"
-       y="-28.199625" />
+       x="5.1301322"
+       y="56.68177" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_vector_strength_new.png"
        xlink:href="fig6d_vector_strength_new.png"
-       width="177.8"
-       height="76.199997"
+       y="-31.862755"
+       x="2.9993546"
+       id="image966"
        preserveAspectRatio="none"
-       id="image5137"
-       x="3.8316183"
-       y="-30.482426" />
+       height="50.799999"
+       width="203.2" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6d_tuning_new.png"
        xlink:href="fig6d_tuning_new.png"
-       width="177.8"
-       height="76.199997"
+       y="7.8027167"
+       x="6.1428595"
+       id="image977"
        preserveAspectRatio="none"
-       id="image5148"
-       x="5.4191184"
-       y="45.717579" />
+       height="50.799999"
+       width="194.81801"
+       clip-path="url(#clipPath1001)"
+       transform="translate(0.52916667,-9.5250003)" />
   </g>
   <g
      inkscape:groupmode="layer"
      id="layer2"
      inkscape:label="Layer 2"
      transform="translate(0,132.41568)">
-    <text
-       xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="11.114081"
-       y="-122.30621"
-       id="text966"><tspan
-         sodipodi:role="line"
-         id="tspan964"
-         x="11.114081"
+    <g
+       id="g1009">
+      <image
+         sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig6a.png"
+         xlink:href="fig6a.png"
+         y="-118.1524"
+         x="4.1721392"
+         id="image1186"
+         preserveAspectRatio="none"
+         height="76.199997"
+         width="203.2"
+         style="opacity:1"
+         transform="translate(0.96833801,-1.7144687)" />
+      <text
+         id="text966"
          y="-122.30621"
-         style="stroke-width:0.26458332">A. Effect of model</tspan></text>
+         x="11.114081"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+         xml:space="preserve"><tspan
+           style="stroke-width:0.26458332"
+           y="-122.30621"
+           x="11.114081"
+           id="tspan964"
+           sodipodi:role="line">A. Effects of model, frequency, and level</tspan></text>
+    </g>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-149.68436"
-       y="-32.511501"
+       x="11.951238"
+       y="53.397964"
        id="text966-5"><tspan
          sodipodi:role="line"
          id="tspan964-3"
-         x="-149.68436"
-         y="-32.511501"
-         style="stroke-width:0.26458332">B. Effect of frequency</tspan></text>
+         x="11.951238"
+         y="53.397964"
+         style="stroke-width:0.26458332">C. Comparison of models and behavior</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="11.65496"
-       y="-36.257572"
+       y="-35.199238"
        id="text966-6-5"><tspan
          sodipodi:role="line"
          x="11.65496"
-         y="-36.257572"
+         y="-35.199238"
          style="stroke-width:0.26458332"
          id="tspan1033">B. Effects of tuning and phase locking</tspan></text>
   </g>

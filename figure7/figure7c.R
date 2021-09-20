@@ -45,25 +45,55 @@ temp = bind_rows(temp_comp, temp_behavior)
 temp$decoding_type = factor(temp$decoding_type, levels=c('Behavior', 'AI', 'RP'), labels=c('Behavior', 'All-information', 'Rate-place'))
 temp$model = factor(temp$model,
 					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Lau2017', 'Gockel2018', 'Gockel2020', 'Guest2020'),
-					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Lau et al. (2017)', 'Gockel and Carlyon (2020)', 'Gockel et al. (2020)', 'Present data'))
+					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Lau et al. (2017)', 'Gockel and Carlyon (2018)', 'Gockel et al. (2020)', 'Present data'))
+
+# Add means
+mean_for_models = temp %>% 
+	filter(is.na(src)) %>% 
+	group_by(decoding_type) %>% 
+	mutate(ratio=log10(ratio)) %>%
+	summarize(low=mean(ratio)-sd(ratio)/sqrt(n()), 
+  			  high=mean(ratio)+sd(ratio)/sqrt(n()),
+              ratio=mean(ratio)) %>%
+	mutate(low=10^(low), high=10^(high), ratio=10^(ratio))
+mean_for_models$model = "Mean (models)"
+mean_for_behavior = temp %>% 
+	filter(!is.na(src)) %>% 
+	group_by(decoding_type) %>% 
+	mutate(ratio=log10(ratio)) %>%
+	summarize(low=mean(ratio)-sd(ratio)/sqrt(n()), 
+	    	  high=mean(ratio)+sd(ratio)/sqrt(n()),
+              ratio=mean(ratio)) %>%
+	mutate(low=10^(low), high=10^(high), ratio=10^(ratio))
+mean_for_behavior$model = "Mean (behavior)"
+temp = rbind(temp, mean_for_models)
+temp = rbind(temp, mean_for_behavior)
+
+# Refactor "model"
+temp$model = factor(temp$model,
+					levels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Lau et al. (2017)', 'Gockel and Carlyon (2018)', 'Gockel et al. (2020)', 'Present data'),
+					labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Lau et al. (2017)', 'Gockel and Carlyon (2018)', 'Gockel et al. (2020)', 'Present data'))
+
 
 # Play some tricks to space out the various data points along the x-axis
 temp$mod_num = as.numeric(temp$model)
-temp[temp$mod_num > 3, ]$mod_num = temp[temp$mod_num > 3, ]$mod_num + 1  # move behavior numbers right by one
+temp[temp$mod_num > 4, ]$mod_num = temp[temp$mod_num > 4, ]$mod_num + 1  # move behavior numbers right by one
 
 # Construct plot
 temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		geom_hline(yintercept=1) +
 		geom_point(size=size_point*1.5) +
+		geom_point(data=temp[temp$model %in% c('Mean (models)', 'Mean (behavior)'), ], size=size_point*2.5) +
+		geom_errorbar(data=temp[temp$model %in% c('Mean (models)', 'Mean (behavior)'), ], aes(ymin=low, ymax=high), width=0.25, size=2) +
 		# Annotate
-		annotate('rect', xmin=0.5, xmax=3.5, ymin=0.5, ymax=15, alpha=0, linetype='dashed', size=1, color='#b3cde3') +
-		annotate('label', x=1.95, y=15, size=3, label.size=1, label='AN', color='#b3cde3') +
-		annotate('rect', xmin=4.5, xmax=8.5, ymin=2.5, ymax=9, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
-		annotate('label', x=6.5, y=9, size=3, label.size=1, label='Behavior', color='#ccebc5') +
+		annotate('rect', xmin=0.5, xmax=4.5, ymin=0.5, ymax=15, alpha=0, linetype='dashed', size=1, color='#b3cde3') +
+		annotate('label', x=2.50, y=15, size=3, label.size=1, label='AN', color='#b3cde3') +
+		annotate('rect', xmin=5.5, xmax=10.5, ymin=2.5, ymax=9, alpha=0, linetype='dashed', size=1, color='#ccebc5') +
+		annotate('label', x=8, y=9, size=3, label.size=1, label='Behavior', color='#ccebc5') +
 		# Axes
 		scale_y_log10(breaks=breaks, labels=labels, limits=c(0.4, 20)) +
-		scale_x_continuous(breaks=c(1, 2, 3, 5, 6, 7, 8),
-						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Lau et al. (2017)', 'Gockel and Carlyon (2020)', 'Gockel et al. (2020)', 'Present data')) +
+		scale_x_continuous(breaks=c(1, 2, 3, 4, 6, 7, 8, 9, 10),
+						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Lau et al. (2017)', 'Gockel and Carlyon (2020)', 'Gockel et al. (2020)', 'Present data')) +
 		# Theme
 		theme_bw() +
 		theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
@@ -84,4 +114,4 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		xlab("Source (model or paper)") +
 		ylab("Ratio (1.4 kHz / 0.28 kHz)") +
 		guides(shape=guide_legend(title="Type"))
-ggsave('plots/fig7c.png', width=4, height=2.75)
+ggsave('plots/fig7c.png', width=6, height=3.5)

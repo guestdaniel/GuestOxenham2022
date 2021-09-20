@@ -185,8 +185,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.0606602"
-     inkscape:cx="165.23381"
-     inkscape:cy="481.36683"
+     inkscape:cx="425.00018"
+     inkscape:cy="510.86043"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -210,7 +210,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -242,19 +242,19 @@
        y="56.68177" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_vector_strength_new.png"
-       xlink:href="fig7d_vector_strength_new.png"
        y="-31.862755"
        x="2.9993546"
        id="image966"
+       xlink:href="fig7d_vector_strength_new.png"
        preserveAspectRatio="none"
        height="50.799999"
        width="203.2" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_tuning_new.png"
-       xlink:href="fig7d_tuning_new.png"
        y="7.8027167"
        x="6.1428595"
        id="image977"
+       xlink:href="fig7d_tuning_new.png"
        preserveAspectRatio="none"
        height="50.799999"
        width="194.81801"
@@ -267,9 +267,9 @@
      inkscape:label="Layer 2"
      transform="translate(0,132.41568)">
     <image
+       style="opacity:1"
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7a.png"
        xlink:href="fig7a.png"
-       style="opacity:1"
        width="203.2"
        height="76.199997"
        preserveAspectRatio="none"

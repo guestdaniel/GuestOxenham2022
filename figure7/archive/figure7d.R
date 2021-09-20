@@ -2,11 +2,11 @@ source('config.R')
 library(RcppCNPy)
 
 # Load simulations
-sims = list.files('figure7', pattern='.csv')
+sims = list.files(file.path(root_directory, '/figure7/'), pattern='.csv')
 f0dls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
-	temp = read.csv(file.path('figure7', sims[sim]))
+	temp = read.csv(file.path(root_directory, '/figure7/', sims[sim]))
 	# If level is numeric, that means it's a phase roving simulation --- change level to str
 	if (class(temp$level) == 'numeric') {
 		temp$level = as.character(temp$level)
@@ -62,45 +62,20 @@ for (model in levels(q10$model)) {
 	f0dls[f0dls$model == model, ]$q10 = approx(log10(q10[q10$model == model, ]$freq), q10[q10$model == model, ]$q, log10(f0dls[f0dls$model == model, ]$F0*8))[[2]]
 }
 
-# At this point, f0dls should contain, for each test frequency, predicted thresholds for each model and decoding type, Q10 values, and vector strenght values
-
-plot_vs <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-			        filename="fig7d_vector_strength_new", width=7, height=3) {
-#' Plots a correlation between all-information thresholds and vector strength at the corresponding frequency in each model
-#' @param models A vector of model names to plot
-#' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
-#' @param width Passed to ggsave
-#' @param height passed to ggsave
-
-# Filter the data to only include no-roving simulations at 30 dB SPL 
-filtered_data = f0dls %>%
+# Plot F0DLs vs vector strength
+f0dls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'AI') %>%
-	filter(model %in% models) 
-
-# Extract the correlation between log-transformed thresholds and log-transformed reciprocal of vector strength
-corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(F0)*100), log10(1/(vs*2000))))
-
-# Fit LM between log-transformed thresholds and log-transformed reciprocal of vector strength
-filtered_data$rvs = 1/filtered_data$vs
-vs_vs_pred_model = lm(log10(threshold/(F0)*100) ~ log10(rvs), data=filtered_data)
-beta_0 = coef(vs_vs_pred_model)[1]
-beta_1 = coef(vs_vs_pred_model)[2]
-
-# Plot the data
-filtered_data %>%
-	# Aesthetics calls
-	ggplot(aes(x=F0, y=threshold/(F0)*100, shape=decoding_type)) +
+	ggplot(aes(x=vs, y=threshold/(F0)*100, color=model, shape=decoding_type)) +
 	# Geoms
-	geom_point(aes(y=10^(beta_0 + beta_1*log10(rvs))), color='blue') +
-	#geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2, shape=1) +
+	geom_smooth(aes(group=1), method='lm', se=FALSE, color='black') +
+	geom_smooth(se=FALSE, size=size_smooth) +
+	geom_point(size=size_point*2) +
+	#geom_vline(xintercept=0.1, linetype='dashed', color='gray') +
 	# Axes
-	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Vector strength")) +
+	scale_y_log10(breaks=breaks, labels=labels) +
 	scale_x_log10(breaks=breaks, labels=labels) +
-	# Faceting
-	facet_grid(. ~ model) +
 	# Theme
 	theme_bw() +
 	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
@@ -109,7 +84,7 @@ filtered_data %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -117,57 +92,28 @@ filtered_data %>%
 	  axis.ticks.x=element_line(size=ticksizes),
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
-	# Labels and legends
-	xlab("F0 (Hz)") +
+	# Labels
+	xlab("Vector Strength") +
 	ylab("F0DL (%)") +
-	guides(color=FALSE,
-	       shape=FALSE,
+	guides(color=guide_legend(title="Model"),
+	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
+ggsave('plots/fig7d_phase_locking.png', width=4.25*0.85, height=2.5*0.85)
 
-# Save plot to disk
-ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
-}
-
-
-# Define function to plot dual y-axis q10
-plot_q10 <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-			        filename="fig7d_tuning_new", width=7, height=3) {
-#' Plots a correlation between rate-place thresholds and Q10 at the corresponding frequency in each model
-#' @param models A vector of model names to plot
-#' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
-#' @param width Passed to ggsave
-#' @param height passed to ggsave
-
-# Start by filtering data and calculating some correlations
-filtered_data = f0dls %>%
+# Plot F0DLs vs Q10
+f0dls %>%
 	filter(roving_type == 'None') %>%
 	filter(nominal_level == 30) %>%
 	filter(decoding_type == 'RP') %>%
-	filter(model %in% models)
-
-# Extract the correlation between log-transformed thresholds and log-transformed reciprocal of q10
-corrs = filtered_data %>% group_by(model) %>% summarize(corr=cor(log10(threshold/(F0)), log10(1/(q10))))
-
-# Fit LM between log-transformed thresholds and log-transformed reciprocal of Q10
-filtered_data$rq10 = 1/filtered_data$q10
-q10_vs_pred_model = lm(log10(threshold/(F0)*100) ~ log10(rq10), data=filtered_data)
-beta_0 = coef(q10_vs_pred_model)[1]
-beta_1 = coef(q10_vs_pred_model)[2]
-
-# Plot the data
-filtered_data %>%
-	# Aesthetics calls
-	ggplot(aes(x=F0, y=threshold/(F0)*100, shape=decoding_type)) +
+	ggplot(aes(x=q10, y=threshold/(F0)*100, color=model, shape=decoding_type)) +
 	# Geoms
-	geom_point(aes(y=10^(beta_0 + beta_1*log10(rq10))), color='blue') +
-	#geom_smooth(se=FALSE, size=size_smooth) +
-	geom_point(size=size_point*2, shape=0) +
+	geom_smooth(aes(group=1), method='lm', se=FALSE, color='black') +
+	geom_smooth(se=FALSE, size=size_smooth) +
+	geom_point(size=size_point*2) +
 	# Axes
-	scale_y_log10(breaks=breaks, labels=labels, sec.axis=sec_axis(~ 1/10^((log10(.)-beta_0)/(beta_1)), name="Q10")) +
-	scale_x_log10(breaks=breaks, labels=labels) +
-	# Facets
-	facet_grid(. ~ model) +
+	scale_y_log10(breaks=c(0.07, 0.08, 0.09, 0.1, 0.2, 0.3), labels=c('0.07', '0.08', '0.09', '0.1', '0.2', '0.3'), limits=c(0.07, 0.3)) +
+	#scale_x_log10(breaks=breaks, labels=labels) +
 	# Theme
 	theme_bw() +
 	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
@@ -175,9 +121,8 @@ filtered_data %>%
 	  axis.title.y=element_text(size=1.2*font_scale),    # axis label font size
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
-	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_blank(),    # facet label font size
-	  strip.background=element_blank(),
+      legend.title=element_text(size=1.2*font_scale),  # legend title font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -185,21 +130,11 @@ filtered_data %>%
 	  axis.ticks.x=element_line(size=ticksizes),
 	  legend.spacing.y=unit(0.05, 'cm'),
 	  legend.margin=unit(0, 'cm')) +
-	# Labels and legends
-	xlab("F0 (Hz)") +
+	# Labels
+	xlab("Q10") +
 	ylab("F0DL (%)") +
-	guides(color=FALSE,
-	       shape=FALSE,
+	guides(color=guide_legend(title="Model"),
+	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
 	scale_color_manual(values=c('#8dd3c7', '#eded51', '#bebada'))
-
-# Save to disk
-ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
-}
-
-# Now, call these functions to generate our plots! 
-#plot_vs(c("Zilany et al. (2014)"), "fig7d_vector_strength_zilany_only", width=2.5, height=2.0)
-#plot_q10(c("Zilany et al. (2014)"), "fig7d_tuning_zilany_only", width=2.5, height=2.0)
-plot_q10()
-plot_vs()
-#plot_correlations(width=3.5, height=3)
+ggsave('plots/fig7d_tuning.png', width=4.25*0.85, height=2.5*0.85)
