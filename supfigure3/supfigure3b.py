@@ -179,12 +179,12 @@ def plot_information_curves_fill_between(ax, curve1, curve2, F0):
         if harm in [6, 7, 8, 9, 10]:
             color = 'darkgray'
         else:
-            color = 'gray'
+            color = 'lightgray'
         ax.plot([harm*F0, harm*F0], [0, 10000], 
                 linestyle='dashed', color=color)
 
     # Set limits
-    ax.set_xlim((4*F0, 12*F0))
+    ax.set_xlim((4.5*F0, 11.5*F0))
     #ax.set_ylim((1e-6, 1e4))
     ax.set_xscale('log')
     ax.set_yscale('log')
