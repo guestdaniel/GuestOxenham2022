@@ -124,7 +124,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  legend.margin=unit(0, 'cm')) +
 	# Labels and legends
 	xlab("Frequency (Hz)") +
-	ylab("FDL (%)") +
+	ylab("AI FDL (%)") +
 	guides(color=guide_legend(title="Data type"),
 	       shape=guide_legend(title="Data type")) +
 	scale_color_manual(values=c('blue', 'black'), labels=c('Vector\nstrength', 'Thresholds')) +
@@ -194,7 +194,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  legend.margin=unit(0, 'cm')) +
 	# Labels and legends
 	xlab("Frequency (Hz)") +
-	ylab("FDL (%)") +
+	ylab("RP FDL (%)") +
 	guides(color=guide_legend(title="Data type"),
 	       shape=guide_legend(title="Data type")) +
 	scale_color_manual(values=c('blue', 'black'), labels=c('Q10', 'Thresholds')) +

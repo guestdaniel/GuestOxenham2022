@@ -17,7 +17,7 @@
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig7.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig6.png"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig7.png"
    inkscape:export-xdpi="299.97299"
    inkscape:export-ydpi="299.97299">
   <defs
@@ -184,9 +184,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0606602"
-     inkscape:cx="165.23381"
-     inkscape:cy="481.36683"
+     inkscape:zoom="0.75000002"
+     inkscape:cx="354.68646"
+     inkscape:cy="495.74549"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -195,10 +195,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2560"
-     inkscape:window-height="1440"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
+     inkscape:window-width="630"
+     inkscape:window-height="1401"
+     inkscape:window-x="2565"
+     inkscape:window-y="10"
      inkscape:window-maximized="0"
      inkscape:snap-global="true"
      units="in" />
@@ -234,32 +234,32 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7c.png"
        xlink:href="fig7c.png"
-       width="152.39999"
-       height="88.900002"
-       preserveAspectRatio="none"
-       id="image5060"
+       y="56.68177"
        x="7.246799"
-       y="56.68177" />
+       id="image5060"
+       preserveAspectRatio="none"
+       height="88.900002"
+       width="152.39999" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_vector_strength_new.png"
        xlink:href="fig7d_vector_strength_new.png"
-       y="-31.862755"
-       x="2.9993546"
-       id="image966"
-       preserveAspectRatio="none"
+       width="203.2"
        height="50.799999"
-       width="203.2" />
+       preserveAspectRatio="none"
+       id="image966"
+       x="2.9993546"
+       y="-31.862755" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7d_tuning_new.png"
        xlink:href="fig7d_tuning_new.png"
-       y="7.8027167"
-       x="6.1428595"
-       id="image977"
-       preserveAspectRatio="none"
-       height="50.799999"
-       width="194.81801"
+       transform="translate(0.52916667,-9.5250003)"
        clip-path="url(#clipPath1001)"
-       transform="translate(0.52916667,-9.5250003)" />
+       width="194.81801"
+       height="50.799999"
+       preserveAspectRatio="none"
+       id="image977"
+       x="6.1428595"
+       y="7.8027167" />
   </g>
   <g
      inkscape:groupmode="layer"
@@ -269,13 +269,13 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig7a.png"
        xlink:href="fig7a.png"
-       style="opacity:1"
-       width="203.2"
-       height="76.199997"
-       preserveAspectRatio="none"
-       id="image1186"
+       y="-119.86687"
        x="5.1404772"
-       y="-119.86687" />
+       id="image1186"
+       preserveAspectRatio="none"
+       height="76.199997"
+       width="203.2"
+       style="opacity:1" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;opacity:1;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"

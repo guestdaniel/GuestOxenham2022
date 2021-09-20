@@ -93,11 +93,11 @@ temp %>% ggplot(aes(x=mod_num, y=ratio, shape=decoding_type)) +
 		# Axes
 		scale_y_log10(breaks=breaks, labels=labels, limits=c(0.4, 20)) +
 		scale_x_continuous(breaks=c(1, 2, 3, 4, 6, 7, 8, 9, 10),
-						   labels=c('Heinz et al. (2001)', 'Zilany et al. (2014)', 'Verhulst et al. (2018)', 'Mean (models)', 'Mean (behavior)', 'Lau et al. (2017)', 'Gockel and Carlyon (2020)', 'Gockel et al. (2020)', 'Present data')) +
+						   labels=c('Heinz', 'Zilany', 'Verhulst', 'Mean (models)', 'Mean (behavior)', 'Lau et al. (2017)', 'Gockel and Carlyon (2020)', 'Gockel et al. (2020)', 'Present data')) +
 		# Theme
 		theme_bw() +
 		theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
-		  axis.text.x=element_text(size=0.7*font_scale, angle=45, hjust=1),
+		  axis.text.x=element_text(size=1*font_scale, angle=25, hjust=1),
 		  axis.title.y=element_text(size=1.2*font_scale),    # axis label font size
 		  axis.title.x=element_text(size=1.2*font_scale),
 		  legend.text=element_text(size=1*font_scale),     # legend text font size
