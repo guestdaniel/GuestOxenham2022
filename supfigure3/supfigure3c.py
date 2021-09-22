@@ -168,10 +168,10 @@ def plot_information_curves_fill_between(ax, curve1, curve2, F0):
     cfs = 10**np.linspace(np.log10(F0*5), np.log10(F0*11), n_cf)
     
     # Plot!
-    ax.plot(cfs, curve1, color='black')
-    ax.plot(cfs, curve2, color='gray')
-    ax.fill_between(cfs, curve1, curve2, color='red', where=curve1 > curve2)
-    ax.fill_between(cfs, curve1, curve2, color='green', where=curve1 < curve2)
+    ax.plot(cfs/F0, curve1, color='black')
+    ax.plot(cfs/F0, curve2, color='gray')
+    ax.fill_between(cfs/F0, curve1, curve2, color='red', where=curve1 > curve2)
+    ax.fill_between(cfs/F0, curve1, curve2, color='green', where=curve1 < curve2)
 
     # Plot harmonic indicators
     for harm in range(1, 20):
@@ -180,12 +180,12 @@ def plot_information_curves_fill_between(ax, curve1, curve2, F0):
             color = 'darkgray'
         else:
             color = 'lightgray'
-        ax.plot([harm*F0, harm*F0], [0, 10000], 
+        ax.plot([harm, harm], [0, 10000], 
                 linestyle='dashed', color=color)
 
     # Set limits
-    ax.set_xlim((4.5*F0, 11.5*F0))
-    #ax.set_ylim((1e-6, 1e4))
+    ax.set_xlim((4.5, 11.5))
+    ax.set_ylim((1e-6, 1e4))
     ax.set_xscale('log')
     ax.set_yscale('log')
 
@@ -204,10 +204,8 @@ plot_information_curves(axs[0], results_high_1b[0], 1400)
 plot_information_curves(axs[1], results_high_1b[1], 1400)
 
 
-figs, axs = plt.subplots(2, 1)
-plot_information_curves_fill_between(axs[0], results_low_1a[0], results_low_1b[0], 280)
-plot_information_curves_fill_between(axs[1], results_low_1a[1], results_low_1b[1], 280)
-
-figs, axs = plt.subplots(2, 1)
-plot_information_curves_fill_between(axs[0], results_high_1a[0], results_high_1b[0], 1400)
-plot_information_curves_fill_between(axs[1], results_high_1a[1], results_high_1b[1], 1400)
+figs, axs = plt.subplots(2, 2, sharex=True, sharey=True)
+plot_information_curves_fill_between(axs[0][0], results_low_1a[0], results_low_1b[0], 280)
+plot_information_curves_fill_between(axs[0][1], results_low_1a[1], results_low_1b[1], 280)
+plot_information_curves_fill_between(axs[1][0], results_high_1a[0], results_high_1b[0], 1400)
+plot_information_curves_fill_between(axs[1][1], results_high_1a[1], results_high_1b[1], 1400)
