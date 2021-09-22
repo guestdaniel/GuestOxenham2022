@@ -7,6 +7,7 @@
    xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
    xmlns:svg="http://www.w3.org/2000/svg"
    xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    width="8.5in"
@@ -26,8 +27,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="538.69212"
-     inkscape:cy="680.01195"
+     inkscape:cx="379.50224"
+     inkscape:cy="475.90647"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -53,5 +54,46 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-17.6)" />
+     transform="translate(0,-17.6)">
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="4.7521076"
+       y="29.463203"
+       id="text858"><tspan
+         sodipodi:role="line"
+         x="4.7521076"
+         y="29.463203"
+         style="stroke-width:0.26458332"
+         id="tspan860">A. Model predictions for Exp. 1a and Exp. 1b (ISO stimulus)</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig3b.png"
+       xlink:href="supfig3b.png"
+       width="127"
+       height="76.199997"
+       preserveAspectRatio="none"
+       id="image870"
+       x="5.9900775"
+       y="124.73775" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig3a.png"
+       xlink:href="supfig3a.png"
+       width="203.2"
+       height="76.199997"
+       preserveAspectRatio="none"
+       id="image881"
+       x="4.7732744"
+       y="33.431957" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="5.9689107"
+       y="120.78939"
+       id="text858-3"><tspan
+         sodipodi:role="line"
+         x="5.9689107"
+         y="120.78939"
+         style="stroke-width:0.26458332"
+         id="tspan860-7">B. Ratio of Exp. 1a/ Exp. 1b model thresholds</tspan></text>
+  </g>
 </svg>

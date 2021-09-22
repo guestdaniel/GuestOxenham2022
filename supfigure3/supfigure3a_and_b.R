@@ -20,18 +20,57 @@ f0dls$model = factor(f0dls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst2
 					labels=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"))
 f0dls$stim = factor(f0dls$code, levels=c('exp1a', 'exp1b'), labels=c('Exp 1a', 'Exp 1b'))
 
-# Construct plot
+# Construct plot showing Exp1a vs Exp1b means
+f0dls %>% 
+	filter(roving_type == 'None') %>%
+	ggplot(aes(x=F0, y=threshold/F0*100, color=stim, shape=decoding_type)) + 
+	# Geoms
+	geom_vline(xintercept=c(280, 1400), linetype="dashed", color="gray") + 
+	geom_smooth(se=FALSE, size=size_smooth) + 
+	geom_point(size=size_point) + 
+	# Axes
+	scale_y_log10(breaks=breaks, labels=labels) +
+	scale_x_log10(breaks=breaks, labels=labels) + 
+	# Themke
+	theme_bw() +
+	theme(axis.text.y=element_text(size=1*font_scale),   # axis tick label font size
+	  axis.text.x=element_text(size=1*font_scale),
+	  axis.title.y=element_text(size=1.2*font_scale),    # axis label font size
+	  axis.title.x=element_text(size=1.2*font_scale),
+	  legend.text=element_text(size=1*font_scale),     # legend text font size
+		  legend.title=element_text(size=1.2*font_scale),  # legend title font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
+	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
+	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
+	  panel.grid.major=element_blank(), 
+	  panel.grid.minor = element_blank(), 
+	  axis.ticks.x=element_line(size=ticksizes),
+	  legend.spacing.y=unit(0.05, 'cm'),
+	  legend.margin=unit(0, 'cm')) +
+	# Facets
+	facet_grid(. ~ nominal_level) +
+	# Labels
+	xlab("F0 (Hz)") + 
+	ylab("Ratio (Exp1b/Exp1a)") + 
+	guides(color=guide_legend(title="Level per\ncomponent\n(dB re:\nthreshold)"),
+	       shape=guide_legend(title="Decoding Type"),
+	       linetype=guide_legend(title="Decoding Type"))
+ggsave('plots/supfig3a.png', width=8, height=3)
+
+
+# Construct plot showing Exp1a vs Exp1b ratio
 f0dls %>% 
 	filter(roving_type == 'None') %>%
     pivot_wider(id_cols=c(F0, decoding_type, nominal_level), names_from=stim, values_from=threshold) %>%
     mutate(ratio=`Exp 1b` / `Exp 1a`) %>%
 	ggplot(aes(x=F0, y=ratio, color=nominal_level, shape=decoding_type)) + 
 	# Geoms
+	geom_hline(yintercept=1.0) + 
 	geom_vline(xintercept=c(280, 1400), linetype="dashed", color="gray") + 
 	geom_smooth(se=FALSE, size=size_smooth) + 
 	geom_point(size=size_point) + 
 	# Axes
-#	scale_y_log10(breaks=breaks, labels=labels) + 
+	#scale_y_log10() +
 	scale_x_log10(breaks=breaks, labels=labels) + 
 	# Themke
 	theme_bw() +
@@ -55,3 +94,4 @@ f0dls %>%
 	guides(color=guide_legend(title="Level per\ncomponent\n(dB re:\nthreshold)"),
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type"))
+ggsave('plots/supfig3b.png', width=5, height=3)
