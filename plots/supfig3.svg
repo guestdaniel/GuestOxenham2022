@@ -27,16 +27,16 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.7"
-     inkscape:cx="379.50224"
-     inkscape:cy="475.90647"
+     inkscape:cx="340.77479"
+     inkscape:cy="535.01633"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      units="in"
-     inkscape:window-width="1265"
-     inkscape:window-height="1401"
-     inkscape:window-x="3205"
-     inkscape:window-y="10"
+     inkscape:window-width="1920"
+     inkscape:window-height="1080"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -46,7 +46,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -65,35 +65,147 @@
          x="4.7521076"
          y="29.463203"
          style="stroke-width:0.26458332"
-         id="tspan860">A. Model predictions for Exp. 1a and Exp. 1b (ISO stimulus)</tspan></text>
+         id="tspan860">A. Model thresholds for Exp. 1a vs Exp. 1b (ISO stimulus)</tspan></text>
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig3b.png"
        xlink:href="supfig3b.png"
-       width="127"
-       height="76.199997"
-       preserveAspectRatio="none"
-       id="image870"
+       y="121.56276"
        x="5.9900775"
-       y="124.73775" />
+       id="image870"
+       preserveAspectRatio="none"
+       height="76.199997"
+       width="127" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig3a.png"
        xlink:href="supfig3a.png"
-       width="203.2"
-       height="76.199997"
-       preserveAspectRatio="none"
-       id="image881"
+       y="33.431957"
        x="4.7732744"
-       y="33.431957" />
+       id="image881"
+       preserveAspectRatio="none"
+       height="76.199997"
+       width="203.2" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
        x="5.9689107"
-       y="120.78939"
+       y="117.61438"
        id="text858-3"><tspan
          sodipodi:role="line"
          x="5.9689107"
-         y="120.78939"
+         y="117.61438"
          style="stroke-width:0.26458332"
          id="tspan860-7">B. Ratio of Exp. 1a/ Exp. 1b model thresholds</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="5.9689107"
+       y="206.69139"
+       id="text858-3-3"><tspan
+         sodipodi:role="line"
+         x="5.9689107"
+         y="206.69139"
+         style="stroke-width:0.26458332"
+         id="tspan860-7-6">C. &quot;Information&quot; curves</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="44.979164"
+       y="214.9532"
+       id="text936"><tspan
+         sodipodi:role="line"
+         id="tspan934"
+         x="44.979164"
+         y="214.9532"
+         style="stroke-width:0.26458332">All-information</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="136.95432"
+       y="214.9532"
+       id="text936-7"><tspan
+         sodipodi:role="line"
+         id="tspan934-5"
+         x="136.95432"
+         y="214.9532"
+         style="stroke-width:0.26458332">Rate-place</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfig3c.png"
+       xlink:href="supfig3c.png"
+       width="191.26201"
+       height="80.010002"
+       preserveAspectRatio="none"
+       id="image964"
+       x="3.7767346"
+       y="216.17357" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-245.69637"
+       y="200.22734"
+       id="text936-7-3"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan934-5-5"
+         x="-245.69637"
+         y="200.22734"
+         style="stroke-width:0.26458332">Low Freq</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-278.53232"
+       y="200.39012"
+       id="text936-7-3-6"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan934-5-5-2"
+         x="-278.53232"
+         y="200.39012"
+         style="stroke-width:0.26458332">High Freq</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#0000ff;stroke-width:0.25350598;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1273"
+       width="18.97263"
+       height="6.5445971"
+       x="30.336845"
+       y="249.42776" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#0000ff;fill-opacity:1;stroke:none;stroke-width:0.26458332;"
+       x="30.607389"
+       y="254.27899"
+       id="text1271-9"><tspan
+         sodipodi:role="line"
+         id="tspan1269-1"
+         x="30.607389"
+         y="254.27899"
+         style="stroke-width:0.26458332;fill:#0000ff;">Exp 1b</tspan></text>
+    <rect
+       style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.25437453;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       id="rect1273-2"
+       width="19.105396"
+       height="6.5437288"
+       x="22.452829"
+       y="271.94568" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-weight:normal;font-size:5.29166651px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="22.722939"
+       y="276.79645"
+       id="text1271-9-7"><tspan
+         sodipodi:role="line"
+         id="tspan1269-1-0"
+         x="22.722939"
+         y="276.79645"
+         style="stroke-width:0.26458332">Exp 1a</tspan></text>
+    <path
+       style="fill:#0000ff;stroke:#0000ff;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 39.288619,256.24139 -4.677217,4.94449 v 0 0"
+       id="path1314"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.26458332px;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1"
+       d="m 31.67144,272.0103 2.405424,-4.67722"
+       id="path1316"
+       inkscape:connector-curvature="0" />
   </g>
 </svg>
