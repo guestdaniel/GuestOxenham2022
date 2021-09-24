@@ -66,7 +66,9 @@ def handle_labels_and_axes(axis_main, first, title, yaxis_side='left'):
 
 
 
-def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, fs=int(100e3), fiber_type='msr', yaxis_side='left'):
+def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, 
+            color_lower, color_middle, color_upper,
+            fs=int(100e3), fiber_type='msr', yaxis_side='left'):
     """ Function to plot excitation pattern of DBL tones from Experiment 2
 
     Args:
@@ -103,15 +105,15 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
     # Plot masker components
     for harmonic in [2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12]:
         idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(6/12)))
-        axis_main.plot([harmonic*2**(6/12), harmonic*2**(6/12)], [0, mean_response[idx_min]], color='cyan',
+        axis_main.plot([harmonic*2**(6/12), harmonic*2**(6/12)], [0, mean_response[idx_min]], color=color_upper,
                        linestyle='dashed', label='_nolegend_')
         idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(-5.5/12)))
-        axis_main.plot([harmonic*2**(-5.5/12), harmonic*2**(-5.5/12)], [0, mean_response[idx_min]], color=[0, 1, 0],
+        axis_main.plot([harmonic*2**(-5.5/12), harmonic*2**(-5.5/12)], [0, mean_response[idx_min]], color=color_lower,
                        linestyle='dashed', label='_nolegend_')
     # Plot target components
     for harmonic in [6, 7, 8, 9, 10]:
         idx_min = np.argmin(np.abs(cfs/F0 - harmonic))
-        axis_main.plot([harmonic, harmonic], [0, mean_response[idx_min]], color='blue', linestyle='dashed',
+        axis_main.plot([harmonic, harmonic], [0, mean_response[idx_min]], color=color_middle, linestyle='dashed',
                        label='_nolegend_', linewidth=2)
     axis_main.plot(cfs/F0, mean_response, color=color)
     axis_main.fill_between(cfs/F0, mean_response - sd_response, mean_response + sd_response,
@@ -127,12 +129,17 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
 
 
 # Plot excitation patterns for HSR and LSR fibers at various TMRs
+color_lower = '#ff3b00'
+color_middle = '#ffb200'
+color_upper = '#ff00ac'
+# Loop
 for F0, label, side in zip([280, 1400], ['c', 'd'], ['left', 'right']):
     f, axs = plt.subplots(4, 2, figsize=(6, 6), sharex='all')
     tmrs = [0, 4, 8, 12]
     fiber_types = ['hsr', 'lsr']
     for idx_tmr in range(4):
         for idx_fiber_type in range(2):
-            plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', False, '#a28ac1',
-                    fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
+            plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', 
+                    False, 'black', color_lower, color_middle, color_upper, fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
     plt.savefig('plots/fig5' + label + '1.png', bbox_inches='tight')
+plt.close('all')

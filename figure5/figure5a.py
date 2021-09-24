@@ -68,7 +68,7 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr, n_repeat=20):
     return histograms
 
 
-def plot_ISI_histogram(f0, xlims=None):
+def plot_ISI_histogram(f0, xlims=None, cmap='viridis'):
     """ Plots outputs of calculate_ISI_histogram saved to disk
 
     Args:
@@ -88,7 +88,7 @@ def plot_ISI_histogram(f0, xlims=None):
         neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
         edges = np.linspace(start=0, stop=20, num=2200)
         # Plot pcolormesh
-        ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap='inferno')
+        ax[idx_tmr].pcolormesh(edges, neural_harm_nums, histograms, cmap=cmap)
         # Set labels
         if xlims == None:
             ax[idx_tmr].set_xlim((0, 8))
@@ -117,19 +117,20 @@ for tmr in tmrs:
 
 # Create plots
 # Define colorscheme for different F0s
-color_lower = '#03fffb'
+color_lower = '#ff3b00'
 color_middle = '#035bff'
 color_upper = '#2dff03'
 linewidth = 4
 linestyle = 'dashed'
+cmap = 'viridis'
 
 # Create main plot (zoomed-out histograms surfaces)
 for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
-    plot_ISI_histogram(F0)
+    plot_ISI_histogram(F0, cmap=cmap)
     plt.savefig('plots/fig5' + fig_subnum + '1.png')
 
     # Create subplot #1 (zoomed-in histogram surface, focused on 3.5 to 4.5 periods of F0)
-    fig, ax = plot_ISI_histogram(F0, (3.5, 4.5))
+    fig, ax = plot_ISI_histogram(F0, (3.5, 4.5), cmap=cmap)
     for idx_tmr in range(4):
         # Highlight peaks at F0 multiples
         ax[idx_tmr].plot([4, 4], [4, 12], color=color_middle, linewidth=linewidth, linestyle=linestyle)
@@ -139,7 +140,7 @@ for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
     plt.savefig('plots/fig5' + fig_subnum + '2.png')
 
     # Create subplot #2 (zoomed-in histogram surface, focused on 0.5 to 1.5 periods of F0)
-    fig, ax = plot_ISI_histogram(F0, (0.5, 1.5))
+    fig, ax = plot_ISI_histogram(F0, (0.5, 1.5), cmap=cmap)
     for idx_tmr in range(4):
         # Highlight peaks at F0 multiples
         ax[idx_tmr].plot([1, 1], [4, 12], color=color_middle, linewidth=linewidth, linestyle=linestyle)
