@@ -118,8 +118,8 @@ for tmr in tmrs:
 # Create plots
 # Define colorscheme for different F0s
 color_lower = '#ff3b00'
-color_middle = '#035bff'
-color_upper = '#2dff03'
+color_middle = '#ffb200'
+color_upper = '#ff00ac'
 linewidth = 4
 linestyle = 'dashed'
 cmap = 'viridis'
@@ -148,3 +148,4 @@ for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
         ax[idx_tmr].plot([1/2**(6/12), 1/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
         ax[idx_tmr].plot([2/2**(6/12), 2/2**(6/12)], [4, 12], color=color_upper, linewidth=linewidth, linestyle=linestyle)
     plt.savefig('plots/fig5' + fig_subnum + '3.png')
+plt.close('all')

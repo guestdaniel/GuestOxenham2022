@@ -30,7 +30,7 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.1313708"
-     inkscape:cx="188.86572"
+     inkscape:cx="365.64242"
      inkscape:cy="642.75251"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
@@ -39,10 +39,10 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2560"
-     inkscape:window-height="1440"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
+     inkscape:window-width="1265"
+     inkscape:window-height="1401"
+     inkscape:window-x="3205"
+     inkscape:window-y="10"
      inkscape:window-maximized="0"
      units="in" />
   <metadata
@@ -53,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -80,12 +80,12 @@
          id="flowPara2029" /></flowRoot>    <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5b1.png"
        xlink:href="fig5b1.png"
-       y="113.83481"
-       x="94.741974"
-       id="image6535-3"
-       preserveAspectRatio="none"
+       width="70.381996"
        height="90.491119"
-       width="70.381996" />
+       preserveAspectRatio="none"
+       id="image6535-3"
+       x="94.741974"
+       y="113.83481" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
@@ -144,21 +144,21 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5b2.png"
        xlink:href="fig5b2.png"
-       y="205.71187"
-       x="127.40462"
-       id="image10394-3"
-       preserveAspectRatio="none"
+       width="40.218277"
        height="60.327415"
-       width="40.218277" />
+       preserveAspectRatio="none"
+       id="image10394-3"
+       x="127.40462"
+       y="205.71187" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5b3.png"
        xlink:href="fig5b3.png"
-       y="205.71402"
-       x="92.006264"
-       id="image10405-6"
-       preserveAspectRatio="none"
+       width="40.218277"
        height="60.327415"
-       width="40.218277" />
+       preserveAspectRatio="none"
+       id="image10405-6"
+       x="92.006264"
+       y="205.71402" />
     <rect
        style="opacity:1;vector-effect:none;fill:none;fill-opacity:1;stroke:none;stroke-width:0.29610458;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
        id="rect4772-8"
@@ -186,12 +186,12 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5a1.png"
        xlink:href="fig5a1.png"
-       width="70.381989"
-       height="90.491119"
-       preserveAspectRatio="none"
-       id="image6535"
+       y="-15.648751"
        x="19.707844"
-       y="-15.648751" />
+       id="image6535"
+       preserveAspectRatio="none"
+       height="90.491119"
+       width="70.381989" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
@@ -218,21 +218,21 @@
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5a2.png"
        xlink:href="fig5a2.png"
-       width="40.218277"
-       height="60.327415"
-       preserveAspectRatio="none"
-       id="image10394"
+       y="76.228401"
        x="52.370487"
-       y="76.228401" />
+       id="image10394"
+       preserveAspectRatio="none"
+       height="60.327415"
+       width="40.218277" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5a3.png"
        xlink:href="fig5a3.png"
-       width="40.218277"
-       height="60.327415"
-       preserveAspectRatio="none"
-       id="image10405"
+       y="76.230545"
        x="16.972122"
-       y="76.230545" />
+       id="image10405"
+       preserveAspectRatio="none"
+       height="60.327415"
+       width="40.218277" />
     <g
        id="g933"
        style="stroke:#b3b3b3;stroke-opacity:1"
