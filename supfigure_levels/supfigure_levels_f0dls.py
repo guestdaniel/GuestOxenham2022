@@ -69,19 +69,19 @@ def simulate_supfigure_levels_f0dls(model, model_name, fs):
 
     # Construct simulation and run
     sim = model()
-    results = sim.run(params, runfunc=dc.decode_ideal_observer(lpfilter(sim.simulate)))
+    results = sim.run(params, runfunc=dc.decode_ideal_observer(sim.simulate))
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_AI.csv', decoding_type='AI',
+                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_AI_f0dls.csv', decoding_type='AI',
                 model=model_name, roving_type='none')
     save_to_csv([res[1] for res in results], params,
-                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_RP.csv', decoding_type='RP',
+                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_RP_f0dls.csv', decoding_type='RP',
                 model=model_name, roving_type='none')
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001, anf.AuditoryNerveZilany2014],
-                                 ['Heinz2001', 'Zilany2014'],
-                                 [int(500e3), int(500e3)]):
+for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
+                                 ['Zilany2014'],
+                                 [int(500e3)]):
     simulate_supfigure_levels_f0dls(model, model_name, fs)

@@ -1,7 +1,7 @@
 source('config.R')
 
 # Load simulations
-sims = list.files(file.path(root_directory, '/supfigure_levels/'), pattern='.csv')
+sims = list.files(file.path(root_directory, '/supfigure_levels/'), pattern='f0dls.csv')
 f0dls = data.frame()
 for (sim in 1:length(sims)) {
 	# Import each simulation CSV
@@ -55,4 +55,4 @@ f0dls %>%
     scale_color_continuous() + 
 	# Facets
 	facet_grid(. ~ model)
-ggsave(file.path('plots', 'supfigure_levels_a.png'), width=8, height=3)
+ggsave(file.path('plots', 'supfigure_levels_f0dls.png'), width=5, height=3)
