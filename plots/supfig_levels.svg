@@ -16,7 +16,10 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="supfig_levels.svg">
+   sodipodi:docname="supfig_levels.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/supfig_levels.png"
+   inkscape:export-xdpi="250.02701"
+   inkscape:export-ydpi="250.02701">
   <defs
      id="defs2">
     <clipPath
@@ -39,18 +42,18 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.4"
-     inkscape:cx="403.40341"
-     inkscape:cy="833.74085"
+     inkscape:cx="409.83198"
+     inkscape:cy="840.16943"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
      showguides="true"
      inkscape:guide-bbox="true"
      units="in"
-     inkscape:window-width="2560"
-     inkscape:window-height="1440"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
+     inkscape:window-width="630"
+     inkscape:window-height="1401"
+     inkscape:window-x="2565"
+     inkscape:window-y="10"
      inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
@@ -81,14 +84,14 @@
        x="-39.083504"
        y="-5.9561639" />
     <image
-       width="114.09361"
-       height="68.456169"
-       preserveAspectRatio="none"
-       id="image823-6"
-       x="92.31514"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfigure_levels_f0dls.png"
+       xlink:href="supfigure_levels_f0dls.png"
        y="28.866316"
-       xlink:href="/home/daniel/GuestOxenham2021/plots/supfigure_levels_f0dls.png"
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfigure_levels_f0dls.png" />
+       x="92.31514"
+       id="image823-6"
+       preserveAspectRatio="none"
+       height="68.456169"
+       width="114.09361" />
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"

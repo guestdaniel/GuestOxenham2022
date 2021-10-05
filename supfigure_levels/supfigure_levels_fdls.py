@@ -71,3 +71,4 @@ for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
                                  ['Zilany2014'],
                                  [int(500e3)]):
     simulate_supfigure_levels_fdls(model, model_name, fs)
+

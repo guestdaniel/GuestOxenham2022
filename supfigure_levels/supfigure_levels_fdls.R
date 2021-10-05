@@ -37,10 +37,9 @@ fdls$model = factor(fdls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst201
 # Construct plot
 fdls %>% 
 	filter(roving_type == 'None') %>%
-	ggplot(aes(x=freq, y=threshold/(freq)*100, color=as.numeric(as.character(nominal_level)))) +
+	ggplot(aes(x=freq, y=threshold/(freq)*100, color=as.numeric(as.character(nominal_level)), group=interaction(nominal_level, decoding_type))) +
 	# Geoms
 	geom_vline(xintercept=c(280*8, 1400*8), linetype="dashed", color="gray") +
-	geom_smooth(aes(x=freq, y=threshold*2e-3), se=FALSE, size=size_smooth, data=model_data, color='black', shape=1) +
 	geom_smooth(aes(shape=decoding_type), se=FALSE, size=size_smooth) +
 	geom_point(aes(shape=decoding_type), size=size_point) +
 	# Axes
@@ -65,6 +64,7 @@ fdls %>%
 	# Labels
 	xlab("Freq (Hz)") + 
 	ylab("FDL (%)") + 
+    scale_color_continuous() + 
 	guides(color=guide_legend(title="Level per\ncomponent\n(dB re:\nthreshold)"),
 	       shape=guide_legend(title="Decoding Type"),
 	       linetype=guide_legend(title="Decoding Type")) +
