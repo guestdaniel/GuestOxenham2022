@@ -117,7 +117,7 @@ def parse_level(freqs, level):
         level = level()
     if level is None:
         level = 40 * np.ones(len(freqs))  # if we don't have a fixed level, set level to 40 dB SPL
-    elif type(level) is float or type(level) is int:
+    elif isinstance(level, float) or isinstance(level, int):
         level = level * np.ones(len(freqs))  # if we have a float or an int, set each component to equal-level
     return level
 
@@ -139,7 +139,7 @@ def parse_phase(freqs, phase):
         phase = phase()
     if phase is None:
         phase = np.zeros(len(freqs))  # if we don't have a phase, set to sine phase
-    elif type(phase) is float or type(phase) is int:
+    elif isinstance(phase, float) or isinstance(phase, int):
         phase = phase * np.zeros(
             len(freqs))  # if we have a float or an int, set each component offset to this value
     return phase
