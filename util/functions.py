@@ -54,6 +54,46 @@ class ISOToneGuest2021_exp1a(sy.Synthesizer):
         return signal
 
 
+class ISOToneGuest2021_exp1b(sy.Synthesizer):
+    """ Synthesizes the ISO stimulus in Guest and Oxenham (2021).
+
+    Simplified version of the stimulus in Guest and Oxenham (2021). This version is the version from Experiment 1b, and
+    does not include acoustic masking noise.
+    """
+    def __init__(self):
+        super().__init__(stimulus_name='ISO Tone')
+
+    def synthesize(self, F0, dur=0.350, dur_ramp=0.02, level=45, phase=0, fs=int(48e3), **kwargs):
+        """
+        Synthesizes a harmonic complex tone composed of all components of the F0 up to the Nyquist rate. 
+        This is the same stimulus as used in Experiment 1b.
+
+        Arguments:
+            F0 (float): F0 of the complex tone in Hz
+            level (float): level per-component of the complex tone in dB SPL
+            phase (float): phase offset applied to each component of the complex tone in degrees
+            dur (float): duration in seconds
+            dur_ramp (float): duration of raised-cosine ramp in seconds
+            fs (int): sampling rate in Hz
+
+        Returns:
+            output (array): complex tone stimulus
+        """
+        # Create array of frequencies, levels, and phases
+        freqs = np.arange(F0, 20e3, F0) 
+        level = level * np.ones(len(freqs)) 
+        phase = phase + np.zeros(len(freqs))
+        # Synthesize, filter, and ramp complex tone signal
+        signal = sg.complex_tone(freqs, level, phase, dur, fs)
+        signal = sg.cosine_ramp(signal, dur_ramp, fs)
+        # Filter with bandpass filter
+        sos = butter(N=6, Wn=[F0 * 5.5 / (fs * 0.5), F0 * 10.5 / (fs * 0.5)], btype="band",
+                     output="sos")
+        signal = sosfiltfilt(sos, signal)
+        # Return
+        return signal
+
+
 class ISOToneGuest2021_exp1a_variable_harms(sy.Synthesizer):
     """ Synthesizes the ISO stimulus in Guest and Oxenham (2021), but with harmonic numbers that can be manipulated
 
@@ -97,7 +137,6 @@ class ISOToneGuest2021_exp1a_variable_harms(sy.Synthesizer):
         signal = sg.cosine_ramp(signal, dur_ramp, fs)
         # Return
         return signal
-
 
 
 def parse_level(freqs, level):
