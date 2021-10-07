@@ -23,7 +23,7 @@ f0dls$nominal_F0 = factor(f0dls$nominal_F0, levels=c(280, 1400), labels=c(280, 1
 
 # Construct plot
 f0dls %>% 
-	filter(nominal_level %in% c(20, 30)) %>%
+	filter(nominal_level %in% c(30)) %>%
 	filter(roving_type == 'None') %>%
 	ggplot(aes(x=stimulus, y=threshold/(as.numeric(as.character(nominal_F0)))*100, color=nominal_F0, shape=nominal_level)) + 
 	# Geoms
