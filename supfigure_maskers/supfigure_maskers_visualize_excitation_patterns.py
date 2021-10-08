@@ -93,26 +93,44 @@ cfs = 10**np.linspace(np.log10(280*5), np.log10(280*11), n_cf)
 
 # Show that GEOM vs ISO difference depends on delta size 
 deltas = [1e-2, 1e-1, 1e0, 1e1]
-fig, axs = plt.subplots(4, 1)
+fig, axs = plt.subplots(1, 4, figsize=(8, 3), sharey=True)
 for idx_delta, delta in enumerate(deltas):
+    # Draw horizontal line at 0
+    axs[idx_delta].plot([1400, 3100], [0, 0], color='black')
+    # Draw ISO excitation pattern
     thresholds_iso, eps_iso, params_iso = simulate_iso(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
-    ep_diff = eps_iso[0][1]-eps_iso[0][0]
+    ep_diff = (eps_iso[0][1]-eps_iso[0][0])/delta
     axs[idx_delta].plot(cfs, ep_diff)
 
+    # Draw GEOM excitation pattern
     thresholds_geom, eps_geom, params_geom = simulate_geom(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
-    ep_diff = eps_geom[0][1]-eps_geom[0][0]
+    ep_diff = (eps_geom[0][1]-eps_geom[0][0])/delta
     axs[idx_delta].plot(cfs, ep_diff)
 
+    # Draw harmonic indicators
+    for harm in [6, 7, 8, 9, 10]:
+        axs[idx_delta].plot([280*harm, 280*harm], [-10, 10], color='gray', linestyle='dashed')
+        axs[idx_delta].arrow(x=harm*280, y=5, dx=30, dy=0)
+
+    # Set ylims
+    axs[idx_delta].set_ylim((-10, 10))
+
+    # Set titles
+    axs[idx_delta].set_title('h = ' + str(delta) + ' Hz')
+    axs[idx_delta].set_xlabel('CF (Hz)')
+
+axs[0].set_ylabel('Derivative estimate ([sp/s]/Hz)')
+plt.savefig(os.path.join('plots', 'excitation_pattern_differences.png'))
 
 # Show instability in GEOM finite difference estimates
-deltas = [1e-2, 1e-1, 1e0, 1e1]
-fig, axs = plt.subplots(1, 2)
-for idx_delta, delta in enumerate(deltas):
-    thresholds_iso, eps_iso, params_iso = simulate_iso(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
-    ep_diff = eps_iso[0][1]-eps_iso[0][0]
-    axs[0].plot(cfs, ep_diff/np.max(np.abs(ep_diff)))
+#deltas = [1e-2, 1e-1, 1e0, 1e1]
+#fig, axs = plt.subplots(1, 2)
+#for idx_delta, delta in enumerate(deltas):
+#    thresholds_iso, eps_iso, params_iso = simulate_iso(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
+#    ep_diff = eps_iso[0][1]-eps_iso[0][0]
+#    axs[0].plot(cfs, ep_diff/np.max(np.abs(ep_diff)))
 
-    thresholds_geom, eps_geom, params_geom = simulate_geom(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
-    ep_diff = eps_geom[0][1]-eps_geom[0][0]
-    axs[1].plot(cfs, ep_diff/np.max(np.abs(ep_diff)))
-axs[1].legend(deltas)
+#    thresholds_geom, eps_geom, params_geom = simulate_geom(280, anf.AuditoryNerveHeinz2001, 'Heinz2001', 500e3, delta=delta, n_cf=n_cf)
+#    ep_diff = eps_geom[0][1]-eps_geom[0][0]
+#    axs[1].plot(cfs, ep_diff/np.max(np.abs(ep_diff)))
+#axs[1].legend(deltas)

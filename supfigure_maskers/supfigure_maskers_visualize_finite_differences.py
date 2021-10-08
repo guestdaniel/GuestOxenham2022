@@ -58,6 +58,7 @@ def simulate(F0, model=anf.AuditoryNerveHeinz2001, model_name='Heinz2001', fs=50
 cf = 1975
 resolution = 50
 
+##### FIGURE 1
 # Plot and sim
 plt.figure()
 deltas = 10**np.linspace(np.log10(1e-6), np.log10(5e1), resolution)
@@ -80,6 +81,7 @@ plt.xscale('log')
 plt.yscale('log')
 #plt.yscale('symlog')
 
+##### FIGURE 2
 # Plot and sim
 plt.figure()
 deltas = 10**np.linspace(np.log10(1e-6), np.log10(5e1), resolution)
@@ -100,3 +102,31 @@ for idx_delta, delta in enumerate(deltas):
 plt.plot(deltas, results)
 plt.xscale('log')
 #plt.yscale('log')
+
+##### FIGURE 3
+# Plot and sim
+plt.figure(figsize=(3,3))
+deltas = 10**np.linspace(np.log10(1e-6), np.log10(5e1), resolution)
+results = np.zeros_like(deltas)
+for idx_delta, delta in enumerate(deltas):
+    temp = simulate(280, delta=delta, cf=cf)
+    results[idx_delta] = (temp[0][1] - temp[0][0])/delta
+
+plt.plot(deltas, np.abs(results))
+plt.xscale('log')
+plt.yscale('log')
+
+results = np.zeros_like(deltas)
+for idx_delta, delta in enumerate(deltas):
+    temp = simulate(280, delta=delta, stim='geom', cf=cf)
+    results[idx_delta] = (temp[0][1] - temp[0][0])/delta
+
+plt.plot(deltas, np.abs(results))
+plt.xscale('log')
+plt.yscale('log')
+#plt.yscale('symlog')
+plt.ylabel('Derivative estimate')
+plt.xlabel('h')
+plt.legend(['ISO', 'GEOM'])
+plt.title('CF = ' + str(cf) + ' Hz')
+plt.savefig(os.path.join('plots', 'supfig_maskers_derivative_estimate_figures.png'))
