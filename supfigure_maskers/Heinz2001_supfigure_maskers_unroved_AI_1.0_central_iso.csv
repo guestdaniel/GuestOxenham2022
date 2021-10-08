@@ -1,0 +1,3 @@
+,API,F0,F0_masker,cf_high,cf_low,decoding_type,delta,delta_theta,dur,dur_ramp,finite_difference_method,fs,level,model,model_name,n_cf,n_fiber_per_chan,nominal_F0,nominal_level,result,roving_type,stimulus
+0,[0.],279.0,287.1753240235343,3069.0,1395.0,AI,1.0,[2.0],0.1,0.01,central,1000000.0,45.23440345858941,Heinz2001,Heinz2001,40.0,51.0,280.0,30.0,0.0018746153558580672,none,iso
+1,[0.],1399.0,1439.9938290642453,15389.0,6995.0,AI,1.0,[2.0],0.1,0.01,central,1000000.0,47.93581951795757,Heinz2001,Heinz2001,40.0,51.0,1400.0,30.0,0.15183617204791033,none,iso
