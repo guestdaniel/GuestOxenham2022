@@ -99,4 +99,5 @@ for model, model_name, fs in zip([anf.AuditoryNerveHeinz2001],
                                  [int(1000e3)]):
     for stim in ['iso', 'geom']:
         for masker_interval in [0.0001, 0.001, 0.01, 0.1, 1]:
-            simulate(model, model_name, fs, stim=stim, masker_interval=masker_interval)
+            for delta in [1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1]:
+                simulate(model, model_name, fs, stim=stim, masker_interval=masker_interval, delta=delta)

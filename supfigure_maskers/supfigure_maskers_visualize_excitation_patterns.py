@@ -120,7 +120,7 @@ for idx_delta, delta in enumerate(deltas):
     axs[idx_delta].set_xlabel('CF (Hz)')
 
 axs[0].set_ylabel('Derivative estimate ([sp/s]/Hz)')
-plt.savefig(os.path.join('plots', 'excitation_pattern_differences.png'))
+plt.savefig(os.path.join('plots', 'excitation_pattern_differences.png'), dpi=300)
 
 # Show instability in GEOM finite difference estimates
 #deltas = [1e-2, 1e-1, 1e0, 1e1]

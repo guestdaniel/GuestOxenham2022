@@ -21,6 +21,14 @@ f0dls$model = factor(f0dls$model, levels=c("Heinz2001", "Zilany2014", "Verhulst2
 f0dls$stimulus = factor(f0dls$stimulus, levels=c("iso", "geom"), labels=c("ISO", "GEOM"))
 f0dls$nominal_F0 = factor(f0dls$nominal_F0, levels=c(280, 1400), labels=c(280, 1400))
 
+# Set plotting parameters
+n_breaks = 10
+breaks = c(seq(2, 10, 10/n_breaks) %o% 10^(-8:3))
+labels = as.character(breaks)
+labels[!(log10(breaks)%%1==0) & breaks != 2000] = ''
+ticksizes = rep(.25, length(breaks))
+ticksizes[log10(breaks)%%1==0] = 1
+
 # Construct plot #1 (just single example)
 f0dls %>% 
 	filter(delta == 0.01) %>%
