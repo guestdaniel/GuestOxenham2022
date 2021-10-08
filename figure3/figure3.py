@@ -11,7 +11,7 @@ import os, sys
 sys.path.append(os.getcwd())
 
 
-def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, interval_size=0.5, fs=int(100e3)):
+def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, interval_size=0.5, fs=int(100e3), fiber_type='hsr'):
     """
     Function to plot excitation pattern of a single tone from Experiment 1.
 
@@ -34,7 +34,7 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, i
                            level=lambda: np.random.uniform(level-3, level+3, n_freq),
                            level_masker=lambda: np.random.uniform(level-3, level+3, n_freq_masker),
                            ten=True, level_noise=level_noise,
-                           cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type='msr')
+                           cf_low=F0 * 4, cf_high=F0 * 12, n_cf=200, fiber_type=fiber_type)
     params.repeat(10)
     # Synthesize stimuli
     if condition == 'ISO':
@@ -72,11 +72,16 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, i
     axis_main.set_xticklabels(['', 6, 7, 8, 9, 10, ''])
 
 # Plot excitation patterns
-f, (a0, a1) = plt.subplots(2, 1, figsize=(4.25, 4))
-plot_ep(a0, 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62')
-plot_ep(a0, 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb')
-plot_ep(a1, 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62')
-plot_ep(a1, 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb')
+f, axs = plt.subplots(2, 2, figsize=(4.25, 4))
+plot_ep(axs[0, 0], 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62', fiber_type='hsr')
+plot_ep(axs[0, 0], 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb', fiber_type='hsr')
+plot_ep(axs[1, 0], 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62', fiber_type='hsr')
+plot_ep(axs[1, 0], 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb', fiber_type='hsr')
+plot_ep(axs[0, 1], 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62', fiber_type='msr')
+plot_ep(axs[0, 1], 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb', fiber_type='msr')
+plot_ep(axs[1, 1], 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62', fiber_type='msr')
+plot_ep(axs[1, 1], 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb', fiber_type='msr')
+
 plt.legend(['ISO', 'GEOM'], loc=1, framealpha=1)
 plt.tight_layout()
 # Save to disk

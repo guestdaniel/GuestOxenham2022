@@ -27,7 +27,7 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr, n_repeat=20):
         histograms (list): list of histograms counts for ISI histogram for each neural harmonic number
     """
     # Setup params [simulation]
-    params = si.Parameters(fs=int(200e3), n_cf=1, anf_num=(1, 0, 0),                                          # model
+    params = si.Parameters(fs=int(500e3), n_cf=1, anf_num=(1, 0, 0),                                          # model
                            F0=280, F0_masker_1=280*2**(-5.5/12), F0_masker_2=280*2**(6/12),                   # F0s
                            level=50, level_masker_1=50-tmr, level_masker_2=50-tmr,                            # levels
                            phase=0, phase_masker_1=0, phase_masker_2=0,                                       # phases
