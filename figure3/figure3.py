@@ -72,7 +72,7 @@ def plot_ep(axis_main, F0, condition, level, level_noise, title, first, color, i
     axis_main.set_xticklabels(['', 6, 7, 8, 9, 10, ''])
 
 # Plot excitation patterns
-f, axs = plt.subplots(2, 2, figsize=(4.25, 4))
+f, axs = plt.subplots(2, 2, figsize=(7, 4), sharex=True, sharey=True)
 plot_ep(axs[0, 0], 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62', fiber_type='hsr')
 plot_ep(axs[0, 0], 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb', fiber_type='hsr')
 plot_ep(axs[1, 0], 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62', fiber_type='hsr')
@@ -81,7 +81,6 @@ plot_ep(axs[0, 1], 280, 'ISO', 50, 40, '280 Hz', True, '#fc8d62', fiber_type='ms
 plot_ep(axs[0, 1], 280, 'GEOM', 50, 40, '280 Hz', True, '#8da0cb', fiber_type='msr')
 plot_ep(axs[1, 1], 1400, 'ISO', 50, 40, '1400 Hz', False, '#fc8d62', fiber_type='msr')
 plot_ep(axs[1, 1], 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb', fiber_type='msr')
-
 plt.legend(['ISO', 'GEOM'], loc=1, framealpha=1)
 plt.tight_layout()
 # Save to disk

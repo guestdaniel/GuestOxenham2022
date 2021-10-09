@@ -27,8 +27,8 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr, n_repeat=20):
         histograms (list): list of histograms counts for ISI histogram for each neural harmonic number
     """
     # Setup params [simulation]
-    params = si.Parameters(fs=int(500e3), n_cf=1, anf_num=(1, 0, 0),                                          # model
-                           F0=280, F0_masker_1=280*2**(-5.5/12), F0_masker_2=280*2**(6/12),                   # F0s
+    params = si.Parameters(fs=int(400e3), fs_synapse=200e3, n_cf=1, anf_num=(1, 0, 0),                        # model
+                           F0=f0, F0_masker_1=f0*2**(-5.5/12), F0_masker_2=f0*2**(6/12),                      # F0s
                            level=50, level_masker_1=50-tmr, level_masker_2=50-tmr,                            # levels
                            phase=0, phase_masker_1=0, phase_masker_2=0,                                       # phases
                            ten=True, level_noise=40)                                                          # noise
@@ -67,6 +67,17 @@ def calculate_ISI_histogram(f0, neural_harm_nums, tmr, n_repeat=20):
     # Return
     return histograms
 
+# Run simulations
+tmrs = [0, 4, 8, 12]  # set TMR for each simulation
+f0s = [280, 1400]     # set F0s for each simulation
+
+for tmr in tmrs:
+    for f0 in f0s:
+        # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
+        histograms = calculate_ISI_histogram(f0, np.linspace(4, 12, 40), tmr=tmr, n_repeat=100)
+        np.save('figure5/isi_histograms_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
+        np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', np.linspace(4, 12, 40))
+
 
 def plot_ISI_histogram(f0, xlims=None, cmap='viridis'):
     """ Plots outputs of calculate_ISI_histogram saved to disk
@@ -80,6 +91,14 @@ def plot_ISI_histogram(f0, xlims=None, cmap='viridis'):
         fig (Figure): figure object generated, useful for adding to plot or adjusting settings post hoc
         ax (Axes): axes object generated, useful for adding to plot or adjusting settings post hoc
     """
+    # Manually adjust font sizes
+    plt.rc('font', size=12)          # controls default text sizes
+    plt.rc('axes', titlesize=12)     # fontsize of the axes title
+    plt.rc('axes', labelsize=20)    # fontsize of the x and y labels
+    plt.rc('xtick', labelsize=20)    # fontsize of the tick labels
+    plt.rc('ytick', labelsize=20)    # fontsize of the tick labels
+    plt.rc('legend', fontsize=12-2)  # legend fontsize
+    plt.rc('figure', titlesize=16)  # fontsize of the figure title
     # Create main plot (part a)
     fig, ax = plt.subplots(4, 1, figsize=(7, 9), sharex='all')
     for idx_tmr, tmr in enumerate(tmrs):
@@ -104,16 +123,6 @@ def plot_ISI_histogram(f0, xlims=None, cmap='viridis'):
     return fig, ax
 
 
-# Run simulations
-tmrs = [0, 4, 8, 12]  # set TMR for each simulation
-f0s = [280, 1400]     # set F0s for each simulation
-
-for tmr in tmrs:
-    for f0 in f0s:
-        # Calculate ISI histograms for one Larsen and Delgutte (2008) stimulus and save to disk
-        histograms = calculate_ISI_histogram(f0, np.linspace(4, 12, 40), tmr=tmr, n_repeat=100)
-        np.save('figure5/isi_histograms_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
-        np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', np.linspace(4, 12, 40))
 
 # Create plots
 # Define colorscheme for different F0s
