@@ -9,7 +9,7 @@ sys.path.append(os.getcwd())
 from util.functions import adjust_level
 
 
-def simulate_supfigure_levels_fdls(model, model_name, fs):
+def simulate_supfigure_distortion_fdls(model, model_name, fs, fs_synapse):
     """
     Estimates frequency difference limens (FDLs) using ideal observer analysis for a given auditory nerve model. Saves
     the results to disk.
@@ -26,14 +26,14 @@ def simulate_supfigure_levels_fdls(model, model_name, fs):
     dur_ramp = 0.01  # seconds
 
     # Define model parameters
-    cf_low = 0.5*freqs
+    cf_low = 0.6*freqs
     cf_high = 1.5*freqs
     n_cf = 40
     n_fiber_per_chan = round(((np.log10(1.5/0.5)/3)*18000)/n_cf)  # assume ~18k HSR fibers from 0.2 to 20 kHz
 
     # Encode parameters
     params = si.Parameters(dur=dur, dur_ramp=dur_ramp, fs=fs, n_cf=n_cf, delta_theta=[0.001], API=np.zeros(1),
-                           n_fiber_per_chan=n_fiber_per_chan, model_name=model_name)
+                           n_fiber_per_chan=n_fiber_per_chan, model_name=model_name, fs_synapse=fs_synapse)
     params.wiggle('freq', freqs)                               # wiggle frequencies
     params.stitch('cf_low', cf_low)                            # stitch cf_low (each freq corresponds to a cf_low)
     params.stitch('cf_high', cf_high)                          # stitch cf_high (each freq corresponds to a cf_high)
@@ -59,16 +59,18 @@ def simulate_supfigure_levels_fdls(model, model_name, fs):
 
     # Compile results
     save_to_csv([res[0] for res in results], params,
-                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_AI_fdls.csv', decoding_type='AI',
+                'supfigure_distortion/' + model_name + '_supfigure_distortion_unroved_AI_fdls.csv', decoding_type='AI',
                 model=model_name, roving_type='none')
     save_to_csv([res[1] for res in results], params,
-                'supfigure_levels/' + model_name + '_supfigure_levels_unroved_RP_fdls.csv', decoding_type='RP',
+                'supfigure_distortion/' + model_name + '_supfigure_distortion_unroved_RP_fdls.csv', decoding_type='RP',
                 model=model_name, roving_type='none')
 
 
 # Loop through models and calculate FDLs for each model
-for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
+for model, model_name, fs, fs_synapse in zip([anf.AuditoryNerveZilany2014],
                                  ['Zilany2014'],
-                                 [int(200e3)]):
-    simulate_supfigure_levels_fdls(model, model_name, fs)
+                                 [int(200e3)],
+                                 [100e3]):
+    simulate_supfigure_distortion_fdls(model, model_name, fs, fs_synapse=fs_synapse)
+
 

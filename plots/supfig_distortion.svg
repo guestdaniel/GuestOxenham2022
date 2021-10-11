@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="210mm"
+   height="297mm"
+   viewBox="0 0 210 297"
+   version="1.1"
+   id="svg1591"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="supfig_distortion.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/supfig_distortion.png"
+   inkscape:export-xdpi="299.94073"
+   inkscape:export-ydpi="299.94073">
+  <defs
+     id="defs1585">
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0.0"
+       refX="0.0"
+       id="Arrow1Send"
+       style="overflow:visible;"
+       inkscape:isstock="true">
+      <path
+         id="path1619"
+         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
+         transform="scale(0.2) rotate(180) translate(6,0)" />
+    </marker>
+    <marker
+       inkscape:stockid="Arrow1Send"
+       orient="auto"
+       refY="0"
+       refX="0"
+       id="Arrow1Send-5"
+       style="overflow:visible"
+       inkscape:isstock="true">
+      <path
+         inkscape:connector-curvature="0"
+         id="path1619-3"
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)" />
+    </marker>
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="369.35483"
+     inkscape:cy="601.81001"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     showguides="false"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata1588">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title />
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfigure_distortion_b.png"
+       xlink:href="supfigure_distortion_b.png"
+       y="91.065857"
+       x="6.3690233"
+       id="image2176"
+       preserveAspectRatio="none"
+       height="60.25753"
+       width="192.82408" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfigure_distortion_a.png"
+       xlink:href="supfigure_distortion_a.png"
+       y="12.267395"
+       x="6.3690233"
+       id="image2187"
+       preserveAspectRatio="none"
+       height="60.25753"
+       width="192.82408" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="9.9034481"
+       y="10.747543"
+       id="text878"><tspan
+         sodipodi:role="line"
+         id="tspan876"
+         x="9.9034481"
+         y="10.747543"
+         style="stroke-width:0.26458332">A. Excitation patterns at high levels for pure tones</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="9.9034481"
+       y="89.74456"
+       id="text878-6"><tspan
+         sodipodi:role="line"
+         id="tspan876-1"
+         x="9.9034481"
+         y="89.74456"
+         style="stroke-width:0.26458332">B. Excitation patterns at high levels for complex tones</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.68669701px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25107303"
+       x="96.450325"
+       y="76.796135"
+       id="text2228"><tspan
+         sodipodi:role="line"
+         id="tspan2226"
+         x="96.450325"
+         y="76.796135"
+         style="stroke-width:0.25107303">CF/freq</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.68669701px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.25107303"
+       x="97.631516"
+       y="155.56715"
+       id="text2228-2"><tspan
+         sodipodi:role="line"
+         id="tspan2226-9"
+         x="97.631516"
+         y="155.56715"
+         style="stroke-width:0.25107303">CF/F0</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#1f77b4;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="183.07962"
+       y="31.200453"
+       id="text2250"><tspan
+         sodipodi:role="line"
+         x="183.07962"
+         y="31.200453"
+         style="fill:#1f77b4;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256">20 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ff7f0e;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="183.07962"
+       y="36.317661"
+       id="text2250-3"><tspan
+         sodipodi:role="line"
+         x="183.07962"
+         y="36.317661"
+         style="fill:#ff7f0e;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-1">40 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#2ca02c;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="183.07962"
+       y="41.434853"
+       id="text2250-9"><tspan
+         sodipodi:role="line"
+         x="183.07962"
+         y="41.434853"
+         style="fill:#2ca02c;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-4">60 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#d62728;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="183.07962"
+       y="46.55204"
+       id="text2250-7"><tspan
+         sodipodi:role="line"
+         x="183.07962"
+         y="46.55204"
+         style="fill:#d62728;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-8">80 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#1f77b4;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="182.6125"
+       y="110.46622"
+       id="text2250-4"><tspan
+         sodipodi:role="line"
+         x="182.6125"
+         y="110.46622"
+         style="fill:#1f77b4;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-5">20 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ff7f0e;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="182.6125"
+       y="115.58344"
+       id="text2250-3-0"><tspan
+         sodipodi:role="line"
+         x="182.6125"
+         y="115.58344"
+         style="fill:#ff7f0e;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-1-3">40 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#2ca02c;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="182.6125"
+       y="120.70063"
+       id="text2250-9-6"><tspan
+         sodipodi:role="line"
+         x="182.6125"
+         y="120.70063"
+         style="fill:#2ca02c;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-4-1">60 dB</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#d62728;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="182.6125"
+       y="125.81779"
+       id="text2250-7-0"><tspan
+         sodipodi:role="line"
+         x="182.6125"
+         y="125.81779"
+         style="fill:#d62728;fill-opacity:1;stroke-width:0.26458332"
+         id="tspan2256-8-6">80 dB</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/supfigure_distortion_fdls.png"
+       xlink:href="supfigure_distortion_fdls.png"
+       width="127"
+       height="76.199997"
+       preserveAspectRatio="none"
+       id="image854"
+       x="6.3690233"
+       y="169.88663" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="10.213893"
+       y="165.71779"
+       id="text878-6-3"><tspan
+         sodipodi:role="line"
+         id="tspan876-1-6"
+         x="10.213893"
+         y="165.71779"
+         style="stroke-width:0.26458332">C. Updated FDLs at high levels</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none;marker-end:url(#Arrow1Send)"
+       d="m 35.145943,28.79503 2.405424,4.075858"
+       id="path1602"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1;marker-end:url(#Arrow1Send-5)"
+       d="m 88.012927,32.249357 2.405424,4.075858"
+       id="path1602-5"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>

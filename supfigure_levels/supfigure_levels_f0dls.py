@@ -83,5 +83,5 @@ def simulate_supfigure_levels_f0dls(model, model_name, fs):
 # Loop through models and calculate FDLs for each model
 for model, model_name, fs in zip([anf.AuditoryNerveZilany2014],
                                  ['Zilany2014'],
-                                 [int(500e3)]):
+                                 [int(200e3)]):
     simulate_supfigure_levels_f0dls(model, model_name, fs)
