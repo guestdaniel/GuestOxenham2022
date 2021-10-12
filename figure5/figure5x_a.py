@@ -66,9 +66,26 @@ def handle_labels_and_axes(axis_main, first, title, yaxis_side='left'):
 
 
 
-def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, color, 
+def gen_ep(F0, level, level_maskers, level_noise, fs=100e3, fiber_type='msr'):
+    # Get params
+    params = prep_ep(F0, level, level_maskers, level_noise, fs, fiber_type)
+    params.append(['F0', 'level'], [F0, lambda: np.random.uniform(level-3, level+3, len(np.arange(F0, 48000 / 2, F0)))])
+    params.repeat(10)
+    # Synthesize stimuli
+    stimulus = DBLToneGuest2021().synthesize_sequence(params)
+    # Add stimulus and flatten
+    params.add_inputs(stimulus)
+    params.flatten_and_unnest()
+    # Estimate responses
+    sim = anf.AuditoryNerveZilany2014()
+    resp = sim.run(params)
+    # Save
+    np.save(os.path.join('figure5', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), resp)
+
+
+def plot_ep(axis_main, F0, level_maskers, title, first, color, 
             color_lower, color_middle, color_upper,
-            fs=int(100e3), fiber_type='msr', yaxis_side='left'):
+            fiber_type='msr', yaxis_side='left'):
     """ Function to plot excitation pattern of DBL tones from Experiment 2
 
     Args:
@@ -84,18 +101,8 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
         fiber_type (str): which fiber type ('high', 'medium', or 'low') to use
         yaxis_side (str): where to plot the yticks and yticklabels ('left' or 'right')
     """
-    # Get params
-    params = prep_ep(F0, level, level_maskers, level_noise, fs, fiber_type)
-    params.append(['F0', 'level'], [F0, lambda: np.random.uniform(level-3, level+3, len(np.arange(F0, 48000 / 2, F0)))])
-    params.repeat(10)
-    # Synthesize stimuli
-    stimulus = DBLToneGuest2021().synthesize_sequence(params)
-    # Add stimulus and flatten
-    params.add_inputs(stimulus)
-    params.flatten_and_unnest()
-    # Estimate responses
-    sim = anf.AuditoryNerveZilany2014()
-    resp = sim.run(params)
+    # Load from disk
+    resp = np.load(os.path.join('figure5', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), allow_pickle=True)
     # Calculate cfs
     cfs = 10**np.linspace(np.log10(F0*4), np.log10(F0*12), 200)
     # Calculate mean over time and standard deivation over means
@@ -103,13 +110,14 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
     mean_response = np.mean(firing_rates, axis=0)
     sd_response = np.std(firing_rates, axis=0)
     # Plot masker components
-    for harmonic in [2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12]:
-        idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(6/12)))
-        axis_main.plot([harmonic*2**(6/12), harmonic*2**(6/12)], [0, mean_response[idx_min]], color=color_upper,
-                       linestyle='dashed', label='_nolegend_')
-        idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(-5.5/12)))
-        axis_main.plot([harmonic*2**(-5.5/12), harmonic*2**(-5.5/12)], [0, mean_response[idx_min]], color=color_lower,
-                       linestyle='dashed', label='_nolegend_')
+    if level_maskers > 30:
+        for harmonic in [2, 3, 4, 5, 6, 7, 8, 8, 10, 11, 12]:
+            idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(6/12)))
+            axis_main.plot([harmonic*2**(6/12), harmonic*2**(6/12)], [0, mean_response[idx_min]], color=color_upper,
+                        linestyle='dashed', label='_nolegend_')
+            idx_min = np.argmin(np.abs(cfs/F0 - harmonic*2**(-5.5/12)))
+            axis_main.plot([harmonic*2**(-5.5/12), harmonic*2**(-5.5/12)], [0, mean_response[idx_min]], color=color_lower,
+                        linestyle='dashed', label='_nolegend_')
     # Plot target components
     for harmonic in [6, 7, 8, 9, 10]:
         idx_min = np.argmin(np.abs(cfs/F0 - harmonic))
@@ -128,6 +136,16 @@ def plot_ep(axis_main, F0, level, level_maskers, level_noise, title, first, colo
         axis_main.set_ylim((0, 50))
 
 
+# Set parameters
+tmrs = [0, 5, 10, 150]
+fiber_types = ['hsr', 'lsr']
+
+# First, we generate the excitation patterns and store them on disk
+for F0 in [280, 1400]:
+    for tmr in tmrs:
+        for fiber_type in fiber_types:
+            gen_ep(F0, 50, 50 - tmr, 37, fiber_type=fiber_type)
+
 # Plot excitation patterns for HSR and LSR fibers at various TMRs
 color_lower = '#ff3b00'
 color_middle = '#ffb200'
@@ -135,11 +153,12 @@ color_upper = '#ff00ac'
 # Loop
 for F0, label, side in zip([280, 1400], ['c', 'd'], ['left', 'right']):
     f, axs = plt.subplots(4, 2, figsize=(6, 6), sharex='all')
-    tmrs = [0, 4, 8, 12]
+    tmrs = [0, 5, 10, 150]
     fiber_types = ['hsr', 'lsr']
     for idx_tmr in range(4):
         for idx_fiber_type in range(2):
-            plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50, 50 - tmrs[idx_tmr], 40, '1400 Hz', 
-                    False, 'black', color_lower, color_middle, color_upper, fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
+            plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50 - tmrs[idx_tmr], '1400 Hz', 
+                    False, 'black', color_lower, color_middle, color_upper, 
+                    fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
     plt.savefig('plots/fig5' + label + '1.png', bbox_inches='tight')
 plt.close('all')
