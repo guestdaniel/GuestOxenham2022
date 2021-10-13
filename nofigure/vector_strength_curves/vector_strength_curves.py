@@ -90,7 +90,7 @@ def estimate_vector_strength(freqs, fs, model, model_name, n_rep, n_stim_rep, du
 # Define parameters
 fs = int(200e3)  # sampling rate in Hz
 n_rep = 50
-n_stim_rep = 150
+n_stim_rep = 300
 freqs = 10**np.linspace(np.log10(200), np.log10(20000), 25)  # CFs for which we will measure vector strength curves
 
 # Save cfs, levels, and freqs to disk
