@@ -9,6 +9,8 @@ import matplotlib.pyplot as plt
 import matplotlib.patches as patches
 import os, sys
 sys.path.append(os.getcwd())
+import matplotlib
+matplotlib.use('Agg')
 
 
 def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
@@ -42,12 +44,14 @@ def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
                                         np.zeros(int(params[0]['fs']*0.040))])
 
     # Generate plot
-    fig, axs = plt.subplots(3, 3, gridspec_kw={'width_ratios': [1, 4, 1], 'height_ratios': [1, 4, 1]})
+    fig, axs = plt.subplots(4, 3, gridspec_kw={'width_ratios': [1, 4, 1], 'height_ratios': [1, 4, 1, 1]}, figsize=(8, 7))
     # Null out corners
     axs[0, 0].axis('off')
     axs[2, 2].axis('off')
     axs[0, 2].axis('off')
     axs[2, 0].axis('off')
+    axs[3, 0].axis('off')
+    axs[3, 2].axis('off')
 
     # Plot surface (middle)
     axs[1, 1].pcolormesh(t, f, resp[0], shading='auto')
@@ -61,18 +65,31 @@ def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
     axs[0, 1].set_xlim((xlow, xhigh))
     axs[0, 1].set_ylabel('Amplitude (Pa)', rotation='horizontal', ha='right')
 
-    # Plot average neural response (bottom)
+    # Plot average neural response (bottom, on-CF)
     idx = np.argmin(np.abs(f - f0*4))
     h4 = axs[2, 1].plot(t, resp[0][idx, :], color='slateblue')
     idx = np.argmin(np.abs(f - f0*12))
     h12 = axs[2, 1].plot(t, resp[0][idx, :], color='cornflowerblue')
     axs[2, 1].set_xlim((xlow, xhigh))
-    axs[2, 1].set_xlabel('Normalized time (periods)')
-    axs[2, 1].legend(['H4', 'H12'], framealpha=1)
+    #axs[2, 1].set_xlabel('Normalized time (periods)')
+    axs[2, 1].legend(['H4', 'H12'], framealpha=1, loc=1)
     axs[2, 1].set_ylabel('Firing rate', rotation='horizontal')
     axs[2, 1].yaxis.tick_right()
     axs[2, 1].yaxis.set_label_position('right')
     axs[2, 1].yaxis.set_label_coords(1.20, 0.40)
+
+    # Plot average neural response (bottom, off-CF)
+    idx = np.argmin(np.abs(f - f0*5.5))
+    axs[3, 1].plot(t, resp[0][idx, :], color='salmon')
+    idx = np.argmin(np.abs(f - f0*9.5))
+    axs[3, 1].plot(t, resp[0][idx, :], color='maroon')
+    axs[3, 1].set_xlim((xlow, xhigh))
+    axs[3, 1].set_xlabel('Normalized time (periods)')
+    axs[3, 1].legend(['H5.5', 'H9.5'], framealpha=1, loc=1)
+    axs[3, 1].set_ylabel('Firing rate', rotation='horizontal')
+    axs[3, 1].yaxis.tick_right()
+    axs[3, 1].yaxis.set_label_position('right')
+    axs[3, 1].yaxis.set_label_coords(1.20, 0.40)
 
     # Plot spectrum (left)
     X = 20*np.log10(np.abs(np.fft.fft(stim, n=stim.shape[0]*10)))
@@ -93,6 +110,10 @@ def sim_and_plot_neurogram(f0, xlow=20, xhigh=25):
     axs[1, 2].plot([0, np.mean(resp[0], axis=1)[idx]], [f0*4, f0*4], color='slateblue', linestyle='dashed')
     idx = np.argmin(np.abs(f - f0*12))
     axs[1, 2].plot([0, np.mean(resp[0], axis=1)[idx]], [f0*12, f0*12], color='cornflowerblue', linestyle='dashed')
+    idx = np.argmin(np.abs(f - f0*5.5))
+    axs[1, 2].plot([0, np.mean(resp[0], axis=1)[idx]], [f0*5.5, f0*5.5], color='salmon', linestyle='dashed')
+    idx = np.argmin(np.abs(f - f0*9.5))
+    axs[1, 2].plot([0, np.mean(resp[0], axis=1)[idx]], [f0*9.5, f0*9.5], color='maroon', linestyle='dashed')
     axs[1, 2].set_ylim(params[0]['cf_low'], params[0]['cf_high'])
     axs[1, 2].get_yaxis().set_visible(False)
     axs[1, 2].set_xlabel('Firing rate')

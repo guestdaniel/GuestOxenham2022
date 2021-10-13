@@ -10,16 +10,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="336.32281mm"
-   height="131.50752mm"
-   viewBox="0 0 336.32281 131.50752"
+   width="339.86267mm"
+   height="154.97179mm"
+   viewBox="0 0 339.86267 154.97178"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig1.svg"
    inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig1.png"
-   inkscape:export-xdpi="150.03"
-   inkscape:export-ydpi="150.03">
+   inkscape:export-xdpi="299.99057"
+   inkscape:export-ydpi="299.99057">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -30,8 +30,8 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="0.98994949"
-     inkscape:cx="527.35151"
-     inkscape:cy="240.81552"
+     inkscape:cx="477.97093"
+     inkscape:cy="360.1793"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -39,11 +39,11 @@
      fit-margin-left="0"
      fit-margin-right="0"
      fit-margin-bottom="0"
-     inkscape:window-width="2488"
-     inkscape:window-height="1376"
-     inkscape:window-x="1992"
-     inkscape:window-y="27"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="630"
+     inkscape:window-height="1401"
+     inkscape:window-x="1285"
+     inkscape:window-y="10"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -52,7 +52,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,46 +60,46 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-3.1395586,-4.2118179)">
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1b.png"
-       xlink:href="fig1b.png"
-       width="162.56001"
-       height="121.92"
-       preserveAspectRatio="none"
-       id="image845"
-       x="176.90236"
-       y="13.799338" />
+     transform="translate(-0.84215111,-4.2118179)">
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="61.261814"
+       x="56.49931"
        y="10.757499"
        id="text850"><tspan
          sodipodi:role="line"
          id="tspan848"
-         x="61.261814"
+         x="56.49931"
          y="10.757499"
-         style="font-weight:bold;stroke-width:0.26458332">F0 = 280 Hz</tspan></text>
+         style="font-weight:bold;stroke-width:0.26458332">A. F0 = 280 Hz</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="233.5437"
+       x="226.66463"
        y="10.757499"
        id="text850-3"><tspan
          sodipodi:role="line"
          id="tspan848-6"
-         x="233.5437"
+         x="226.66463"
          y="10.757499"
-         style="font-weight:bold;stroke-width:0.26458332">F0 = 1400 Hz</tspan></text>
+         style="font-weight:bold;stroke-width:0.26458332">B. F0 = 1400 Hz</tspan></text>
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1b.png"
+       xlink:href="fig1b.png"
+       width="165.61836"
+       height="144.91608"
+       preserveAspectRatio="none"
+       id="image1468"
+       x="175.08647"
+       y="14.267531" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1a.png"
        xlink:href="fig1a.png"
-       width="162.56001"
-       height="121.92"
+       width="165.61836"
+       height="144.91608"
        preserveAspectRatio="none"
-       id="image878"
-       x="3.1395586"
-       y="13.799338" />
+       id="image1479"
+       x="0.84215111"
+       y="14.267531" />
   </g>
 </svg>
