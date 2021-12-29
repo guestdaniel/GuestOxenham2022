@@ -90,4 +90,4 @@ plot_ep(axs[1, 1], 1400, 'GEOM', 50, 40, '1400 Hz', False, '#8da0cb', fiber_type
 plt.legend(['ISO', 'GEOM'], loc=1, framealpha=1)
 plt.tight_layout()
 # Save to disk
-plt.savefig('plots/fig4.png', bbox_inches='tight', dpi=300)
+plt.savefig('plots/fig4_raw.png', bbox_inches='tight', dpi=300)

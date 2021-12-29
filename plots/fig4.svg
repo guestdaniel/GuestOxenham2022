@@ -16,8 +16,8 @@
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
-   sodipodi:docname="fig4_annotated.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig4_annotated.png"
+   sodipodi:docname="fig4.svg"
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig4.png"
    inkscape:export-xdpi="599.93042"
    inkscape:export-ydpi="599.93042">
   <defs
@@ -50,7 +50,7 @@
      pagecolor="#ffffff"
      bordercolor="#666666"
      borderopacity="1.0"
-     inkscape:pageopacity="0.0"
+     inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="1.979899"
      inkscape:cx="111.72111"
@@ -58,9 +58,9 @@
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="1265"
+     inkscape:window-width="2540"
      inkscape:window-height="1401"
-     inkscape:window-x="3205"
+     inkscape:window-x="1930"
      inkscape:window-y="10"
      inkscape:window-maximized="0"
      units="px"
@@ -108,8 +108,8 @@
          y="38.400021"
          style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:arial;stroke-width:0.26458332">LSR fibers</tspan></text>
     <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4.png"
-       xlink:href="fig4.png"
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4_raw.png"
+       xlink:href="fig4_raw.png"
        y="38.822655"
        x="8.7465458"
        id="image918"
