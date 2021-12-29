@@ -55,6 +55,8 @@ temp %>%
 	geom_point(size=size_point) +
 	geom_pointrange(size=size_line_sub, fatten=size_point_sub, position=position_dodge(width=0.10), data=temp_ind,
                     aes(x=as.numeric(masker)+0.15, group=interaction(subj, F0), ymin=threshold_low, ymax=threshold_high)) +
+	geom_line(position=position_dodge(width=0.10), data=temp_ind,
+                    aes(x=as.numeric(masker)+0.15, group=interaction(subj, F0)), alpha=0.25) +
 	geom_line(size=size_line) +
 	geom_errorbar(size=size_error, width=width_error, aes(ymin=threshold_low, ymax=threshold_high)) +
 	# Modify axes
