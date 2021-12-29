@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 import os, sys
 sys.path.append(os.getcwd())
 from functools import partial
-
+plt.rcParams['font.family'] = 'sans-serif'
+plt.rcParams['font.sans-serif'] = ['Arial']
 
 def prep_ep(F0, level, level_maskers, level_noise, fs=int(100e3), fiber_type='msr'):
     """ Helper function for plotting excitation patterns
@@ -80,7 +81,7 @@ def gen_ep(F0, level, level_maskers, level_noise, fs=100e3, fiber_type='msr'):
     sim = anf.AuditoryNerveZilany2014()
     resp = sim.run(params)
     # Save
-    np.save(os.path.join('figure5', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), resp)
+    np.save(os.path.join('figure5_and_6', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), resp)
 
 
 def plot_ep(axis_main, F0, level_maskers, title, first, color, 
@@ -102,7 +103,7 @@ def plot_ep(axis_main, F0, level_maskers, title, first, color,
         yaxis_side (str): where to plot the yticks and yticklabels ('left' or 'right')
     """
     # Load from disk
-    resp = np.load(os.path.join('figure5', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), allow_pickle=True)
+    resp = np.load(os.path.join('figure5_and_6', 'excitation_patterns_' + str(F0) + '_' + str(level_maskers) + '_' + fiber_type + '.npy'), allow_pickle=True)
     # Calculate cfs
     cfs = 10**np.linspace(np.log10(F0*4), np.log10(F0*12), 200)
     # Calculate mean over time and standard deivation over means
@@ -160,5 +161,5 @@ for F0, label, side in zip([280, 1400], ['c', 'd'], ['left', 'right']):
             plot_ep(axs[idx_tmr, idx_fiber_type], F0, 50 - tmrs[idx_tmr], '1400 Hz', 
                     False, 'black', color_lower, color_middle, color_upper, 
                     fiber_type=fiber_types[idx_fiber_type], yaxis_side=side)
-    plt.savefig('plots/fig5' + label + '1.png', bbox_inches='tight')
+    plt.savefig('plots/fig5' + label + '1.png', bbox_inches='tight', dpi=300)
 plt.close('all')

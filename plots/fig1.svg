@@ -10,16 +10,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="339.86267mm"
-   height="154.97179mm"
-   viewBox="0 0 339.86267 154.97178"
+   width="641.23529"
+   height="295.17545"
+   viewBox="0 0 169.66017 78.098498"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig1.svg"
    inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig1.png"
-   inkscape:export-xdpi="299.99057"
-   inkscape:export-ydpi="299.99057">
+   inkscape:export-xdpi="600.04181"
+   inkscape:export-ydpi="600.04181">
   <defs
      id="defs2" />
   <sodipodi:namedview
@@ -29,21 +29,22 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.98994949"
-     inkscape:cx="602.35522"
-     inkscape:cy="357.58434"
+     inkscape:zoom="1.979899"
+     inkscape:cx="294.71419"
+     inkscape:cy="138.1241"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     fit-margin-top="0"
-     fit-margin-left="0"
-     fit-margin-right="0"
-     fit-margin-bottom="0"
-     inkscape:window-width="839"
+     fit-margin-top="5"
+     fit-margin-left="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     inkscape:window-width="2540"
      inkscape:window-height="1401"
      inkscape:window-x="1930"
      inkscape:window-y="10"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     units="px" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -52,7 +53,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -60,46 +61,46 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(-0.84215111,-4.2118179)">
+     transform="translate(-0.57756778,-3.697146)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="62.849316"
-       y="10.757499"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.13002078"
+       x="32.371868"
+       y="8.0627708"
        id="text850"><tspan
          sodipodi:role="line"
          id="tspan848"
-         x="62.849316"
-         y="10.757499"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';stroke-width:0.26458332">A. F0 = 280 Hz</tspan></text>
+         x="32.371868"
+         y="8.0627708"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';stroke-width:0.13002078">A. F0 = 280 Hz</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="234.07286"
-       y="10.757499"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:'DejaVu Sans';-inkscape-font-specification:'DejaVu Sans';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.13002078"
+       x="116.51404"
+       y="8.0627708"
        id="text850-3"><tspan
          sodipodi:role="line"
          id="tspan848-6"
-         x="234.07286"
-         y="10.757499"
-         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';stroke-width:0.26458332">B. F0 = 1400 Hz</tspan></text>
+         x="116.51404"
+         y="8.0627708"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';stroke-width:0.13002078">B. F0 = 1400 Hz</tspan></text>
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1b.png"
        xlink:href="fig1b.png"
-       y="14.267531"
-       x="175.08647"
-       id="image1468"
+       width="81.387695"
+       height="71.214241"
        preserveAspectRatio="none"
-       height="144.91608"
-       width="165.61836" />
+       id="image1468"
+       x="87.527122"
+       y="9.2584944" />
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig1a.png"
        xlink:href="fig1a.png"
-       y="14.267531"
-       x="0.84215111"
-       id="image1479"
+       width="81.387695"
+       height="71.214241"
        preserveAspectRatio="none"
-       height="144.91608"
-       width="165.61836" />
+       id="image1479"
+       x="1.9004844"
+       y="9.2584944" />
   </g>
 </svg>

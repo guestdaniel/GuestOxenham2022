@@ -10,31 +10,32 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="8.5in"
-   height="11in"
-   viewBox="0 0 215.9 279.4"
+   width="722.88879"
+   height="394.71567"
+   viewBox="0 0 191.26433 104.43518"
    version="1.1"
    id="svg921"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig5cd.svg"
-   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig5cd.png"
-   inkscape:export-xdpi="199.42"
-   inkscape:export-ydpi="199.42">
+   inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig6.png"
+   inkscape:export-xdpi="599.99268"
+   inkscape:export-ydpi="599.99268">
   <defs
      id="defs915">
     <marker
        inkscape:stockid="Arrow1Send"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Send"
-       style="overflow:visible;"
+       style="overflow:visible"
        inkscape:isstock="true">
       <path
          id="path876"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;stroke-opacity:1;fill:#000000;fill-opacity:1"
-         transform="scale(0.2) rotate(180) translate(6,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 Z"
+         style="fill:#000000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:1.00000003pt;stroke-opacity:1"
+         transform="matrix(-0.2,0,0,-0.2,-1.2,0)"
+         inkscape:connector-curvature="0" />
     </marker>
     <marker
        inkscape:stockid="Arrow1Send"
@@ -254,19 +255,23 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
-     inkscape:cx="388.82515"
-     inkscape:cy="742.46017"
+     inkscape:zoom="1.4142136"
+     inkscape:cx="353.02812"
+     inkscape:cy="200.45844"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
-     inkscape:window-width="2560"
-     inkscape:window-height="1440"
-     inkscape:window-x="0"
-     inkscape:window-y="0"
+     inkscape:window-width="2540"
+     inkscape:window-height="1401"
+     inkscape:window-x="1930"
+     inkscape:window-y="10"
      inkscape:window-maximized="0"
-     units="in"
-     inkscape:lockguides="true" />
+     units="px"
+     inkscape:lockguides="true"
+     fit-margin-top="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     fit-margin-left="5" />
   <metadata
      id="metadata918">
     <rdf:RDF>
@@ -275,7 +280,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -283,27 +288,27 @@
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
      id="layer1"
-     transform="translate(0,-17.6)">
+     transform="translate(-0.98012097,-18.675048)">
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5c1.png"
        xlink:href="fig5c1.png"
-       width="85.106911"
-       height="84.115379"
-       preserveAspectRatio="none"
+       y="28.690546"
+       x="8.1729174"
        id="image1474"
-       x="15.873307"
-       y="35.183144" />
+       preserveAspectRatio="none"
+       height="79.442871"
+       width="80.379326" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="29.141951"
-       y="34.306561"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="22.703588"
+       y="27.862658"
        id="text1479"><tspan
          sodipodi:role="line"
          id="tspan1477"
-         x="29.141951"
-         y="34.306561"
-         style="stroke-width:0.26458332">HSR fibers</tspan></text>
+         x="22.703588"
+         y="27.862658"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">HSR fibers</tspan></text>
     <text
        xml:space="preserve"
        style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.52777767px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
@@ -317,195 +322,195 @@
          style="stroke-width:0.26458332" /></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="30.445999"
-       y="122.29937"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="21.93611"
+       y="110.96758"
        id="text1491"><tspan
          sodipodi:role="line"
          id="tspan1489"
-         x="30.445999"
-         y="122.29937"
-         style="stroke-width:0.26458332">Neural harmonic number (CF/F0)</tspan></text>
+         x="21.93611"
+         y="110.96758"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">Neural harmonic number (CF/F0)</tspan></text>
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig5d1.png"
        xlink:href="fig5d1.png"
-       inkscape:transform-center-y="-9.8889725"
-       inkscape:transform-center-x="28.330569"
-       y="35.183144"
-       x="124.26353"
-       id="image1474-6"
+       width="80.379326"
+       height="79.442879"
        preserveAspectRatio="none"
-       height="84.115387"
-       width="85.106911" />
+       id="image1474-6"
+       x="110.5422"
+       y="28.690546"
+       inkscape:transform-center-x="26.756839"
+       inkscape:transform-center-y="-9.3396524" />
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="70.839493"
-       y="34.306561"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="61.085342"
+       y="27.862658"
        id="text1479-7"><tspan
          sodipodi:role="line"
          id="tspan1477-5"
-         x="70.839493"
-         y="34.306561"
-         style="stroke-width:0.26458332">LSR fibers</tspan></text>
+         x="61.085342"
+         y="27.862658"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">LSR fibers</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="131.58031"
-       y="34.306561"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="119.45164"
+       y="27.862658"
        id="text1479-3"><tspan
          sodipodi:role="line"
          id="tspan1477-56"
-         x="131.58031"
-         y="34.306561"
-         style="stroke-width:0.26458332">HSR fibers</tspan></text>
+         x="119.45164"
+         y="27.862658"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">HSR fibers</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="173.91362"
-       y="34.306561"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="158.93361"
+       y="27.862658"
        id="text1479-2"><tspan
          sodipodi:role="line"
          id="tspan1477-9"
-         x="173.91362"
-         y="34.306561"
-         style="stroke-width:0.26458332">LSR fibers</tspan></text>
+         x="158.93361"
+         y="27.862658"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">LSR fibers</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="133.79196"
-       y="122.29937"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="119.54135"
+       y="110.96758"
        id="text1491-1"><tspan
          sodipodi:role="line"
          id="tspan1489-2"
-         x="133.79196"
-         y="122.29937"
-         style="stroke-width:0.26458332">Neural harmonic number (CF/F0)</tspan></text>
+         x="119.54135"
+         y="110.96758"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.24988604">Neural harmonic number (CF/F0)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
-       x="103.25211"
-       y="46.848324"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0989172"
+       x="90.836243"
+       y="39.457855"
        id="text6562-5"><tspan
          sodipodi:role="line"
          id="tspan6560-6"
-         x="103.25211"
-         y="46.848324"
-         style="stroke-width:0.10473511">0 dB TMR</tspan></text>
+         x="90.836243"
+         y="39.457855"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0989172">0 dB TMR</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
-       x="103.19402"
-       y="66.982246"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0989172"
+       x="90.836243"
+       y="58.473366"
        id="text6562-7-2"><tspan
          sodipodi:role="line"
          id="tspan6560-5-9"
-         x="103.19402"
-         y="66.982246"
-         style="stroke-width:0.10473511">5 dB TMR</tspan></text>
+         x="90.836243"
+         y="58.473366"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0989172">5 dB TMR</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
-       x="101.84"
-       y="87.11393"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0989172"
+       x="89.589737"
+       y="77.486763"
        id="text6562-3-1"><tspan
          sodipodi:role="line"
          id="tspan6560-56-2"
-         x="101.84"
-         y="87.11393"
-         style="stroke-width:0.10473511">10 dB TMR</tspan></text>
+         x="89.589737"
+         y="77.486763"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0989172">10 dB TMR</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.46869755px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.10473511"
-       x="101.57748"
-       y="107.25005"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.0989172"
+       x="89.116325"
+       y="96.504349"
        id="text6562-2-7"><tspan
          sodipodi:role="line"
          id="tspan6560-9-0"
-         x="101.57748"
-         y="107.25005"
-         style="stroke-width:0.10473511">No maskers</tspan></text>
+         x="89.116325"
+         y="96.504349"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.0989172">No maskers</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21352568"
-       x="149.47441"
-       y="28.001476"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.20166458"
+       x="135.85196"
+       y="23.407131"
        id="text915-9"><tspan
          sodipodi:role="line"
          id="tspan913-2"
-         x="149.47441"
-         y="28.001476"
-         style="stroke-width:0.21352568">F0 = 1400 Hz</tspan></text>
+         x="135.85196"
+         y="23.407131"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.20166458">F0 = 1400 Hz</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.29166651px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.21352568"
-       x="48.758015"
-       y="27.434505"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.20166458"
+       x="39.730686"
+       y="22.871655"
        id="text915"><tspan
          sodipodi:role="line"
          id="tspan913"
-         x="48.758015"
-         y="27.434505"
-         style="stroke-width:0.21352568">F0 = 280 Hz</tspan></text>
+         x="39.730686"
+         y="22.871655"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.20166458">F0 = 280 Hz</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="-94.901688"
-       y="12.74017"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.24988604"
+       x="-85.091805"
+       y="5.2138195"
        id="text23253"
        transform="rotate(-90)"><tspan
          sodipodi:role="line"
          id="tspan23251"
-         x="-94.901688"
-         y="12.74017"
-         style="stroke-width:0.26458332">Firing rate (sp/s)</tspan></text>
+         x="-85.091805"
+         y="5.2138195"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:arial;-inkscape-font-specification:arial;stroke-width:0.24988604">Firing rate (sp/s)</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.1888504px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;opacity:0.93000034;fill:#ffb200;fill-opacity:1;stroke:none;stroke-width:0.08485705;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="101.22598"
-       y="131.84996"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;opacity:0.93000034;fill:#ffb200;fill-opacity:1;stroke:none;stroke-width:0.08014334;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="89.783897"
+       y="117.4888"
        id="text10449-0-6-5-7"><tspan
          sodipodi:role="line"
          id="tspan10447-9-0-6-0"
-         x="101.22598"
-         y="131.84996"
-         style="font-weight:bold;fill:#ffb200;fill-opacity:1;stroke:none;stroke-width:0.08485705;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Middle F0</tspan></text>
+         x="89.783897"
+         y="117.4888"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';fill:#ffb200;fill-opacity:1;stroke:none;stroke-width:0.08014334;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Middle F0</tspan></text>
     <a
-       transform="matrix(0.91309142,0,0,0.91309142,77.157778,-171.96859)"
+       transform="matrix(0.86237029,0,0,0.86237029,67.052651,-169.45305)"
        id="a1047-9"
        style="opacity:0.93000034;fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">
       <text
          id="text10449-3"
          y="332.66867"
          x="59.777203"
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.68272877px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.63626432px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          xml:space="preserve"><tspan
-           style="font-weight:bold;fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
            y="332.66867"
            x="59.777203"
            id="tspan10447-6"
            sodipodi:role="line">Upper F0 </tspan><tspan
-           style="font-weight:bold;fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           y="337.49899"
+           style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';fill:#ff00ac;fill-opacity:1;stroke:none;stroke-width:0.09293378;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           y="336.74509"
            x="59.777203"
            sodipodi:role="line"
            id="tspan921">(6 ST)</tspan></text>
     </a>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:5.1888504px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;opacity:0.93000034;fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08485705;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-       x="72.660522"
-       y="131.78769"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:3.99817657px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;opacity:0.93000034;fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08014334;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+       x="62.805214"
+       y="117.42998"
        id="text10449-0-2-0"><tspan
          sodipodi:role="line"
          id="tspan10447-9-9-6"
-         x="72.660522"
-         y="131.78769"
-         style="font-weight:bold;fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08485705;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Lower F0 </tspan><tspan
+         x="62.805214"
+         y="117.42998"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08014334;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1">Lower F0 </tspan><tspan
          sodipodi:role="line"
-         x="72.660522"
-         y="136.19821"
-         style="font-weight:bold;fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08485705;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+         x="62.805214"
+         y="120.94536"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:'arial Bold';fill:#ff3b00;fill-opacity:1;stroke:none;stroke-width:0.08014334;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
          id="tspan919">(-5.5 ST)</tspan></text>
   </g>
 </svg>

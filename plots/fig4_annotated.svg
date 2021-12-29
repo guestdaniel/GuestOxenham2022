@@ -10,16 +10,16 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
+   width="423.24908"
+   height="254.02867"
+   viewBox="0 0 111.98465 67.211757"
    version="1.1"
    id="svg8"
    inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
    sodipodi:docname="fig4_annotated.svg"
    inkscape:export-filename="/home/daniel/GuestOxenham2021/plots/fig4_annotated.png"
-   inkscape:export-xdpi="299.992"
-   inkscape:export-ydpi="299.992">
+   inkscape:export-xdpi="599.93042"
+   inkscape:export-ydpi="599.93042">
   <defs
      id="defs2">
     <clipPath
@@ -52,9 +52,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.4"
-     inkscape:cx="368.47591"
-     inkscape:cy="906.14383"
+     inkscape:zoom="1.979899"
+     inkscape:cx="111.72111"
+     inkscape:cy="198.29758"
      inkscape:document-units="mm"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -62,7 +62,12 @@
      inkscape:window-height="1401"
      inkscape:window-x="3205"
      inkscape:window-y="10"
-     inkscape:window-maximized="0" />
+     inkscape:window-maximized="0"
+     units="px"
+     fit-margin-top="5"
+     fit-margin-right="5"
+     fit-margin-bottom="5"
+     fit-margin-left="5" />
   <metadata
      id="metadata5">
     <rdf:RDF>
@@ -71,76 +76,64 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.07002271;stroke-linecap:butt;stroke-linejoin:round;stroke-miterlimit:4;stroke-dasharray:0.8402725, 0.07002271;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect826"
-       width="6.6817379"
-       height="91.673447"
-       x="105.94943"
-       y="16.087923" />
+     id="layer1"
+     transform="translate(-6.850249,-33.995122)">
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="51.215775"
-       y="15.218748"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="31.566092"
+       y="38.400021"
        id="text830"><tspan
          sodipodi:role="line"
          id="tspan828"
-         x="51.215775"
-         y="15.218748"
-         style="stroke-width:0.26458332">HSR fibers</tspan></text>
+         x="31.566092"
+         y="38.400021"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:arial;stroke-width:0.26458332">HSR fibers</tspan></text>
     <text
        xml:space="preserve"
-       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:7.05555534px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
-       x="133.78368"
-       y="15.218748"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="83.002464"
+       y="38.400021"
        id="text830-3"><tspan
          sodipodi:role="line"
          id="tspan828-6"
-         x="133.78368"
-         y="15.218748"
-         style="stroke-width:0.26458332">LSR fibers</tspan></text>
+         x="83.002464"
+         y="38.400021"
+         style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:arial;-inkscape-font-specification:arial;stroke-width:0.26458332">LSR fibers</tspan></text>
     <image
        sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4.png"
        xlink:href="fig4.png"
-       width="173.73601"
-       height="97.536003"
-       preserveAspectRatio="none"
+       y="38.822655"
+       x="8.7465458"
        id="image918"
-       x="14.051638"
-       y="15.776643" />
-    <rect
-       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect921"
-       width="7.9980979"
-       height="44.957096"
-       x="14.051638"
-       y="15.776643" />
-    <rect
-       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
-       id="rect944"
-       width="5.4790254"
-       height="47.306705"
-       x="16.570711"
-       y="60.733734" />
-    <image
-       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/fig4.png"
-       xlink:href="fig4.png"
-       transform="translate(-97.219273,-16.83566)"
-       clip-path="url(#clipPath940-6)"
-       y="13.836623"
-       x="109.44147"
-       id="image918-3-5"
        preserveAspectRatio="none"
-       height="97.536003"
-       width="173.73601" />
+       height="61.061302"
+       width="108.76544" />
+    <rect
+       style="opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:nonzero;stroke:#ffffff;stroke-width:0.53800035;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       id="rect944"
+       width="5.4410253"
+       height="55.153156"
+       x="8.7465458"
+       y="38.822655" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:4.23333311px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="-82.288292"
+       y="11.255148"
+       id="text1890"
+       transform="rotate(-90)"><tspan
+         sodipodi:role="line"
+         id="tspan1888"
+         x="-82.288292"
+         y="11.255148"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">Firing rate (sp/s)</tspan></text>
   </g>
 </svg>

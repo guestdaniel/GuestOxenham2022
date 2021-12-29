@@ -66,9 +66,9 @@ f0s = [280, 1400]      # set F0s for each simulation
 for tmr in tmrs:
     for f0 in f0s:
         lags, neural_harm_nums, histograms = calculate_autocorrelation(f0, np.linspace(4, 12, 100), tmr, n_repeat=10)
-        np.save('figure5/autocorr_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
-        np.save('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', neural_harm_nums)
-        np.save('figure5/lags_tmr_' + str(tmr) + '_' + str(f0) + '.npy', lags)
+        np.save('figure5_and_6/autocorr_tmr_' + str(tmr) + '_' + str(f0) + '.npy', histograms)
+        np.save('figure5_and_6/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy', neural_harm_nums)
+        np.save('figure5_and_6/lags_tmr_' + str(tmr) + '_' + str(f0) + '.npy', lags)
 
 
 # Functions to plot autocorrelation
@@ -99,9 +99,9 @@ def plot_autocorrelation(f0, xlims=None, cmap='viridis', figsize=None, tmrs=None
     # Now, we load in the simulations we want and plot each as we go
     for idx_tmr, tmr in enumerate(tmrs):
         # Load in histograms, neural harmonic numbres, and lags
-        autocorr = np.load('figure5/autocorr_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
-        neural_harm_nums = np.load('figure5/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
-        lags = np.load('figure5/lags_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
+        autocorr = np.load('figure5_and_6/autocorr_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
+        neural_harm_nums = np.load('figure5_and_6/neural_harm_nums_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
+        lags = np.load('figure5_and_6/lags_tmr_' + str(tmr) + '_' + str(f0) + '.npy')
         # If we want off_cf_only, we kill all channels outside of chosen
         if off_cf_only:
             chosen = np.sum(np.array([np.logical_and(0.3 < np.abs(neural_harm_nums - harm), np.abs(neural_harm_nums - harm) < 1) for harm in [6, 7, 8, 9, 10]]), axis=0) > 1
@@ -117,6 +117,7 @@ def plot_autocorrelation(f0, xlims=None, cmap='viridis', figsize=None, tmrs=None
         ax[idx_tmr].get_xaxis().set_visible(False)
         # Set y-ticks
         ax[idx_tmr].set_yticks([6, 7, 8, 9, 10])
+        ax[idx_tmr].set_yticklabels(['6', '', '8', '', '10'])
         # Calculate average across simulated CFs and plot on bottom row
         means = np.nanmean(autocorr, axis=0)
         ax[len(tmrs)].plot(lags*f0, means/np.max(means), color=sacf_colors[idx_tmr])
@@ -142,6 +143,18 @@ linewidth = 2
 linestyle = 'dashed'
 cmap = 'viridis'
 
+SMALL_SIZE = 15
+MEDIUM_SIZE = 17
+BIGGER_SIZE = 19
+
+plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=SMALL_SIZE-2)  # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
+
 # Create main plot (top part)
 for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
     fig, ax = plot_autocorrelation(F0, cmap=cmap, figsize=(7*0.7, 12*0.7))
@@ -150,6 +163,18 @@ for fig_subnum, F0 in zip(['a', 'b'], [280, 1400]):
         ax[idx_tmr].set_yticks([6, 7, 8, 9, 10])
     plt.savefig('plots/fig5' + fig_subnum + '1.png', dpi=300)
 plt.close('all')
+
+SMALL_SIZE = 13
+MEDIUM_SIZE = 15
+BIGGER_SIZE = 17
+
+plt.rc('font', size=SMALL_SIZE)          # controls default text sizes
+plt.rc('axes', titlesize=SMALL_SIZE)     # fontsize of the axes title
+plt.rc('axes', labelsize=MEDIUM_SIZE)    # fontsize of the x and y labels
+plt.rc('xtick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('ytick', labelsize=SMALL_SIZE)    # fontsize of the tick labels
+plt.rc('legend', fontsize=SMALL_SIZE-2)  # legend fontsize
+plt.rc('figure', titlesize=BIGGER_SIZE)  # fontsize of the figure title
 
 # Create zoomed-in versions of plots
 # #1: Low frequencies, from 3.5 to 4.5, only 0/5/10 dB
