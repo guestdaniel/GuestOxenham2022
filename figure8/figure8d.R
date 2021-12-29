@@ -112,7 +112,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -182,7 +182,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),

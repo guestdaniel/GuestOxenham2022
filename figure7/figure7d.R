@@ -67,7 +67,7 @@ for (model in levels(q10$model)) {
 # At this point, fdls should contain, for each test frequency, predicted thresholds for each model and decoding type, Q10 values, and vector strenght values
 
 plot_vs <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-			        filename="fig6d_vector_strength_new", width=7, height=3) {
+			        filename="fig7d_vector_strength_new", width=7, height=3) {
 #' Plots a correlation between all-information thresholds and vector strength at the corresponding frequency in each model
 #' @param models A vector of model names to plot
 #' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
@@ -114,7 +114,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -137,7 +137,7 @@ ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 
 # Define function to plot dual y-axis q10
 plot_q10 <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-			        filename="fig6d_tuning_new", width=7, height=3) {
+			        filename="fig7d_tuning_new", width=7, height=3) {
 #' Plots a correlation between rate-place thresholds and Q10 at the corresponding frequency in each model
 #' @param models A vector of model names to plot
 #' @param filename The filename (without a file extension) of the plot to be saved in the plots folder
@@ -184,7 +184,7 @@ filtered_data[filtered_data$data_type == 'threshold', ] %>%
 	  axis.title.x=element_text(size=1.2*font_scale),
 	  legend.text=element_text(size=1*font_scale),     # legend text font size
 	  legend.title=element_text(size=1.2*font_scale),  # legend title font size
-	  strip.text.x=element_text(size=1.2*font_scale),    # facet label font size
+	  strip.text.x=element_text(size=1*font_scale),    # facet label font size
 	  strip.text.y=element_text(size=1*font_scale),    # facet label font size
 	  plot.title=element_text(size=1.5*font_scale),      # figure title font size
 	  panel.grid.major=element_blank(),
@@ -206,7 +206,7 @@ ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 
 # Plot summmary figure
 plot_correlations <- function(models=c("Heinz et al. (2001)", "Zilany et al. (2014)", "Verhulst et al. (2018)"), 
-          			          filename="fig6d_correlations", width=4, height=4) {
+          			          filename="fig7d_correlations", width=4, height=4) {
 #' Plots correlation values (i.e., Pearson's r) for correlations between AI thresholds and vector strength,
 #' or between RP threshold and q10
 #' @param models A vector of model names to plot
@@ -265,8 +265,8 @@ ggsave(paste0("plots/", filename, ".png"), width=width, height=height)
 }
 
 # Now, call these functions to generate our plots! 
-#plot_vs(c("Zilany et al. (2014)"), "fig6d_vector_strength_zilany_only", width=2.5, height=2.0)
-#plot_q10(c("Zilany et al. (2014)"), "fig6d_tuning_zilany_only", width=2.5, height=2.0)
+#plot_vs(c("Zilany et al. (2014)"), "fig7d_vector_strength_zilany_only", width=2.5, height=2.0)
+#plot_q10(c("Zilany et al. (2014)"), "fig7d_tuning_zilany_only", width=2.5, height=2.0)
 plot_q10(width=7.67, height=2)
 plot_vs(width=8, height=2)
 #plot_correlations(width=3.5, height=3)
