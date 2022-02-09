@@ -39,28 +39,22 @@ Rscript figure2/figure2.R
 # Code check:   4/19/2021
 # Output check: 4/19/2021
 echo 'Generating Figure 3'
-python3 figure3/figure3.py
+Rscript figure3/figure3.R
 
 # Code check:   4/20/2021
 # Output check: 4/20/2021
 echo 'Generating Figure 4'
-Rscript figure4/figure4.R
+python3 figure4/figure4.py
 
 # Code check:   5/11/2021
 # Output check: 5/11/2021
 echo 'Generating Figure 5'
-python3 figure5/figure5a.py
-python3 figure5/figure5b.py
+python3 figure5_and_6/figure5.py
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
 echo 'Generating Figure 6'
-python3 figure6/figure6a.py
-Rscript figure6/figure6a.R
-python3 figure6/figure6b.py
-Rscript figure6/figure6b.R
-Rscript figure6/figure6c.R
-Rscript figure6/figure6d.R
+python3 figure5_and_6/figure6.py
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
@@ -74,7 +68,17 @@ Rscript figure7/figure7d.R
 
 # Code check:   4/19/2021
 # Output check: 4/19/2021
-echo 'Generating Supplemental Figure 1'
+echo 'Generating Figure 8'
+python3 figure8/figure8a.py
+Rscript figure8/figure8a.R
+python3 figure8/figure8b.py
+Rscript figure8/figure8b.R
+Rscript figure8/figure8c.R
+Rscript figure8/figure8d.R
+
+# Code check:   4/19/2021
+# Output check: 4/19/2021
+echo 'Generating S1 Text, Fig A'
 python3 supfigure1/supfigure1a.py
 python3 supfigure1/supfigure1b.py
 python3 supfigure1/supfigure1c.py
@@ -82,3 +86,13 @@ python3 supfigure1/supfigure1d/generate_ISIs.py
 python3 supfigure1/supfigure1d/supfigure1d.py
 python3 supfigure1/supfigure1e/generate_ISI_histograms.py
 python3 supfigure1/supfigure1e/supfigure1e.py
+
+# Code check:   4/19/2021
+# Output check: ???
+echo 'Generating S2 Text, Fig A'
+# Update with scripts to generate this one
+
+# Code check: 4/19/2021
+# Output check: ???
+echo 'Generating S3 Text, Fig A'
+# ???
