@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="8.5in"
+   height="11in"
+   viewBox="0 0 215.9 279.40001"
+   version="1.1"
+   id="svg8"
+   inkscape:version="0.92.5 (2060ec1f9f, 2020-04-08)"
+   sodipodi:docname="s5_fig.svg">
+  <defs
+     id="defs2" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="394.69727"
+     inkscape:cy="634.42549"
+     inkscape:document-units="mm"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     units="in"
+     inkscape:window-width="2560"
+     inkscape:window-height="1440"
+     inkscape:window-x="1920"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata5">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-17.599983)">
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa1.png"
+       xlink:href="s5_text_figa1.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image823"
+       x="8.1585331"
+       y="29.510651" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa2.png"
+       xlink:href="s5_text_figa2.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image834"
+       x="111.63617"
+       y="29.510651" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa3.png"
+       xlink:href="s5_text_figa3.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image845"
+       x="8.1585331"
+       y="113.00072" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa4.png"
+       xlink:href="s5_text_figa4.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image856"
+       x="111.63617"
+       y="113.00069" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa5.png"
+       xlink:href="s5_text_figa5.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image867"
+       x="8.1585331"
+       y="196.49081" />
+    <image
+       sodipodi:absref="/home/daniel/GuestOxenham2021/plots/s5_text_figa6.png"
+       xlink:href="s5_text_figa6.png"
+       width="95.809486"
+       height="68.435341"
+       preserveAspectRatio="none"
+       id="image878"
+       x="111.63617"
+       y="196.49081" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="44.913265"
+       y="27.301653"
+       id="text883"><tspan
+         sodipodi:role="line"
+         id="tspan881"
+         x="44.913265"
+         y="27.301653"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">ISO Low</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="148.25208"
+       y="27.301653"
+       id="text883-3"><tspan
+         sodipodi:role="line"
+         id="tspan881-6"
+         x="148.25208"
+         y="27.301653"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">ISO High</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="39.211632"
+       y="110.90999"
+       id="text883-7"><tspan
+         sodipodi:role="line"
+         id="tspan881-5"
+         x="39.211632"
+         y="110.90999"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">GEOM Low</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="142.55045"
+       y="110.90999"
+       id="text883-35"><tspan
+         sodipodi:role="line"
+         id="tspan881-62"
+         x="142.55045"
+         y="110.90999"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">GEOM High</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="44.166111"
+       y="194.1026"
+       id="text883-9"><tspan
+         sodipodi:role="line"
+         id="tspan881-1"
+         x="44.166111"
+         y="194.1026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">DBL Low</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:8.8194437px;line-height:0.85000002;font-family:Lato;-inkscape-font-specification:Lato;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:0.26458332"
+       x="147.50493"
+       y="194.1026"
+       id="text883-2"><tspan
+         sodipodi:role="line"
+         id="tspan881-7"
+         x="147.50493"
+         y="194.1026"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Arial;-inkscape-font-specification:Arial;stroke-width:0.26458332">DBL High</tspan></text>
+  </g>
+</svg>

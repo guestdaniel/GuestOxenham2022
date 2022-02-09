@@ -136,11 +136,14 @@ def plot_autocorrelation(f0, xlims=None, cmap='viridis', figsize=None, tmrs=None
 
 # Create plots
 # Define colorscheme for different F0s
-color_lower = '#ff3b00'
-color_middle = '#ffb200'
-color_upper = '#ff00ac'
-linewidth = 2
-linestyle = 'dashed'
+#color_lower = '#ff3b00'
+#color_middle = '#ffb200'
+#color_upper = '#ff00ac'
+color_lower = '#000000'
+color_middle = '#000000'
+color_upper = '#000000'
+linewidth = 0.5
+linestyle = 'solid'
 cmap = 'viridis'
 
 SMALL_SIZE = 15
