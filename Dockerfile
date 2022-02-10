@@ -1,5 +1,5 @@
 # Start with Ubuntu image
-FROM ubuntu:18.04
+FROM ubuntu:20.04
 ENV DEBIAN_FRONTEND=noninteractive
 
 # Create a directory GuestOxenham2021 and start the container by default in that folder
@@ -7,7 +7,7 @@ WORKDIR /GuestOxenham2021
 
 # Install essential tools and repositories to get pre-compiled R packages
 RUN apt-get update && apt-get install -y --no-install-recommends dirmngr gpg-agent software-properties-common unzip gcc \
-    build-essential git libcurl4-openssl-dev openssh-server && \
+    build-essential git libcurl4-openssl-dev openssh-server zlib1g-dev libjpeg-dev && \
     apt update -y -qq && \
     apt-key adv --keyserver keyserver.ubuntu.com --recv-keys E298A3A825C0D65DFD57CBB651716619E084DAB9 && \
     add-apt-repository -y "deb https://cloud.r-project.org/bin/linux/ubuntu $(lsb_release -cs)-cran40/" && \
@@ -20,7 +20,7 @@ RUN apt-get install -y -f --no-install-recommends r-base r-cran-dplyr r-cran-eff
 
 # Install Python and Python packages
 RUN apt-get install -y python3.8 python3-pip python3-setuptools python3-dev && \
-    pip3 install numpy scipy pandas scikit-image Cython git+https://github.com/detly/gammatone.git && \
+    pip3 install numpy==1.19 scipy pandas scikit-image Cython git+https://github.com/detly/gammatone.git && \
     alias python="python3"
 
 # Install Verhulst et al. (2018) model
