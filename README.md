@@ -2,7 +2,7 @@
 
 # Introduction
 
-This repository contains all the code necessary to completely replicate the figures and analyses found in Guest and Oxenham (2022), in preparation. The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
+This repository contains all the code necessary to completely replicate the figures and analyses found in [Guest and Oxenham (2022), PLOS Comp Bio](https://doi.org/10.1371/journal.pcbi.1009889). The codebase is a mixture of Python and R, with Python mostly being used to conduct neural simulations and R mostly being used to analyze behavioral data and create figures. A Docker image is available in which a single script `run.sh` can be run to replicate all of the figures in the paper. This is our recommended solution for running the code in this repository.
 
 The repository includes the code used to collect behavioral data (stimulus generation, stimulus presentation, response collection, etc.) as a single archive. This code is only sparsely documented and relies on MATLAB and the [`afc`](http://medi.uni-oldenburg.de/afc/index.htm) package. The repository does not contain the preprocessed behavioral data but this can be easily downloaded from [Zenodo](https://doi.org/10.5281/zenodo.4750383) and placed in the `data` folder. Code to replicate the analyses and visualizations of the behavioral data and code to replicate the computational models described in the manuscript are available in this respository and are thoroughly documented. The code relies on a number of external libraries, including auditory-specific packages available via our modeling toolbox, [`apcmodels`](https://github.com/guestdaniel/apcmodels).
 
@@ -47,13 +47,13 @@ To get started, make sure you have [Docker installed](https://docs.docker.com/ge
 First, pull the image from our GitHub repository.
 
 ```
-docker pull docker.pkg.github.com/guestdaniel/guestoxenham2021/guestoxenham2021:1.0.0
+docker pull docker.pkg.github.com/guestdaniel/guestoxenham2022/guestoxenham2022:1.0.0
 ```
 
 Next, use the image to create an interactive container.
 
 ```
-docker run --rm -it guestoxenham2021
+docker run --rm -it guestoxenham2022
 ```
 
 - `--rm` flag tells Docker to "clean up" after itself and to remove any files generated while running the image after the container is closed
@@ -67,7 +67,7 @@ bash run.sh
 However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk. First, exit the container with the `exit` command, then run the following:
 
 ```
-docker run --rm -v /home/daniel/GuestOxenham2021/plots:/GuestOxenham2021/plots -it guestoxenham2021
+docker run --rm -v /home/daniel/GuestOxenham2022/plots:/GuestOxenham2022/plots -it guestoxenham2022
 ```
 
 - `-v` flag tells Docker to link the `plots` folder on your disk (path to the left of `:`) with the `plots` folder in the container (path to the right of `:`). Obviously, you will need to adjust the path on the  left to point to wherever you have stored your local copy of the repository.
