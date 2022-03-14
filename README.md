@@ -44,16 +44,16 @@ Docker is our recommended solution for replicating the results from Guest and Ox
 
 To get started, make sure you have [Docker installed](https://docs.docker.com/get-docker/). Then, follow the instructions below. The instructions below are written for command line interface (such as PowerShell and Terminal) but equivalent commands likely exist in graphical user interface versions of the Docker software.
 
-First, pull the image from our GitHub repository.
+First, pull the image from our GitHub repository (note carefully that the year for the image is `2021` and not `2022`).
 
 ```
-docker pull docker.pkg.github.com/guestdaniel/guestoxenham2022/guestoxenham2022:1.0.0
+docker pull docker.pkg.github.com/guestdaniel/guestoxenham2021/guestoxenham2021:1.0.0
 ```
 
 Next, use the image to create an interactive container.
 
 ```
-docker run --rm -it guestoxenham2022
+docker run --rm -it guestoxenham2021
 ```
 
 - `--rm` flag tells Docker to "clean up" after itself and to remove any files generated while running the image after the container is closed
@@ -67,7 +67,7 @@ bash run.sh
 However, the figures will be saved out to the container's non-persistent storage and will be destroyed when you exit or end the container. To have permanent copies of the outputs figures saved to your disk, you can link the output `plots` directory inside the container to a preferred output location somewhere on your disk. First, exit the container with the `exit` command, then run the following:
 
 ```
-docker run --rm -v /home/daniel/GuestOxenham2022/plots:/GuestOxenham2022/plots -it guestoxenham2022
+docker run --rm -v /home/daniel/GuestOxenham2021/plots:/GuestOxenham2021/plots -it guestoxenham2022
 ```
 
 - `-v` flag tells Docker to link the `plots` folder on your disk (path to the left of `:`) with the `plots` folder in the container (path to the right of `:`). Obviously, you will need to adjust the path on the  left to point to wherever you have stored your local copy of the repository.
